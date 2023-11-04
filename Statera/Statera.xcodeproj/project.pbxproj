@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B0E87F92AF6B9320061491E /* FormInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E87F82AF6B9320061491E /* FormInputViewModel.swift */; };
+		6B0E87FB2AF6B9930061491E /* TextInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E87FA2AF6B9930061491E /* TextInputViewModel.swift */; };
+		6B0E87FD2AF6B9BC0061491E /* CurrencyInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E87FC2AF6B9BC0061491E /* CurrencyInputViewModel.swift */; };
+		6B0E87FF2AF6B9EE0061491E /* NumberInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E87FE2AF6B9EE0061491E /* NumberInputViewModel.swift */; };
+		6B0E88012AF6BA0D0061491E /* SSNInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E88002AF6BA0D0061491E /* SSNInputViewModel.swift */; };
+		6B0E88032AF6BA350061491E /* DOBInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E88022AF6BA350061491E /* DOBInputViewModel.swift */; };
+		6B0E88052AF6BA560061491E /* PickerInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E88042AF6BA560061491E /* PickerInputViewModel.swift */; };
+		6B0E88072AF6BA830061491E /* CheckBoxInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E88062AF6BA830061491E /* CheckBoxInputViewModel.swift */; };
+		6B0E88092AF6BBF20061491E /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E88082AF6BBF20061491E /* TextInputView.swift */; };
+		6B0E880B2AF6BC050061491E /* CurrencyInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E880A2AF6BC050061491E /* CurrencyInputView.swift */; };
+		6B0E880D2AF6BC1C0061491E /* NumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E880C2AF6BC1C0061491E /* NumberInputView.swift */; };
+		6B0E880F2AF6BC380061491E /* SSNInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E880E2AF6BC380061491E /* SSNInputView.swift */; };
+		6B0E88112AF6BC450061491E /* DOBInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E88102AF6BC450061491E /* DOBInputView.swift */; };
+		6B0E88132AF6BC520061491E /* PickerInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E88122AF6BC520061491E /* PickerInputView.swift */; };
+		6B0E88152AF6BC630061491E /* CheckBoxInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E88142AF6BC630061491E /* CheckBoxInputView.swift */; };
 		6B5C6C872AEEB5F500D88079 /* StateraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C6C862AEEB5F500D88079 /* StateraApp.swift */; };
 		6B5C6C892AEEB5F500D88079 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C6C882AEEB5F500D88079 /* ContentView.swift */; };
 		6B5C6C8B2AEEB5F500D88079 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B5C6C8A2AEEB5F500D88079 /* Assets.xcassets */; };
@@ -34,6 +49,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B0E87F82AF6B9320061491E /* FormInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormInputViewModel.swift; sourceTree = "<group>"; };
+		6B0E87FA2AF6B9930061491E /* TextInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputViewModel.swift; sourceTree = "<group>"; };
+		6B0E87FC2AF6B9BC0061491E /* CurrencyInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyInputViewModel.swift; sourceTree = "<group>"; };
+		6B0E87FE2AF6B9EE0061491E /* NumberInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputViewModel.swift; sourceTree = "<group>"; };
+		6B0E88002AF6BA0D0061491E /* SSNInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSNInputViewModel.swift; sourceTree = "<group>"; };
+		6B0E88022AF6BA350061491E /* DOBInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DOBInputViewModel.swift; sourceTree = "<group>"; };
+		6B0E88042AF6BA560061491E /* PickerInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerInputViewModel.swift; sourceTree = "<group>"; };
+		6B0E88062AF6BA830061491E /* CheckBoxInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxInputViewModel.swift; sourceTree = "<group>"; };
+		6B0E88082AF6BBF20061491E /* TextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
+		6B0E880A2AF6BC050061491E /* CurrencyInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyInputView.swift; sourceTree = "<group>"; };
+		6B0E880C2AF6BC1C0061491E /* NumberInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputView.swift; sourceTree = "<group>"; };
+		6B0E880E2AF6BC380061491E /* SSNInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSNInputView.swift; sourceTree = "<group>"; };
+		6B0E88102AF6BC450061491E /* DOBInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DOBInputView.swift; sourceTree = "<group>"; };
+		6B0E88122AF6BC520061491E /* PickerInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerInputView.swift; sourceTree = "<group>"; };
+		6B0E88142AF6BC630061491E /* CheckBoxInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxInputView.swift; sourceTree = "<group>"; };
 		6B5C6C832AEEB5F500D88079 /* Statera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Statera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B5C6C862AEEB5F500D88079 /* StateraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateraApp.swift; sourceTree = "<group>"; };
 		6B5C6C882AEEB5F500D88079 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +102,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B0E87F52AF6B7A50061491E /* FormInputs */ = {
+			isa = PBXGroup;
+			children = (
+				6B0E87F72AF6B7BD0061491E /* FormInputViewModels */,
+				6B0E87F62AF6B7B20061491E /* FormInputViews */,
+			);
+			path = FormInputs;
+			sourceTree = "<group>";
+		};
+		6B0E87F62AF6B7B20061491E /* FormInputViews */ = {
+			isa = PBXGroup;
+			children = (
+				6B0E88082AF6BBF20061491E /* TextInputView.swift */,
+				6B0E880A2AF6BC050061491E /* CurrencyInputView.swift */,
+				6B0E880C2AF6BC1C0061491E /* NumberInputView.swift */,
+				6B0E880E2AF6BC380061491E /* SSNInputView.swift */,
+				6B0E88102AF6BC450061491E /* DOBInputView.swift */,
+				6B0E88122AF6BC520061491E /* PickerInputView.swift */,
+				6B0E88142AF6BC630061491E /* CheckBoxInputView.swift */,
+			);
+			path = FormInputViews;
+			sourceTree = "<group>";
+		};
+		6B0E87F72AF6B7BD0061491E /* FormInputViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				6B0E87F82AF6B9320061491E /* FormInputViewModel.swift */,
+				6B0E87FA2AF6B9930061491E /* TextInputViewModel.swift */,
+				6B0E87FC2AF6B9BC0061491E /* CurrencyInputViewModel.swift */,
+				6B0E87FE2AF6B9EE0061491E /* NumberInputViewModel.swift */,
+				6B0E88002AF6BA0D0061491E /* SSNInputViewModel.swift */,
+				6B0E88022AF6BA350061491E /* DOBInputViewModel.swift */,
+				6B0E88042AF6BA560061491E /* PickerInputViewModel.swift */,
+				6B0E88062AF6BA830061491E /* CheckBoxInputViewModel.swift */,
+			);
+			path = FormInputViewModels;
+			sourceTree = "<group>";
+		};
 		6B5C6C7A2AEEB5F500D88079 = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +163,7 @@
 		6B5C6C852AEEB5F500D88079 /* Statera */ = {
 			isa = PBXGroup;
 			children = (
+				6B0E87F52AF6B7A50061491E /* FormInputs */,
 				6B5C6C862AEEB5F500D88079 /* StateraApp.swift */,
 				6B5C6C882AEEB5F500D88079 /* ContentView.swift */,
 				6B5C6C8A2AEEB5F500D88079 /* Assets.xcassets */,
@@ -259,8 +328,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B0E88072AF6BA830061491E /* CheckBoxInputViewModel.swift in Sources */,
+				6B0E88152AF6BC630061491E /* CheckBoxInputView.swift in Sources */,
+				6B0E88012AF6BA0D0061491E /* SSNInputViewModel.swift in Sources */,
+				6B0E87FB2AF6B9930061491E /* TextInputViewModel.swift in Sources */,
+				6B0E87FD2AF6B9BC0061491E /* CurrencyInputViewModel.swift in Sources */,
+				6B0E88032AF6BA350061491E /* DOBInputViewModel.swift in Sources */,
+				6B0E88112AF6BC450061491E /* DOBInputView.swift in Sources */,
 				6B5C6C892AEEB5F500D88079 /* ContentView.swift in Sources */,
 				6B5C6C872AEEB5F500D88079 /* StateraApp.swift in Sources */,
+				6B0E88052AF6BA560061491E /* PickerInputViewModel.swift in Sources */,
+				6B0E88132AF6BC520061491E /* PickerInputView.swift in Sources */,
+				6B0E880F2AF6BC380061491E /* SSNInputView.swift in Sources */,
+				6B0E87FF2AF6B9EE0061491E /* NumberInputViewModel.swift in Sources */,
+				6B0E87F92AF6B9320061491E /* FormInputViewModel.swift in Sources */,
+				6B0E880B2AF6BC050061491E /* CurrencyInputView.swift in Sources */,
+				6B0E880D2AF6BC1C0061491E /* NumberInputView.swift in Sources */,
+				6B0E88092AF6BBF20061491E /* TextInputView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
