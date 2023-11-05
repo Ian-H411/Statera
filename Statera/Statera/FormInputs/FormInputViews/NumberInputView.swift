@@ -12,13 +12,14 @@ struct NumberInputView: View {
     var maxCharacters: Int
     var charSet: CharacterSet = .decimalDigits
     var displayLabel: String
+    var keyboardType: UIKeyboardType = .numberPad
     
     var body: some View {
         TextInputView (minCharacters: minCharacters,
                        maxCharacters: maxCharacters,
                        displayLabel: displayLabel,
                        allowedCharacterSet: charSet,
-                       keyboardType: .numberPad)
+                       keyboardType: keyboardType)
     }
 }
 
