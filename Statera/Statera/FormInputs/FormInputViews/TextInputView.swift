@@ -12,8 +12,9 @@ struct TextInputView: View {
     @State var text: String = ""
     var minCharacters: Int
     var maxCharacters: Int
-    var displayLabel: String = "First Name"
+    var displayLabel: String
     var allowedCharacterSet: CharacterSet
+    var keyboardType: UIKeyboardType = .default
     
     var body: some View {
         VStack {
@@ -44,6 +45,7 @@ struct TextInputView: View {
                         text = filteredText
                     }
                 }
+                .keyboardType(keyboardType)
         }
     }
 }
@@ -51,6 +53,6 @@ struct TextInputView: View {
 
 struct TextInputView_Previews: PreviewProvider {
     static var previews: some View {
-        TextInputView(minCharacters: 2, maxCharacters: 12, allowedCharacterSet: .alphanumerics)
+        TextInputView(minCharacters: 2, maxCharacters: 12, displayLabel: "First Name", allowedCharacterSet: .alphanumerics)
     }
 }
