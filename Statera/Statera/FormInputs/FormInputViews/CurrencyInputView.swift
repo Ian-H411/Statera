@@ -26,7 +26,7 @@ struct CurrencyInputView: View {
                     .foregroundColor(.gray)
                     
             }
-            TextField(displayLabel, value: $text, formatter:)
+            TextField(displayLabel, value: $text, formatter: Formatter())
                 .onAppear(perform: {
                     if text.count < minCharacters {
                         text = String(repeating: " ", count: minCharacters)
@@ -52,6 +52,6 @@ struct CurrencyInputView: View {
 
 struct CurrencyInputView_PreviewProvider: PreviewProvider {
     static var previews: some View {
-        CurrencyInputView(minCharacters: 0, maxCharacters: 100, displayLabel: "Whats your yearly income?")
+        CurrencyInputView(minCharacters: 0, maxCharacters: 100, displayLabel: "Whats your yearly income?", allowedCharacterSet: .decimalDigits)
     }
 }
