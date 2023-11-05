@@ -9,31 +9,42 @@ import SwiftUI
 
 struct TextInputView: View {
     //TODO:- Change to Binding
-    @State var text: String = "hello"
+    @State var text: String = ""
     var minCharacters: Int
     var maxCharacters: Int
+    var displayLabel: String = "First Name"
     var allowedCharacterSet: CharacterSet
     
     var body: some View {
-        TextField("Enter Text", text: $text)
-            .onAppear(perform: {
-                if text.count < minCharacters {
-                    text = String(repeating: " ", count: minCharacters)
-                } else if text.count > maxCharacters {
-                    text = String(text.prefix(maxCharacters))
-                }
-            })
-            .onChange(of: text, initial: true) { _, newValue in
-                let filteredText = newValue.filter { char in
-                    guard let unicodeScaler = char.unicodeScalars.first else { return false }
-                    return allowedCharacterSet.contains(unicodeScaler)
-                }
-                if filteredText.count > maxCharacters {
-                    text = String(filteredText.prefix(maxCharacters))
-                } else {
-                    text = filteredText
-                }
+        VStack {
+            if !text.isEmpty {
+                Text(displayLabel)
+                    .alignmentGuide(.leading) { _ in 0 }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .transition(AnyTransition.opacity.animation(.smooth(duration: 0.2)))
+                    .foregroundColor(.gray)
+                    
             }
+            TextField(displayLabel, text: $text)
+                .onAppear(perform: {
+                    if text.count < minCharacters {
+                        text = String(repeating: " ", count: minCharacters)
+                    } else if text.count > maxCharacters {
+                        text = String(text.prefix(maxCharacters))
+                    }
+                })
+                .onChange(of: text, initial: true) { _, newValue in
+                    let filteredText = newValue.filter { char in
+                        guard let unicodeScaler = char.unicodeScalars.first else { return false }
+                        return allowedCharacterSet.contains(unicodeScaler)
+                    }
+                    if filteredText.count > maxCharacters {
+                        text = String(filteredText.prefix(maxCharacters))
+                    } else {
+                        text = filteredText
+                    }
+                }
+        }
     }
 }
 
