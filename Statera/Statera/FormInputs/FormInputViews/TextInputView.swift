@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct TextInputView: View {
-    @Binding var text: String
+    //TODO:- Change to Binding
+    @State var text: String = "hello"
     var minCharacters: Int
     var maxCharacters: Int
     var allowedCharacterSet: CharacterSet
@@ -23,7 +24,10 @@ struct TextInputView: View {
                 }
             })
             .onChange(of: text, initial: true) { _, newValue in
-                let filteredText = newValue.filter { allowedCharacterSet.contains($0) }
+                let filteredText = newValue.filter { char in
+                    guard let unicodeScaler = char.unicodeScalars.first else { return false }
+                    return allowedCharacterSet.contains(unicodeScaler)
+                }
                 if filteredText.count > maxCharacters {
                     text = String(filteredText.prefix(maxCharacters))
                 } else {
@@ -34,6 +38,8 @@ struct TextInputView: View {
 }
 
 
-#Preview {
-    TextInputView(text: "hi", minCharacters: 2, maxCharacters: 8, allowedCharacterSet: .alphanumerics)
+struct TextInputView_Previews: PreviewProvider {
+    static var previews: some View {
+        TextInputView(minCharacters: 2, maxCharacters: 12, allowedCharacterSet: .alphanumerics)
+    }
 }
