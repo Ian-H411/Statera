@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            PickerInputView(displayLabel: "do you like cake", options: ["yes", "no", "maybe"], selectedOptionIndex: 0)
+        NavigationView {
+            LoginView()
         }
-        .padding()
+        .navigationTitle("Login")
     }
 }
 
