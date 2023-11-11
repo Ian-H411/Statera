@@ -33,6 +33,7 @@
 		6B83DCCD2AFF01530000473F /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83DCCC2AFF01530000473F /* PrimaryButton.swift */; };
 		6B83DCCF2AFF015F0000473F /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83DCCE2AFF015F0000473F /* SecondaryButton.swift */; };
 		6B83DCD12AFF03FE0000473F /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83DCD02AFF03FE0000473F /* PasswordInputView.swift */; };
+		6B83DCD32AFF09840000473F /* CreateAccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83DCD22AFF09840000473F /* CreateAccountScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		6B83DCCC2AFF01530000473F /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		6B83DCCE2AFF015F0000473F /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		6B83DCD02AFF03FE0000473F /* PasswordInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputView.swift; sourceTree = "<group>"; };
+		6B83DCD22AFF09840000473F /* CreateAccountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				6B83DCC82AFF008F0000473F /* LoginView.swift */,
+				6B83DCD22AFF09840000473F /* CreateAccountScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				6B0E880D2AF6BC1C0061491E /* NumberInputView.swift in Sources */,
 				6B83DCCD2AFF01530000473F /* PrimaryButton.swift in Sources */,
 				6B83DCC92AFF008F0000473F /* LoginView.swift in Sources */,
+				6B83DCD32AFF09840000473F /* CreateAccountScreen.swift in Sources */,
 				6B83DCD12AFF03FE0000473F /* PasswordInputView.swift in Sources */,
 				6B0E88092AF6BBF20061491E /* TextInputView.swift in Sources */,
 			);

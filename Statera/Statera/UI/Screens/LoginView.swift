@@ -46,7 +46,7 @@ struct LoginView: View {
     }
 }
 
-private struct SeparatorView: View {
+struct SeparatorView: View {
     var body: some View {
         HStack {
             Rectangle()
