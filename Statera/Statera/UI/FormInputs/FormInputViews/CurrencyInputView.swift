@@ -16,7 +16,7 @@ struct CurrencyInputView: View {
     var allowedCharacterSet: CharacterSet
     var keyboardType: UIKeyboardType = .numberPad
     
-    var body: some View {
+    var body:  some View {
         VStack {
             if !text.isEmpty {
                 Text(displayLabel)
