@@ -9,4 +9,8 @@ import Foundation
 
 class SSNInputViewModel: FormInputViewModel {
     
+    override init(labelText: String, isRequired: Bool = true) {
+        super.init(labelText: labelText, isRequired: isRequired)
+        self.questionType = .ssn
+    }
 }

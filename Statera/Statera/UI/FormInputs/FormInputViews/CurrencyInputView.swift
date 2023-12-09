@@ -8,42 +8,29 @@
 import SwiftUI
 
 struct CurrencyInputView: View {
-    //TODO:- Change to Binding
-    @State var text: String = ""
-    var minCharacters: Int
-    var maxCharacters: Int
-    var displayLabel: String
-    var allowedCharacterSet: CharacterSet
+    @ObservedObject var viewModel: CurrencyInputViewModel
     var keyboardType: UIKeyboardType = .numberPad
     
-    var body: some View {
+    var body:  some View {
         VStack {
-            if !text.isEmpty {
-                Text(displayLabel)
+            if !viewModel.userInput.isEmpty {
+                Text(viewModel.labelText)
                     .alignmentGuide(.leading) { _ in 0 }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .transition(AnyTransition.opacity.animation(.smooth(duration: 0.2)))
                     .foregroundColor(.gray)
                     
             }
-            TextField(displayLabel, value: $text, formatter: Formatter())
+            TextField(viewModel.labelText, value: $viewModel.userInput, formatter: Formatter())
                 .onAppear(perform: {
-                    if text.count < minCharacters {
-                        text = String(repeating: " ", count: minCharacters)
-                    } else if text.count > maxCharacters {
-                        text = String(text.prefix(maxCharacters))
+                    if viewModel.userInput.count < viewModel.minCharacters {
+                        viewModel.userInput = String(repeating: " ", count: viewModel.minCharacters)
+                    } else if viewModel.userInput.count > viewModel.maxCharacters {
+                        viewModel.userInput = String(viewModel.userInput.prefix(viewModel.maxCharacters))
                     }
                 })
-                .onChange(of: text, initial: true) { _, newValue in
-                    let filteredText = newValue.filter { char in
-                        guard let unicodeScaler = char.unicodeScalars.first else { return false }
-                        return allowedCharacterSet.contains(unicodeScaler)
-                    }
-                    if filteredText.count > maxCharacters {
-                        text = String(filteredText.prefix(maxCharacters))
-                    } else {
-                        text = filteredText
-                    }
+                .onChange(of: viewModel.userInput, initial: true) { _, newValue in
+                    viewModel.updateText(newValue)
                 }
                 .keyboardType(keyboardType)
         }
@@ -52,6 +39,10 @@ struct CurrencyInputView: View {
 
 struct CurrencyInputView_PreviewProvider: PreviewProvider {
     static var previews: some View {
-        CurrencyInputView(minCharacters: 0, maxCharacters: 100, displayLabel: "Whats your yearly income?", allowedCharacterSet: .decimalDigits)
+        let viewModel = CurrencyInputViewModel(labelText: "Whats your annual income?", 
+                                               preFill: "20",
+                                               minCharacters: 0,
+                                               maxCharacters: 15)
+        CurrencyInputView(viewModel: viewModel)
     }
 }

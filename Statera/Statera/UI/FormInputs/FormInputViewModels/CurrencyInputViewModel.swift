@@ -9,4 +9,27 @@ import Foundation
 
 class CurrencyInputViewModel: FormInputViewModel {
     
+    var minCharacters: Int
+    var maxCharacters: Int
+    var allowedCharacterSet: CharacterSet = .decimalDigits
+
+    init(labelText: String, preFill: String, minCharacters: Int, maxCharacters: Int, isRequired: Bool = true) {
+        self.minCharacters = minCharacters
+        self.maxCharacters = maxCharacters
+        super.init(labelText: labelText, preFill: preFill, isRequired: isRequired)
+        self.questionType = .currency
+    }
+    
+    func updateText(_ newValue: String) {
+        let filteredText = newValue.filter { char in
+            guard let unicodeScaler = char.unicodeScalars.first else { return false }
+            return allowedCharacterSet.contains(unicodeScaler)
+        }
+
+        if filteredText.count > maxCharacters {
+            self.userInput = String(filteredText.prefix(maxCharacters))
+        } else {
+            self.userInput = filteredText
+        }
+    }
 }
