@@ -8,42 +8,30 @@
 import SwiftUI
 
 struct TextInputView: View {
-    //TODO:- Change to Binding
-    @State var text: String = ""
-    var minCharacters: Int
-    var maxCharacters: Int
-    var displayLabel: String
-    var allowedCharacterSet: CharacterSet
+
+    @ObservedObject var viewModel: TextInputViewModel
     var keyboardType: UIKeyboardType = .default
     
     var body: some View {
         VStack {
-            if !text.isEmpty {
-                Text(displayLabel)
+            if !viewModel.userInput.isEmpty {
+                Text(viewModel.labelText)
                     .alignmentGuide(.leading) { _ in 0 }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .transition(AnyTransition.opacity.animation(.smooth(duration: 0.2)))
                     .foregroundColor(.gray)
                     
             }
-            TextField(displayLabel, text: $text)
+            TextField(viewModel.labelText, text: $viewModel.userInput)
                 .onAppear(perform: {
-                    if text.count < minCharacters {
-                        text = String(repeating: " ", count: minCharacters)
-                    } else if text.count > maxCharacters {
-                        text = String(text.prefix(maxCharacters))
+                    if viewModel.userInput.count < viewModel.minCharacters {
+                        viewModel.userInput = String(repeating: " ", count: viewModel.minCharacters)
+                    } else if viewModel.userInput.count > viewModel.maxCharacters {
+                        viewModel.userInput = String(viewModel.userInput.prefix(viewModel.maxCharacters))
                     }
                 })
-                .onChange(of: text, initial: true) { _, newValue in
-                    let filteredText = newValue.filter { char in
-                        guard let unicodeScaler = char.unicodeScalars.first else { return false }
-                        return allowedCharacterSet.contains(unicodeScaler)
-                    }
-                    if filteredText.count > maxCharacters {
-                        text = String(filteredText.prefix(maxCharacters))
-                    } else {
-                        text = filteredText
-                    }
+                .onChange(of: viewModel.userInput, initial: true) { _, newValue in
+                    viewModel.updateText(newValue)
                 }
                 .keyboardType(keyboardType)
         }
@@ -51,8 +39,14 @@ struct TextInputView: View {
 }
 
 
+
 struct TextInputView_Previews: PreviewProvider {
     static var previews: some View {
-        TextInputView(minCharacters: 2, maxCharacters: 12, displayLabel: "First Name", allowedCharacterSet: .alphanumerics)
+        let previewViewModel = TextInputViewModel(labelText: "First Name",
+                                           preFill: "David",
+                                           minCharacters: 3,
+                                           maxCharacters: 20,
+                                           allowedCharacterSet: .alphanumerics)
+        TextInputView(viewModel: previewViewModel)
     }
 }
