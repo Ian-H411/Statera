@@ -5,12 +5,16 @@
 //  Created by Ian Hall on 11/4/23.
 //
 
-import Foundation
+import SwiftUI
 
 class TextInputViewModel: FormInputViewModel {
     var minCharacters: Int
     var maxCharacters: Int
     var allowedCharacterSet: CharacterSet
+    
+    var keyboardType: UIKeyboardType {
+        return allowedCharacterSet.isSuperset(of: .decimalDigits) ? .numberPad : .default
+    }
 
     init(labelText: String, preFill: String, minCharacters: Int, maxCharacters: Int, allowedCharacterSet: CharacterSet, isRequired: Bool = true) {
         self.minCharacters = minCharacters
@@ -30,6 +34,14 @@ class TextInputViewModel: FormInputViewModel {
             self.userInput = String(filteredText.prefix(maxCharacters))
         } else {
             self.userInput = filteredText
+        }
+    }
+    
+    func setupField() {
+        if userInput.count < minCharacters {
+            userInput = String(repeating: " ", count: minCharacters)
+        } else if userInput.count > maxCharacters {
+            userInput = String(userInput.prefix(maxCharacters))
         }
     }
 }

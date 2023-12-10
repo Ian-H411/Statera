@@ -32,4 +32,12 @@ class CurrencyInputViewModel: FormInputViewModel {
             self.userInput = filteredText
         }
     }
+    
+    func setupField() {
+        if userInput.count < minCharacters {
+            userInput = String(repeating: " ", count: minCharacters)
+        } else if userInput.count > maxCharacters {
+            userInput = String(userInput.prefix(maxCharacters))
+        }
+    }
 }

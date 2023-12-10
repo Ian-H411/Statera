@@ -23,11 +23,7 @@ struct CurrencyInputView: View {
             }
             TextField(viewModel.labelText, value: $viewModel.userInput, formatter: Formatter())
                 .onAppear(perform: {
-                    if viewModel.userInput.count < viewModel.minCharacters {
-                        viewModel.userInput = String(repeating: " ", count: viewModel.minCharacters)
-                    } else if viewModel.userInput.count > viewModel.maxCharacters {
-                        viewModel.userInput = String(viewModel.userInput.prefix(viewModel.maxCharacters))
-                    }
+                    viewModel.setupField()
                 })
                 .onChange(of: viewModel.userInput, initial: true) { _, newValue in
                     viewModel.updateText(newValue)
