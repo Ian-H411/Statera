@@ -9,6 +9,11 @@ import Foundation
 
 class EmailInputViewModel: FormInputViewModel {
     
+    override init(labelText: String, preFill: String, isRequired: Bool = true) {
+         super.init(labelText: labelText, preFill: preFill, isRequired: isRequired)
+         self.questionType = .emailAddress
+     }
+    
     override func updateText(_ newValue: String) {
         self.userInput = newValue
     }

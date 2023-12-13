@@ -43,4 +43,6 @@ enum InputType {
     case dob
     case picker
     case checkBox
+    case password
+    case emailAddress
 }
