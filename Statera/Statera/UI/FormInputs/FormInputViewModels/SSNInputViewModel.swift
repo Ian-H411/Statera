@@ -13,7 +13,7 @@ class SSNInputViewModel: FormInputViewModel {
     
     var allowedCharacterSet: CharacterSet
     
-    override init(labelText: String, preFill: String, isRequired: Bool = true) {
+    override init(labelText: String, preFill: String = "", isRequired: Bool = true) {
         self.allowedCharacterSet = CharacterSet.decimalDigits
         super.init(labelText: labelText, preFill: preFill, isRequired: isRequired)
         self.questionType = .ssn

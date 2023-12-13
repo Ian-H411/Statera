@@ -12,7 +12,7 @@ class PasswordInputViewModel: FormInputViewModel {
     private let maxCharacters = 50
     private let allowedCharacterSet = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{}|;:'\",.<>/?`~")
     
-   override init(labelText: String, preFill: String, isRequired: Bool = true) {
+   override init(labelText: String, preFill: String = "", isRequired: Bool = true) {
         super.init(labelText: labelText, preFill: preFill, isRequired: isRequired)
         self.questionType = .password
     }

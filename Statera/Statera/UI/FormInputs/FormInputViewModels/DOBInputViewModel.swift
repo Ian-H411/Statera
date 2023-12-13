@@ -9,7 +9,7 @@ import Foundation
 
 class DOBInputViewModel: FormInputViewModel {
     
-    override init(labelText: String, preFill: String, isRequired: Bool = true) {
+    override init(labelText: String, preFill: String = "", isRequired: Bool = true) {
         super.init(labelText: labelText, preFill: preFill, isRequired: isRequired)
         self.questionType = .dob
     }
