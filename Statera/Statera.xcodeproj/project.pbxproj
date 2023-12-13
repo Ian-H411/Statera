@@ -36,6 +36,7 @@
 		6B9133A02B292A1400EB91E1 /* EmailInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B91339F2B292A1400EB91E1 /* EmailInputView.swift */; };
 		6B9133A22B292A4600EB91E1 /* EmailInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9133A12B292A4600EB91E1 /* EmailInputViewModel.swift */; };
 		6B9133A42B292CBC00EB91E1 /* PasswordInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9133A32B292CBC00EB91E1 /* PasswordInputViewModel.swift */; };
+		6B9133A62B292FC800EB91E1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9133A52B292FC800EB91E1 /* LoginViewModel.swift */; };
 		6BA41CF32B1ECCD60000A260 /* FormScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA41CF22B1ECCD60000A260 /* FormScreenView.swift */; };
 		6BA41CF62B1ECE7B0000A260 /* FormScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA41CF52B1ECE7B0000A260 /* FormScreenViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -91,6 +92,7 @@
 		6B91339F2B292A1400EB91E1 /* EmailInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailInputView.swift; sourceTree = "<group>"; };
 		6B9133A12B292A4600EB91E1 /* EmailInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailInputViewModel.swift; sourceTree = "<group>"; };
 		6B9133A32B292CBC00EB91E1 /* PasswordInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputViewModel.swift; sourceTree = "<group>"; };
+		6B9133A52B292FC800EB91E1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		6BA41CF22B1ECCD60000A260 /* FormScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormScreenView.swift; sourceTree = "<group>"; };
 		6BA41CF52B1ECE7B0000A260 /* FormScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormScreenViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -253,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				6BA41CF52B1ECE7B0000A260 /* FormScreenViewModel.swift */,
+				6B9133A52B292FC800EB91E1 /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				6B0E87FD2AF6B9BC0061491E /* CurrencyInputViewModel.swift in Sources */,
 				6BA41CF62B1ECE7B0000A260 /* FormScreenViewModel.swift in Sources */,
 				6BA41CF32B1ECCD60000A260 /* FormScreenView.swift in Sources */,
+				6B9133A62B292FC800EB91E1 /* LoginViewModel.swift in Sources */,
 				6B0E88032AF6BA350061491E /* DOBInputViewModel.swift in Sources */,
 				6B0E88112AF6BC450061491E /* DOBInputView.swift in Sources */,
 				6B9133A02B292A1400EB91E1 /* EmailInputView.swift in Sources */,
