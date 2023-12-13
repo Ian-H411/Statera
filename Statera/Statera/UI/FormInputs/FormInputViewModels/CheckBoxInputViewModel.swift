@@ -7,10 +7,10 @@
 
 import Foundation
 
-class CheckBoxInputViewModel: FormInputViewModel {
-    
-    override init(labelText: String, isRequired: Bool = true) {
-        super.init(labelText: labelText, isRequired: isRequired)
-        self.questionType = .checkBox
-    }
-}
+//class CheckBoxInputViewModel: FormInputViewModel {
+//    
+//    override init(labelText: String, isRequired: Bool = true) {
+//        super.init(labelText: labelText, isRequired: isRequired)
+//        self.questionType = .checkBox
+//    }
+//}

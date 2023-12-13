@@ -20,7 +20,7 @@ class CurrencyInputViewModel: FormInputViewModel {
         self.questionType = .currency
     }
     
-    func updateText(_ newValue: String) {
+    override func updateText(_ newValue: String) {
         let filteredText = newValue.filter { char in
             guard let unicodeScaler = char.unicodeScalars.first else { return false }
             return allowedCharacterSet.contains(unicodeScaler)
@@ -30,6 +30,14 @@ class CurrencyInputViewModel: FormInputViewModel {
             self.userInput = String(filteredText.prefix(maxCharacters))
         } else {
             self.userInput = filteredText
+        }
+    }
+    
+    func setupField() {
+        if userInput.count < minCharacters {
+            userInput = String(repeating: " ", count: minCharacters)
+        } else if userInput.count > maxCharacters {
+            userInput = String(userInput.prefix(maxCharacters))
         }
     }
 }

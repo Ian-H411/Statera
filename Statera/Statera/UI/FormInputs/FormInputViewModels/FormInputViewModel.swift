@@ -15,7 +15,7 @@ class FormInputViewModel: Hashable, Equatable, ObservableObject {
     var isRequired: Bool
     var questionType: InputType
     
-    init(labelText: String, preFill: String, isRequired: Bool = true) {
+    init(labelText: String, preFill: String = "", isRequired: Bool = true) {
         self.id = UUID()
         self.userInput = preFill
         self.labelText = labelText
@@ -30,6 +30,9 @@ class FormInputViewModel: Hashable, Equatable, ObservableObject {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
+    
+    func updateText(_ newValue: String) { }
+    func isValid() -> Bool { return true }
 }
 
 enum InputType {
@@ -40,4 +43,6 @@ enum InputType {
     case dob
     case picker
     case checkBox
+    case password
+    case emailAddress
 }

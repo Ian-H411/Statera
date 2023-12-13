@@ -8,31 +8,26 @@
 import SwiftUI
 
 struct PasswordInputView: View {
-    @State private var password: String = ""
+    @ObservedObject var viewModel: PasswordInputViewModel
     
-       var displayLabel: String
-
-       var body: some View {
-           VStack {
-               if !password.isEmpty {
-                   Text(displayLabel)
-                       .alignmentGuide(.leading) { _ in 0 }
-                       .frame(maxWidth: .infinity, alignment: .leading)
-                       .transition(AnyTransition.opacity.animation(.smooth(duration: 0.2)))
-                       .foregroundColor(.gray)
-               }
-
-               SecureField(displayLabel, text: $password)
-                   .onAppear {
-                       // Additional setup if needed
-                   }
-                   .keyboardType(.default) // You can customize the keyboard type if needed
-           }
-       }
+    var body: some View {
+        VStack {
+            TextField(viewModel.labelText, value: $viewModel.userInput, formatter: PasswordFormatter())
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            
+            if !viewModel.isValidPassword() {
+                Text("Password must be at least \(viewModel.minPasswordLength) characters and include uppercase, lowercase, number, and special character")
+                    .foregroundColor(.red)
+                    .padding(.top, 4)
+            }
+        }
+    }
 }
 
 struct PasswordInputView_PreviewProvider: PreviewProvider {
     static var previews: some View {
-        PasswordInputView(displayLabel: "Enter Password")
+        let vm = PasswordInputViewModel(labelText: "password please", preFill: "")
+        PasswordInputView(viewModel: vm)
     }
 }

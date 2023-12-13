@@ -8,38 +8,48 @@
 import SwiftUI
 
 struct LoginView: View {
+    @ObservedObject var viewModel = LoginViewModel()
+
     var body: some View {
         VStack(spacing: 20) {
-            //TODO:- change based on current language
-            Spacer()
-                .frame(height: 20)
+            Spacer().frame(height: 20)
             Text("Statera")
+
             Image(uiImage: UIImage.strokedCheckmark)
                 .frame(width: 200, height: 200)
                 .scaledToFit()
-            NavigationLink("Create an account"){
+
+            NavigationLink("Create an account") {
                 CreateAccountScreen()
             }
             .buttonStyle(PrimaryButtonStyle())
-            TextInputView(minCharacters: 3, maxCharacters: 20, displayLabel: "Enter Username", allowedCharacterSet: .alphanumerics)
+
+            EmailInputView(viewModel: viewModel.emailViewModel)
                 .frame(width: 250)
-            PasswordInputView(displayLabel: "Enter Password")
+
+            PasswordInputView(viewModel: viewModel.passWordViewModel)
                 .frame(width: 250)
+
             NavigationLink("Login") {
-                HomeScreen()
+                // handle login
             }
-                .buttonStyle(PrimaryButtonStyle())
-                .frame(width: 200)
+            .buttonStyle(PrimaryButtonStyle())
+            .frame(width: 200)
+            .disabled(!viewModel.isValidCredentials())
+
             Button("Forgot Password") {
-                
+                // Handle forgot password action
             }
             .buttonStyle(SecondaryButtonStyle())
+
             SeparatorView()
+
             Button("Login with Google") {
-                
+                // Handle login with Google action
             }
+
             Button("Login with Apple") {
-                
+                // Handle login with Apple action
             }
         }
         .edgesIgnoringSafeArea(.bottom)
