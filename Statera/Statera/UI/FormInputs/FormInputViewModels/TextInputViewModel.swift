@@ -24,7 +24,7 @@ class TextInputViewModel: FormInputViewModel {
         self.questionType = .text
     }
     
-    func updateText(_ newValue: String) {
+    override func updateText(_ newValue: String) {
         let filteredText = newValue.filter { char in
             guard let unicodeScaler = char.unicodeScalars.first else { return false }
             return allowedCharacterSet.contains(unicodeScaler)

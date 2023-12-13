@@ -30,6 +30,9 @@ class FormInputViewModel: Hashable, Equatable, ObservableObject {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
+    
+    func updateText(_ newValue: String) { }
+    func isValid() -> Bool { return true }
 }
 
 enum InputType {

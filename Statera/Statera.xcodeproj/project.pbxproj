@@ -33,6 +33,8 @@
 		6B83DCD12AFF03FE0000473F /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83DCD02AFF03FE0000473F /* PasswordInputView.swift */; };
 		6B83DCD32AFF09840000473F /* CreateAccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83DCD22AFF09840000473F /* CreateAccountScreen.swift */; };
 		6B83DCD52AFF0E9B0000473F /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83DCD42AFF0E9A0000473F /* HomeScreen.swift */; };
+		6B9133A02B292A1400EB91E1 /* EmailInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B91339F2B292A1400EB91E1 /* EmailInputView.swift */; };
+		6B9133A22B292A4600EB91E1 /* EmailInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9133A12B292A4600EB91E1 /* EmailInputViewModel.swift */; };
 		6BA41CF32B1ECCD60000A260 /* FormScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA41CF22B1ECCD60000A260 /* FormScreenView.swift */; };
 		6BA41CF62B1ECE7B0000A260 /* FormScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA41CF52B1ECE7B0000A260 /* FormScreenViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -85,6 +87,8 @@
 		6B83DCD02AFF03FE0000473F /* PasswordInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputView.swift; sourceTree = "<group>"; };
 		6B83DCD22AFF09840000473F /* CreateAccountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountScreen.swift; sourceTree = "<group>"; };
 		6B83DCD42AFF0E9A0000473F /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		6B91339F2B292A1400EB91E1 /* EmailInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailInputView.swift; sourceTree = "<group>"; };
+		6B9133A12B292A4600EB91E1 /* EmailInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailInputViewModel.swift; sourceTree = "<group>"; };
 		6BA41CF22B1ECCD60000A260 /* FormScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormScreenView.swift; sourceTree = "<group>"; };
 		6BA41CF52B1ECE7B0000A260 /* FormScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormScreenViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +137,7 @@
 				6B0E88122AF6BC520061491E /* PickerInputView.swift */,
 				6B0E88142AF6BC630061491E /* CheckBoxInputView.swift */,
 				6B83DCD02AFF03FE0000473F /* PasswordInputView.swift */,
+				6B91339F2B292A1400EB91E1 /* EmailInputView.swift */,
 			);
 			path = FormInputViews;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 				6B0E88022AF6BA350061491E /* DOBInputViewModel.swift */,
 				6B0E88042AF6BA560061491E /* PickerInputViewModel.swift */,
 				6B0E88062AF6BA830061491E /* CheckBoxInputViewModel.swift */,
+				6B9133A12B292A4600EB91E1 /* EmailInputViewModel.swift */,
 			);
 			path = FormInputViewModels;
 			sourceTree = "<group>";
@@ -388,6 +394,7 @@
 				6BA41CF32B1ECCD60000A260 /* FormScreenView.swift in Sources */,
 				6B0E88032AF6BA350061491E /* DOBInputViewModel.swift in Sources */,
 				6B0E88112AF6BC450061491E /* DOBInputView.swift in Sources */,
+				6B9133A02B292A1400EB91E1 /* EmailInputView.swift in Sources */,
 				6B5C6C892AEEB5F500D88079 /* ContentView.swift in Sources */,
 				6B5C6C872AEEB5F500D88079 /* StateraApp.swift in Sources */,
 				6B0E88052AF6BA560061491E /* PickerInputViewModel.swift in Sources */,
@@ -397,6 +404,7 @@
 				6B0E880B2AF6BC050061491E /* CurrencyInputView.swift in Sources */,
 				6B83DCCD2AFF01530000473F /* PrimaryButton.swift in Sources */,
 				6B83DCC92AFF008F0000473F /* LoginView.swift in Sources */,
+				6B9133A22B292A4600EB91E1 /* EmailInputViewModel.swift in Sources */,
 				6B83DCD32AFF09840000473F /* CreateAccountScreen.swift in Sources */,
 				6B83DCD52AFF0E9B0000473F /* HomeScreen.swift in Sources */,
 				6B83DCD12AFF03FE0000473F /* PasswordInputView.swift in Sources */,

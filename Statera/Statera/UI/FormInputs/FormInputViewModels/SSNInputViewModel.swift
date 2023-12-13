@@ -12,23 +12,33 @@ class SSNInputViewModel: FormInputViewModel {
     private let ssnRegex = "^(?!666|000|9\\d{2})\\d{3}-(?!00)\\d{2}-(?!0{4})\\d{4}$"
     
     var allowedCharacterSet: CharacterSet
-    var minCharacters: Int
-    var maxCharacters: Int
     
     override init(labelText: String, preFill: String, isRequired: Bool = true) {
         self.allowedCharacterSet = CharacterSet.decimalDigits
-        self.minCharacters = 9
-        self.maxCharacters = 9
         super.init(labelText: labelText, preFill: preFill, isRequired: isRequired)
         self.questionType = .ssn
     }
 
-    func updateText(_ newValue: String) {
-        let filteredText = newValue.filter { char in
-            guard let unicodeScaler = char.unicodeScalars.first else { return false }
-            return allowedCharacterSet.contains(unicodeScaler)
+    override func updateText(_ newValue: String) {
+        let cleanedSSN = newValue.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        
+        var formattedSSN = ""
+        var index = cleanedSSN.startIndex
+        
+        for character in "XXX-XX-XXXX" {
+            if character == "X" {
+                if index < cleanedSSN.endIndex {
+                    formattedSSN.append(cleanedSSN[index])
+                    index = cleanedSSN.index(after: index)
+                } else {
+                    break
+                }
+            } else {
+                formattedSSN.append(character)
+            }
         }
-        self.userInput = String(filteredText.prefix(maxCharacters))
+
+        self.userInput = formattedSSN
     }
 
     func isValidSSN() -> Bool {
