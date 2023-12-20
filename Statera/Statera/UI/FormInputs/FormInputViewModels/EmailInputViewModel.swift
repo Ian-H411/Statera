@@ -15,10 +15,12 @@ class EmailInputViewModel: FormInputViewModel {
      }
     
     override func updateText(_ newValue: String) {
+        self.begunEditing = true
         self.userInput = newValue
     }
     
     override func isValid() -> Bool {
+        guard self.begunEditing else { return true }
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         return emailPredicate.evaluate(with: userInput)

@@ -31,6 +31,10 @@ struct FormScreenView: View {
                                 Text("texty text")
                             case .checkBox:
                                 Text("texty text")
+                            case .password:
+                                Text("text")
+                            case .emailAddress:
+                                Text("text")
                             }
                         }
                     }
