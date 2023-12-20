@@ -16,7 +16,7 @@ struct SSNInputView: View {
                 .keyboardType(.numberPad)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
-                .onChange(of: viewModel.userInput, initial: true) { _, newValue  in
+                .onChange(of: viewModel.userInput, initial: false) { _, newValue  in
                     viewModel.updateText(newValue)
                 }
 
@@ -27,9 +27,4 @@ struct SSNInputView: View {
             }
         }
     }
-}
-
-#Preview {
-    let viewModel = SSNInputViewModel(labelText: "whats your SSN", preFill: "")
-    SSNInputView(viewModel: viewModel)
 }

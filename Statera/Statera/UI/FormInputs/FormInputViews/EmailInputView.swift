@@ -17,7 +17,7 @@ struct EmailInputView: View {
                 .autocapitalization(.none)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
-                .onChange(of: viewModel.userInput, initial: true) { _, newValue in
+                .onChange(of: viewModel.userInput, initial: false) { _, newValue in
                     viewModel.updateText(newValue)
                 }
 

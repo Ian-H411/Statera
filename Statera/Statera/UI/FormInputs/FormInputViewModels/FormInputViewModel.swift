@@ -14,6 +14,7 @@ class FormInputViewModel: Hashable, Equatable, ObservableObject {
     var labelText: String
     var isRequired: Bool
     var questionType: InputType
+    var begunEditing: Bool = false
     
     init(labelText: String, preFill: String = "", isRequired: Bool = true) {
         self.id = UUID()

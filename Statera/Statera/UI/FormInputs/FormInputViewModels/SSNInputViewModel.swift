@@ -20,6 +20,7 @@ class SSNInputViewModel: FormInputViewModel {
     }
 
     override func updateText(_ newValue: String) {
+        self.begunEditing = true
         let cleanedSSN = newValue.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
         
         var formattedSSN = ""
@@ -42,6 +43,7 @@ class SSNInputViewModel: FormInputViewModel {
     }
 
     func isValidSSN() -> Bool {
+        guard self.begunEditing else { return true }
         let ssnTest = NSPredicate(format:"SELF MATCHES %@", ssnRegex)
         return ssnTest.evaluate(with: userInput)
     }

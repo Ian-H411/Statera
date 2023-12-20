@@ -18,10 +18,12 @@ class PasswordInputViewModel: FormInputViewModel {
     }
 
     override func updateText(_ newValue: String) {
+        self.begunEditing = true
         self.userInput = newValue
     }
 
     func isValidPassword() -> Bool {
+        guard self.begunEditing else { return true }
         return userInput.count >= minPasswordLength
                    && userInput.rangeOfCharacter(from: .uppercaseLetters) != nil
                    && userInput.rangeOfCharacter(from: .lowercaseLetters) != nil

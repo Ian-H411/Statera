@@ -9,10 +9,11 @@ import SwiftUI
 
 struct PasswordInputView: View {
     @ObservedObject var viewModel: PasswordInputViewModel
+    let formatter = PasswordFormatter()
     
     var body: some View {
         VStack {
-            TextField(viewModel.labelText, value: $viewModel.userInput, formatter: PasswordFormatter())
+            TextField(viewModel.labelText, value: $viewModel.userInput, formatter: formatter)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             

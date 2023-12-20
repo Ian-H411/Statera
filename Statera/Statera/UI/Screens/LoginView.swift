@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct LoginView: View {
     @ObservedObject var viewModel = LoginViewModel()
@@ -20,7 +21,7 @@ struct LoginView: View {
                 .scaledToFit()
 
             NavigationLink("Create an account") {
-                CreateAccountScreen()
+               // CreateAccountScreen()
             }
             .buttonStyle(PrimaryButtonStyle())
 
