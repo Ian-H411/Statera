@@ -7,10 +7,13 @@
 
 import SwiftUI
 import UIKit
+import _AuthenticationServices_SwiftUI
 
 struct LoginView: View {
+    
     @ObservedObject var viewModel = LoginViewModel()
-
+    @Binding var isLoggedIn: Bool
+    
     var body: some View {
         VStack(spacing: 20) {
             Spacer().frame(height: 20)
@@ -21,7 +24,7 @@ struct LoginView: View {
                 .scaledToFit()
 
             NavigationLink("Create an account") {
-               // CreateAccountScreen()
+                CreateAccountScreen(isLoggedIn: $isLoggedIn)
             }
             .buttonStyle(PrimaryButtonStyle())
 
@@ -31,26 +34,26 @@ struct LoginView: View {
             PasswordInputView(viewModel: viewModel.passWordViewModel)
                 .frame(width: 250)
 
-            NavigationLink("Login") {
-                // handle login
+            Button("Login") {
+                viewModel.handleBaseLogin(completionHandler: { success in
+                    if success {
+                        self.isLoggedIn = true
+                    }
+                })
             }
             .buttonStyle(PrimaryButtonStyle())
             .frame(width: 200)
             .disabled(!viewModel.isValidCredentials())
-
-            Button("Forgot Password") {
-                // Handle forgot password action
+            
+            NavigationLink("Forgot Password") {
+                
             }
             .buttonStyle(SecondaryButtonStyle())
-
             SeparatorView()
-
-            Button("Login with Google") {
-                // Handle login with Google action
-            }
-
-            Button("Login with Apple") {
-                // Handle login with Apple action
+            SignInWithAppleButton(.signIn) { request in
+                request.requestedScopes = [.fullName, .email]
+            } onCompletion: { result in
+                viewModel.handleAppleLogin(result: result)
             }
         }
         .edgesIgnoringSafeArea(.bottom)
@@ -70,11 +73,5 @@ struct SeparatorView: View {
                 .fill(Color.black)
                 .frame(height: 1)
         }
-    }
-}
-
-struct LoginView_PreviewProvider: PreviewProvider {
-    static var previews: some View {
-        LoginView()
     }
 }

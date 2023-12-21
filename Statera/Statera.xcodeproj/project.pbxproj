@@ -27,6 +27,16 @@
 		6B5C6C992AEEB5F500D88079 /* StateraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C6C982AEEB5F500D88079 /* StateraTests.swift */; };
 		6B5C6CA32AEEB5F500D88079 /* StateraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C6CA22AEEB5F500D88079 /* StateraUITests.swift */; };
 		6B5C6CA52AEEB5F500D88079 /* StateraUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C6CA42AEEB5F500D88079 /* StateraUITestsLaunchTests.swift */; };
+		6B6BABFD2B33B734008C72AB /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6B6BABFC2B33B734008C72AB /* FirebaseAnalytics */; };
+		6B6BABFF2B33B734008C72AB /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6B6BABFE2B33B734008C72AB /* FirebaseAuth */; };
+		6B6BAC012B33B734008C72AB /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 6B6BAC002B33B734008C72AB /* FirebaseFirestore */; };
+		6B6BAC032B33B734008C72AB /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6B6BAC022B33B734008C72AB /* FirebaseFirestoreSwift */; };
+		6B6BAC052B33C4F6008C72AB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B6BAC042B33C4F6008C72AB /* GoogleService-Info.plist */; };
+		6B6BAC062B33C4F6008C72AB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B6BAC042B33C4F6008C72AB /* GoogleService-Info.plist */; };
+		6B6BAC072B33C4F6008C72AB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B6BAC042B33C4F6008C72AB /* GoogleService-Info.plist */; };
+		6B6BAC092B33C6D6008C72AB /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6BAC082B33C6D6008C72AB /* CreateAccountViewModel.swift */; };
+		6B6BAC0A2B33C6D6008C72AB /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6BAC082B33C6D6008C72AB /* CreateAccountViewModel.swift */; };
+		6B6BAC0B2B33C6D6008C72AB /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6BAC082B33C6D6008C72AB /* CreateAccountViewModel.swift */; };
 		6B83DCC92AFF008F0000473F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83DCC82AFF008F0000473F /* LoginView.swift */; };
 		6B83DCCD2AFF01530000473F /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83DCCC2AFF01530000473F /* PrimaryButton.swift */; };
 		6B83DCCF2AFF015F0000473F /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83DCCE2AFF015F0000473F /* SecondaryButton.swift */; };
@@ -83,6 +93,8 @@
 		6B5C6C9E2AEEB5F500D88079 /* StateraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StateraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B5C6CA22AEEB5F500D88079 /* StateraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateraUITests.swift; sourceTree = "<group>"; };
 		6B5C6CA42AEEB5F500D88079 /* StateraUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateraUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6B6BAC042B33C4F6008C72AB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6B6BAC082B33C6D6008C72AB /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewModel.swift; sourceTree = "<group>"; };
 		6B83DCC82AFF008F0000473F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		6B83DCCC2AFF01530000473F /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		6B83DCCE2AFF015F0000473F /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
@@ -102,6 +114,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B6BABFD2B33B734008C72AB /* FirebaseAnalytics in Frameworks */,
+				6B6BABFF2B33B734008C72AB /* FirebaseAuth in Frameworks */,
+				6B6BAC012B33B734008C72AB /* FirebaseFirestore in Frameworks */,
+				6B6BAC032B33B734008C72AB /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +181,7 @@
 		6B5C6C7A2AEEB5F500D88079 = {
 			isa = PBXGroup;
 			children = (
+				6B6BAC042B33C4F6008C72AB /* GoogleService-Info.plist */,
 				6B5C6C852AEEB5F500D88079 /* Statera */,
 				6B5C6C972AEEB5F500D88079 /* StateraTests */,
 				6B5C6CA12AEEB5F500D88079 /* StateraUITests */,
@@ -256,6 +273,7 @@
 			children = (
 				6BA41CF52B1ECE7B0000A260 /* FormScreenViewModel.swift */,
 				6B9133A52B292FC800EB91E1 /* LoginViewModel.swift */,
+				6B6BAC082B33C6D6008C72AB /* CreateAccountViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -276,6 +294,12 @@
 			dependencies = (
 			);
 			name = Statera;
+			packageProductDependencies = (
+				6B6BABFC2B33B734008C72AB /* FirebaseAnalytics */,
+				6B6BABFE2B33B734008C72AB /* FirebaseAuth */,
+				6B6BAC002B33B734008C72AB /* FirebaseFirestore */,
+				6B6BAC022B33B734008C72AB /* FirebaseFirestoreSwift */,
+			);
 			productName = Statera;
 			productReference = 6B5C6C832AEEB5F500D88079 /* Statera.app */;
 			productType = "com.apple.product-type.application";
@@ -348,6 +372,9 @@
 				Base,
 			);
 			mainGroup = 6B5C6C7A2AEEB5F500D88079;
+			packageReferences = (
+				6B6BABFB2B33B734008C72AB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 6B5C6C842AEEB5F500D88079 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -366,6 +393,7 @@
 			files = (
 				6B5C6C8F2AEEB5F500D88079 /* Preview Assets.xcassets in Resources */,
 				6B5C6C8B2AEEB5F500D88079 /* Assets.xcassets in Resources */,
+				6B6BAC052B33C4F6008C72AB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +401,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B6BAC062B33C4F6008C72AB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +409,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B6BAC072B33C4F6008C72AB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +444,7 @@
 				6B9133A22B292A4600EB91E1 /* EmailInputViewModel.swift in Sources */,
 				6B83DCD32AFF09840000473F /* CreateAccountScreen.swift in Sources */,
 				6B9133A42B292CBC00EB91E1 /* PasswordInputViewModel.swift in Sources */,
+				6B6BAC092B33C6D6008C72AB /* CreateAccountViewModel.swift in Sources */,
 				6B83DCD52AFF0E9B0000473F /* HomeScreen.swift in Sources */,
 				6B83DCD12AFF03FE0000473F /* PasswordInputView.swift in Sources */,
 				6B0E88092AF6BBF20061491E /* TextInputView.swift in Sources */,
@@ -424,6 +455,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B6BAC0A2B33C6D6008C72AB /* CreateAccountViewModel.swift in Sources */,
 				6B5C6C992AEEB5F500D88079 /* StateraTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,6 +465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B5C6CA32AEEB5F500D88079 /* StateraUITests.swift in Sources */,
+				6B6BAC0B2B33C6D6008C72AB /* CreateAccountViewModel.swift in Sources */,
 				6B5C6CA52AEEB5F500D88079 /* StateraUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -595,7 +628,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ian.Statera;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ian.statera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -633,7 +666,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ian.Statera;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ian.statera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -773,6 +806,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6B6BABFB2B33B734008C72AB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.19.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6B6BABFC2B33B734008C72AB /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B6BABFB2B33B734008C72AB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		6B6BABFE2B33B734008C72AB /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B6BABFB2B33B734008C72AB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		6B6BAC002B33B734008C72AB /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B6BABFB2B33B734008C72AB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		6B6BAC022B33B734008C72AB /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B6BABFB2B33B734008C72AB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6B5C6C7B2AEEB5F500D88079 /* Project object */;
 }
