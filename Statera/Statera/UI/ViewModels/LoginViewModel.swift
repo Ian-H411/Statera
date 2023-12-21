@@ -18,15 +18,14 @@ class LoginViewModel: ObservableObject {
         return emailViewModel.isValid() && passWordViewModel.isValid()
     }
     
-    func handleBaseLogin() {
-        guard isValidCredentials() else { return }
+    func handleBaseLogin(completionHandler: @escaping (Bool) -> Void) {
         let email = emailViewModel.userInput
         let password = passWordViewModel.userInput
         baseSignIn(email: email, password: password) { success in
             if success {
-                // push users into app
+                completionHandler(true)
             } else {
-                //failed
+                completionHandler(false)
             }
         }
     }

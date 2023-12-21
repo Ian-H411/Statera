@@ -32,9 +32,6 @@ struct CreateAccountScreen: View {
             }
             .buttonStyle(PrimaryButtonStyle())
             SeparatorView()
-            Button("Sign in with Google") {
-                
-            }
             SignInWithAppleButton(.signUp) { request in
                 request.requestedScopes = [.email, .fullName]
             } onCompletion: { result in
