@@ -18,24 +18,38 @@ class LoginViewModel: ObservableObject {
         return emailViewModel.isValid() && passWordViewModel.isValid()
     }
     
-    
-    //MARK: - 3rd party sign in
-    
-    func handleAppleLogin(result: Result<ASAuthorization, Error>) {
-        switch result {
-        case .success(let authResult):
-            signIn(ASAuth: authResult)
-            print("login successful via Apple Sign in")
-        case .failure(let failure):
-            print("Login failed error: \(failure.localizedDescription)")
+    func handleBaseLogin() {
+        guard isValidCredentials() else { return }
+        let email = emailViewModel.userInput
+        let password = passWordViewModel.userInput
+        baseSignIn(email: email, password: password) { success in
+            if success {
+                // push users into app
+            } else {
+                //failed
+            }
         }
     }
     
-    private func signIn(ASAuth: ASAuthorization) {
+    //MARK: - sign on handling
+    private func baseSignIn(email: String, password: String, completionHandler: @escaping (Bool) -> Void) {
+        Auth.auth().signIn(withEmail: email,
+                           password: password) { result, error in
+            if let error = error {
+                print("login failed \(error.localizedDescription)")
+            } else {
+                print("login successful please proceed")
+            }
+        }
+    }
+    
+    /// used for apple sign on
+    private func signInApple(ASAuth: ASAuthorization, completionHandler: @escaping (Bool) -> Void) {
         if let appleIDCredential = ASAuth.credential as? ASAuthorizationAppleIDCredential {
             guard let identityTokenData = appleIDCredential.identityToken,
                   let identityTokenString = String(data: identityTokenData, encoding: .utf8) else {
                 print("Identity token is missing.")
+                completionHandler(false)
                 return
             }
 
@@ -43,11 +57,25 @@ class LoginViewModel: ObservableObject {
             Auth.auth().signIn(with: credential) { AuthDataResult, error in
                 if let error = error {
                     print("firebase sign in failure: \(error.localizedDescription)")
+                    completionHandler(false)
                 } else {
+                    completionHandler(true)
                     print("successful Sign in")
                 }
             }
-            
+        }
+    }
+    
+    //MARK: - 3rd party sign in
+    
+    func handleAppleLogin(result: Result<ASAuthorization, Error>) {
+        switch result {
+        case .success(let authResult):
+            signInApple(ASAuth: authResult, completionHandler: { success in
+                print("successFull auth please proceed")
+            })
+        case .failure(let failure):
+            print("Login failed error: \(failure.localizedDescription)")
         }
     }
 }
