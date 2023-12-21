@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIKit
+import _AuthenticationServices_SwiftUI
 
 struct LoginView: View {
     @ObservedObject var viewModel = LoginViewModel()
@@ -49,8 +50,10 @@ struct LoginView: View {
                 // Handle login with Google action
             }
 
-            Button("Login with Apple") {
-                // Handle login with Apple action
+            SignInWithAppleButton(.signIn) { request in
+                request.requestedScopes = [.fullName, .email]
+            } onCompletion: { result in
+                viewModel.handleAppleLogin(result: result)
             }
         }
         .edgesIgnoringSafeArea(.bottom)
