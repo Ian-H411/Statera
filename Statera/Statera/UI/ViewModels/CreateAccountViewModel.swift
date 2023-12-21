@@ -26,25 +26,50 @@ class CreateAccountViewModel: ObservableObject {
     
     //MARK: - Create Account
     
-    func baseSignUp() {
-        guard passwordsMatch() else { return }
+    func baseSignUp(completionHandler: @escaping (Bool) -> Void) {
         let email = emailViewModel.userInput
         let password = passWordViewModel.userInput
         Auth.auth().createUser(withEmail: email,
                                password: password) { authResult, error in
             if let error = error {
+                completionHandler(false)
                 print("error creating account \(error.localizedDescription)")
             } else {
-                //successful account creation
+                completionHandler(true)
             }
         }
     }
     
-    func createAccountWithApple(result: Result<ASAuthorization, Error>) {
+    private func signInApple(ASAuth: ASAuthorization, completionHandler: @escaping (Bool) -> Void) {
+        if let appleIDCredential = ASAuth.credential as? ASAuthorizationAppleIDCredential {
+            guard let identityTokenData = appleIDCredential.identityToken,
+                  let identityTokenString = String(data: identityTokenData, encoding: .utf8) else {
+                print("Identity token is missing.")
+                completionHandler(false)
+                return
+            }
+
+            let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: identityTokenString, rawNonce: nil)
+            Auth.auth().signIn(with: credential) { AuthDataResult, error in
+                if let error = error {
+                    print("firebase sign in failure: \(error.localizedDescription)")
+                    completionHandler(false)
+                } else {
+                    completionHandler(true)
+                    print("successful Sign in")
+                }
+            }
+        }
+    }
+    
+    func createAccountWithApple(result: Result<ASAuthorization, Error>, completionHandler: @escaping (Bool) -> Void) {
         switch result {
         case .success(let authResult):
-            print("handle successful apple auth")
+            signInApple(ASAuth: authResult) { success in
+                completionHandler(success)
+            }
         case .failure(let error):
+            completionHandler(false)
             print("sign in failed\(error.localizedDescription)")
         }
     }

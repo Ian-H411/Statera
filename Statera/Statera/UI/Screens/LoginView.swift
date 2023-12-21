@@ -24,7 +24,7 @@ struct LoginView: View {
                 .scaledToFit()
 
             NavigationLink("Create an account") {
-                CreateAccountScreen()
+                CreateAccountScreen(isLoggedIn: $isLoggedIn)
             }
             .buttonStyle(PrimaryButtonStyle())
 

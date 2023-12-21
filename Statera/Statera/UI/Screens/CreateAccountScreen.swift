@@ -10,6 +10,7 @@ import _AuthenticationServices_SwiftUI
 struct CreateAccountScreen: View {
     
     var createAccountViewModel = CreateAccountViewModel()
+    @Binding var isLoggedIn: Bool
     
     var body: some View {
         VStack(spacing: 20) {
@@ -38,11 +39,5 @@ struct CreateAccountScreen: View {
                 createAccountViewModel.createAccountWithApple(result: result)
             }
         }
-    }
-}
-
-struct CreateAccountScreen_PreviewProvider: PreviewProvider {
-    static var previews: some View {
-        CreateAccountScreen()
     }
 }
