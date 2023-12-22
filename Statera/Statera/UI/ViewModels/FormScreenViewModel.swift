@@ -7,26 +7,18 @@
 
 import Foundation
 
-class FormScreenViewModel {
+class FormScreenViewModel: ObservableObject {
     
-    var inputs = [[FormInputViewModel]]()
+    @Published var nameViewModel = TextInputViewModel(labelText: "Full Name", preFill: "", minCharacters: 5, maxCharacters: 30, allowedCharacterSet: .alphanumerics)
+    @Published var SSNViewModel = SSNInputViewModel(labelText: "Social Security Number")
+    @Published var DOBViewModel = TextInputViewModel(labelText: "Date of Birth", preFill: "", minCharacters: 6, maxCharacters: 8, allowedCharacterSet: .decimalDigits)
+    @Published var phoneNumberViewModel = TextInputViewModel(labelText: "Phone Number", preFill: "", minCharacters: 10, maxCharacters: 10, allowedCharacterSet: .decimalDigits)
     
-    init() {
-        /*createBaseViewModelsForPersonalTax*/()
-    }
+    @Published var addressLine1ViewModel = TextInputViewModel(labelText: "Address Line 1", preFill: "", minCharacters: 5, maxCharacters: 50, allowedCharacterSet: .alphanumerics)
+    @Published var addressLine2ViewModel = TextInputViewModel(labelText: "Address Line 2", preFill: "", minCharacters: 5, maxCharacters: 50, allowedCharacterSet: .alphanumerics)
+    @Published var cityViewModel = TextInputViewModel(labelText: "City", preFill: "", minCharacters: 4, maxCharacters: 20, allowedCharacterSet: .alphanumerics)
+    @Published var StateViewModel = TextInputViewModel(labelText: "State", preFill: "", minCharacters: 2, maxCharacters: 20, allowedCharacterSet: .alphanumerics)
+    @Published var zipCodeViewModel = TextInputViewModel(labelText: "ZipCode", preFill: "", minCharacters: 5, maxCharacters: 10, allowedCharacterSet: .decimalDigits)
     
-//    func createBaseViewModelsForPersonalTax() {
-//        let fullNameVM = TextInputViewModel(labelText: "Full Name", isRequired: true)
-//        let email = TextInputViewModel(labelText: "Email")
-//        let phoneNumber = NumberInputViewModel(labelText: "Phone Number")
-//        let social = SSNInputViewModel(labelText: "Social Security Number")
-//        let dob = DOBInputViewModel(labelText: "Date of Birth")
-//        let addressLine1 = TextInputViewModel(labelText: "Address Line 1")
-//        let addressLine2 = TextInputViewModel(labelText: "Address Line 2")
-//        let city = TextInputViewModel(labelText: "City")
-//        let state = PickerInputViewModel(labelText: "State")
-//        let zipCode = NumberInputViewModel(labelText: "zip Code")
-//        let filingStatus = PickerInputViewModel(labelText: "Filing Status")
-//        inputs = [[fullNameVM, email, phoneNumber], [social, dob], [addressLine1, addressLine2, city, state, state, zipCode], [filingStatus]]
-//    }
+    @Published var filingStatusViewModel = TextInputViewModel(labelText: "Filing Status", preFill: "", minCharacters: 3, maxCharacters: 20, allowedCharacterSet: .alphanumerics)
 }

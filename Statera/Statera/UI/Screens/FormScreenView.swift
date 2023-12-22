@@ -8,35 +8,32 @@
 import SwiftUI
 
 struct FormScreenView: View {
-    @State var viewModel: FormScreenViewModel
+    @State var viewModel: FormScreenViewModel = FormScreenViewModel()
     
     var body: some View {
         ScrollView {
             Form {
-                ForEach(viewModel.inputs.indices, id: \.self) { sectionIndex in
-                    Section {
-                        ForEach(viewModel.inputs[sectionIndex], id: \.self) { inputVM in
-                            switch inputVM.questionType {
-                            case .text:
-                                Text("texty text")
-                            case .currency:
-                                Text("texty text")
-                            case .number:
-                                Text("texty text")
-                            case .ssn:
-                                Text("texty text")
-                            case .dob:
-                                Text("texty text")
-                            case .picker:
-                                Text("texty text")
-                            case .checkBox:
-                                Text("texty text")
-                            case .password:
-                                Text("text")
-                            case .emailAddress:
-                                Text("text")
-                            }
-                        }
+                Section(header: Text("Personal Information")) {
+                    TextInputView(viewModel: viewModel.nameViewModel)
+                    SSNInputView(viewModel: viewModel.SSNViewModel)
+                    DOBInputView(viewModel: viewModel.DOBViewModel)
+                    TextInputView(viewModel: viewModel.phoneNumberViewModel) // create phone number input later
+                }
+                
+                Section(header: Text("Address")) {
+                    TextInputView(viewModel: viewModel.addressLine1ViewModel)
+                    TextInputView(viewModel: viewModel.addressLine2ViewModel)
+                    TextInputView(viewModel: viewModel.cityViewModel)
+                    TextInputView(viewModel: viewModel.StateViewModel) // create City dropdown later
+                    TextInputView(viewModel: viewModel.zipCodeViewModel) // Create custom zip code input later
+                }
+                
+                Section(header: Text("Filing Status")) {
+                    TextInputView(viewModel: viewModel.filingStatusViewModel) // to be used with drop down later
+                }
+                Section {
+                    Button("Submit") {
+                        
                     }
                 }
             }
