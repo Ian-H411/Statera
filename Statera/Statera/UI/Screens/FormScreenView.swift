@@ -12,24 +12,44 @@ struct FormScreenView: View {
     
     var body: some View {
         ScrollView {
-            Form {
+            List {
                 Section(header: Text("Personal Information")) {
                     TextInputView(viewModel: viewModel.nameViewModel)
                     SSNInputView(viewModel: viewModel.SSNViewModel)
                     DOBInputView(viewModel: viewModel.DOBViewModel)
-                    TextInputView(viewModel: viewModel.phoneNumberViewModel) // create phone number input later
+                    PhoneNumberInputView(viewModel: viewModel.phoneNumberViewModel)
                 }
                 
                 Section(header: Text("Address")) {
                     TextInputView(viewModel: viewModel.addressLine1ViewModel)
                     TextInputView(viewModel: viewModel.addressLine2ViewModel)
                     TextInputView(viewModel: viewModel.cityViewModel)
-                    TextInputView(viewModel: viewModel.StateViewModel) // create City dropdown later
-                    TextInputView(viewModel: viewModel.zipCodeViewModel) // Create custom zip code input later
+                    PickerInputView(viewModel: viewModel.StateViewModel)
+                    ZipCodeInputView(viewModel: viewModel.zipCodeViewModel)
                 }
                 
                 Section(header: Text("Filing Status")) {
-                    TextInputView(viewModel: viewModel.filingStatusViewModel) // to be used with drop down later
+                    PickerInputView(viewModel: viewModel.filingStatusViewModel) // to be used with drop down later
+                }
+                
+                if viewModel.shouldAskDependents() {
+                    Section(header: Text("Dependents")) {
+                        PickerInputView(viewModel: viewModel.dependentsViewModel)
+                    }
+                }
+                if viewModel.numberOfDependentsFields() > 0 {
+                    ForEach(0..<viewModel.numberOfDependentsFields(), id: \.self) { index in
+                        Section(header: Text("Dependent \(index + 1)")) {
+                            let inputViewModels = viewModel.dependentsInfoViewModels[index]
+                            if let nameVM = inputViewModels[0] as? TextInputViewModel,
+                               let ssnVM = inputViewModels[1] as? SSNInputViewModel,
+                               let dobVM = inputViewModels[2] as? DOBInputViewModel {
+                                TextInputView(viewModel: nameVM)
+                                SSNInputView(viewModel: ssnVM)
+                                DOBInputView(viewModel: dobVM)
+                            }
+                        }
+                    }
                 }
                 Section {
                     Button("Submit") {
@@ -37,14 +57,16 @@ struct FormScreenView: View {
                     }
                 }
             }
+            .listStyle(InsetGroupedListStyle())
+        }
+        .onChange(of: viewModel.numberOfDependentsFields()) { _, _ in
+            viewModel.updateDependentViewModels()
         }
     }
 }
 
-
-let previewViewModel = FormScreenViewModel()
 struct FormScreenView_PreviewProvider: PreviewProvider {
     static var previews: some View {
-        FormScreenView(viewModel: previewViewModel)
+        FormScreenView()
     }
 }

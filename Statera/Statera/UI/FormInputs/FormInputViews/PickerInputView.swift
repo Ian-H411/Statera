@@ -8,27 +8,29 @@
 import SwiftUI
 
 struct PickerInputView: View {
-    
-    @ObservedObject var viewModel: PickerInputViewModel
 
+    @ObservedObject var viewModel: PickerInputViewModel
+    
     var body: some View {
         VStack {
-            Picker(viewModel.labelText, selection: $viewModel.selectedIndex) {
+            Text(viewModel.labelText)
+                .alignmentGuide(.leading) { _ in 0 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .transition(AnyTransition.opacity.animation(.smooth(duration: 0.2)))
+                .foregroundColor(.gray)
+            
+            Picker(selection: $viewModel.selectedIndex, label: Text(viewModel.labelText)) {
                 ForEach(0..<viewModel.options.count, id: \.self) { index in
                     Text(viewModel.options[index])
-                        .tag(index)
                 }
             }
             .pickerStyle(MenuPickerStyle())
-            .padding()
+            .onAppear(perform: {
+                viewModel.setupField()
+            })
+            .onChange(of: viewModel.selectedIndex) { _, newValue in
+                self.viewModel.updateSelection(newValue)
+            }
         }
-    }
-}
-
-
-struct PickerInputView_Previews: PreviewProvider {
-    static var previews: some View {
-        let previewViewModel = PickerInputViewModel(labelText: "are you filing as joingt", selectedIndex: 0, options: ["yes", "no"])
-        PickerInputView(viewModel: previewViewModel)
     }
 }
