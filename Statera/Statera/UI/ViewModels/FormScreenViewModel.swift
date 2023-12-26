@@ -19,7 +19,7 @@ class FormScreenViewModel: ObservableObject {
     
     static let filingStatusOptions = ["Married Filing Joint", "Head of Household", "Single"]
     
-    static let dependents = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    static let dependents = ["0","1", "2", "3", "4", "5", "6", "7", "8", "9"]
     
     @Published var nameViewModel = TextInputViewModel(labelText: "Full Name", preFill: "", minCharacters: 5, maxCharacters: 30, allowedCharacterSet: .alphanumerics)
     @Published var SSNViewModel = SSNInputViewModel(labelText: "Social Security Number")

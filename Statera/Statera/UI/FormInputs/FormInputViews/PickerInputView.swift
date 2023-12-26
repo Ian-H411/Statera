@@ -13,12 +13,6 @@ struct PickerInputView: View {
     
     var body: some View {
         VStack {
-            Text(viewModel.labelText)
-                .alignmentGuide(.leading) { _ in 0 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .transition(AnyTransition.opacity.animation(.smooth(duration: 0.2)))
-                .foregroundColor(.gray)
-            
             Picker(selection: $viewModel.selectedIndex, label: Text(viewModel.labelText)) {
                 ForEach(0..<viewModel.options.count, id: \.self) { index in
                     Text(viewModel.options[index])
