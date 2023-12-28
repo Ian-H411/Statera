@@ -15,25 +15,24 @@ struct LoginView: View {
     @Binding var isLoggedIn: Bool
     
     var body: some View {
-        VStack(spacing: 20) {
-            Spacer().frame(height: 20)
-            Text("Statera")
-
-            Image(uiImage: UIImage.strokedCheckmark)
-                .frame(width: 200, height: 200)
+        VStack(spacing: 15) {
+            Image("StateraLogo")
+                .frame(width: 220, height: 220, alignment: .center)
                 .scaledToFit()
-
+            Text("Statera")
+            
+            Text("Login")
+                .modifier(TitleTextStyle())
+            Text("Please_Sign_In")
+                .modifier(TertiaryTextStyle())
+            
             EmailInputView(viewModel: viewModel.emailViewModel)
-                .frame(width: 250)
-            HStack {
-                PasswordInputView(viewModel: viewModel.passWordViewModel)
-                    .frame(width: 150)
-                NavigationLink("Forgot_Password") {
-                    
-                }
-                .buttonStyle(SecondaryButtonStyle())
-            }
-
+                .frame(width: 350)
+            
+            PasswordInputView(viewModel: viewModel.passWordViewModel)
+                .frame(width: 350)
+            
+            
             Button("Login") {
                 viewModel.handleBaseLogin(completionHandler: { success in
                     if success {
@@ -44,7 +43,7 @@ struct LoginView: View {
             .buttonStyle(PrimaryButtonStyle())
             .frame(width: 200)
             .disabled(!viewModel.isValidCredentials())
-    
+            
             SeparatorView()
             SignInWithAppleButton(.signIn) { request in
                 request.requestedScopes = [.fullName, .email]
@@ -52,13 +51,12 @@ struct LoginView: View {
                 viewModel.handleAppleLogin(result: result)
             }
             .frame(width: 250, height: 50)
+            NavigationLink("Create_an_account") {
+                CreateAccountScreen(isLoggedIn: $isLoggedIn)
+            }
+            .buttonStyle(GrayedButton())
         }
         .edgesIgnoringSafeArea(.bottom)
-        
-        NavigationLink("Create_an_account") {
-            CreateAccountScreen(isLoggedIn: $isLoggedIn)
-        }
-        .buttonStyle(GrayedButton())
     }
 }
 

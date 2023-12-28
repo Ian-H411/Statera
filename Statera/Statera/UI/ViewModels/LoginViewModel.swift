@@ -12,7 +12,7 @@ import FirebaseAuth
 class LoginViewModel: ObservableObject {
     
     @Published var emailViewModel = EmailInputViewModel(labelText: "Email", preFill: "")
-    @Published var passWordViewModel = PasswordInputViewModel(labelText: "Password", preFill: "")
+    @Published var passWordViewModel = PasswordInputViewModel(labelText: "Password", displayForgotPassword: true)
     
     func isValidCredentials() -> Bool {
         return emailViewModel.isValid() && passWordViewModel.isValid()

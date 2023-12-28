@@ -9,13 +9,15 @@
 
 "or" = "or";
 
-"Forgot_Password" = "Forgot Password";
+"Forgot_Password" = "Forgot Password?";
 
 "Create_an_account" = "Create an account";
 
 "Password" = "Password";
 
 "Email" = "Email";
+
+"Please_Sign_In" = "Please sign in to continue";
 
 //MARK: - Create Account
 

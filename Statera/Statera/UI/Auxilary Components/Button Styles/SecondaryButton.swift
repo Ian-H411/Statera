@@ -11,7 +11,7 @@ struct SecondaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .cornerRadius(8)
-            .font(.system(size: 14))
+            .font(.system(size: 12))
             .foregroundColor(.gray)
             .background(configuration.isPressed ? Color.gray : Color.white)
     }
