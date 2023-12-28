@@ -14,7 +14,7 @@ struct ZipCodeInputView: View {
     var body: some View {
         VStack {
             if !viewModel.userInput.isEmpty {
-                Text(viewModel.labelText)
+                Text(LocalizedStringKey(viewModel.labelText))
                     .alignmentGuide(.leading) { _ in 0 }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .transition(AnyTransition.opacity.animation(.smooth(duration: 0.2)))
@@ -22,7 +22,7 @@ struct ZipCodeInputView: View {
             }
             
             TextField(
-                viewModel.labelText,
+                LocalizedStringKey(viewModel.labelText),
                 text: $viewModel.userInput
             )
             .onAppear(perform: {

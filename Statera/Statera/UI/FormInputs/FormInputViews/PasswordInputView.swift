@@ -17,7 +17,7 @@ struct PasswordInputView: View {
     var body: some View {
         VStack {
             HStack {
-                TextField(viewModel.labelText, value: $viewModel.userInput, formatter: formatter)
+                TextField(LocalizedStringKey(viewModel.labelText), value: $viewModel.userInput, formatter: formatter)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 if isForgotPasswordVisible {

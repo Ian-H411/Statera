@@ -14,14 +14,14 @@ struct CurrencyInputView: View {
     var body:  some View {
         VStack {
             if !viewModel.userInput.isEmpty {
-                Text(viewModel.labelText)
+                Text(LocalizedStringKey(viewModel.labelText))
                     .alignmentGuide(.leading) { _ in 0 }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .transition(AnyTransition.opacity.animation(.smooth(duration: 0.2)))
                     .foregroundColor(.gray)
                     
             }
-            TextField(viewModel.labelText, value: $viewModel.userInput, formatter: Formatter())
+            TextField(LocalizedStringKey(viewModel.labelText), value: $viewModel.userInput, formatter: Formatter())
                 .onAppear(perform: {
                     viewModel.setupField()
                 })
