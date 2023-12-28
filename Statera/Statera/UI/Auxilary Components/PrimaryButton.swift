@@ -10,8 +10,22 @@ import SwiftUI
 struct PrimaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .cornerRadius(8)
             .foregroundColor(.white)
-            .background(configuration.isPressed ? Color.gray : Color.blue)
+            .padding(.leading, 12)
+            .padding(.trailing, 11)
+            .padding(.top, 10)
+            .padding(.bottom, 9)
+            .frame(width: 170, height: 37, alignment: .center)
+            .background(
+                EllipticalGradient(
+                    stops: [
+                        Gradient.Stop(color: Color(red: 0.05, green: 0.29, blue: 1), location: 0.34),
+                        Gradient.Stop(color: Color(red: 0.05, green: 0.29, blue: 1).opacity(0.8), location: 1.00),
+                    ],
+                    center: UnitPoint(x: 0.5, y: 0.51)
+                )
+            )
+            .cornerRadius(6)
+            .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 4)
     }
 }

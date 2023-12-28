@@ -23,16 +23,16 @@ struct LoginView: View {
                 .frame(width: 200, height: 200)
                 .scaledToFit()
 
-            NavigationLink("Create an account") {
-                CreateAccountScreen(isLoggedIn: $isLoggedIn)
-            }
-            .buttonStyle(PrimaryButtonStyle())
-
             EmailInputView(viewModel: viewModel.emailViewModel)
                 .frame(width: 250)
-
-            PasswordInputView(viewModel: viewModel.passWordViewModel)
-                .frame(width: 250)
+            HStack {
+                PasswordInputView(viewModel: viewModel.passWordViewModel)
+                    .frame(width: 150)
+                NavigationLink("Forgot_Password") {
+                    
+                }
+                .buttonStyle(SecondaryButtonStyle())
+            }
 
             Button("Login") {
                 viewModel.handleBaseLogin(completionHandler: { success in
@@ -44,19 +44,21 @@ struct LoginView: View {
             .buttonStyle(PrimaryButtonStyle())
             .frame(width: 200)
             .disabled(!viewModel.isValidCredentials())
-            
-            NavigationLink("Forgot Password") {
-                
-            }
-            .buttonStyle(SecondaryButtonStyle())
+    
             SeparatorView()
             SignInWithAppleButton(.signIn) { request in
                 request.requestedScopes = [.fullName, .email]
             } onCompletion: { result in
                 viewModel.handleAppleLogin(result: result)
             }
+            .frame(width: 250, height: 50)
         }
         .edgesIgnoringSafeArea(.bottom)
+        
+        NavigationLink("Create_an_account") {
+            CreateAccountScreen(isLoggedIn: $isLoggedIn)
+        }
+        .buttonStyle(GrayedButton())
     }
 }
 
@@ -75,3 +77,7 @@ struct SeparatorView: View {
         }
     }
 }
+
+#Preview(body: {
+    LoginView(isLoggedIn: .constant(false))
+})
