@@ -28,8 +28,8 @@ class FormScreenViewModel: ObservableObject {
     static let dependents = ["0","1", "2", "3", "4", "5", "6", "7", "8", "9"]
     
     @Published var nameViewModel = TextInputViewModel(labelText: "Full_Name", preFill: "", minCharacters: 5, maxCharacters: 30, allowedCharacterSet: .alphanumerics)
-    @Published var SSNViewModel = SSNInputViewModel(labelText: "Social Security Number")
-    @Published var DOBViewModel = DOBInputViewModel(labelText: "Date of Birth")
+    @Published var SSNViewModel = SSNInputViewModel(labelText: "Social_Security_Number")
+    @Published var DOBViewModel = DOBInputViewModel(labelText: "Date_of_Birth")
     @Published var phoneNumberViewModel = PhoneNumberInputViewModel(labelText: "Phone_Number", preFill: "")
     
     @Published var addressLine1ViewModel = TextInputViewModel(labelText: "Address_Line_1", preFill: "", minCharacters: 5, maxCharacters: 50, allowedCharacterSet: .alphanumerics)
