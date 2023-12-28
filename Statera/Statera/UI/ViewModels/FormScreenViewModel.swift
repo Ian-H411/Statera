@@ -17,7 +17,13 @@ class FormScreenViewModel: ObservableObject {
         "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"
     ]
     
-    static let filingStatusOptions = ["Married_Filing_Joint", "Head_of_Household", "Single"]
+    enum FilingStatus: String {
+        case single = "Single"
+        case marriedFilingJoint = "Married_Filing_Joint"
+        case headOfHousehold = "Head_of_Household"
+    }
+    
+    static let filingStatusOptions: [String] = [FilingStatus.single.rawValue, FilingStatus.marriedFilingJoint.rawValue, FilingStatus.headOfHousehold.rawValue]
     
     static let dependents = ["0","1", "2", "3", "4", "5", "6", "7", "8", "9"]
     
@@ -39,7 +45,7 @@ class FormScreenViewModel: ObservableObject {
     @Published var dependentsInfoViewModels: [[FormInputViewModel]] = []
     
     func shouldAskDependents() -> Bool {
-        return filingStatusViewModel.userInput != "Single"
+        return FilingStatus(rawValue: filingStatusViewModel.userInput) != .single
     }
     
     func numberOfDependentsFields() -> Int {
