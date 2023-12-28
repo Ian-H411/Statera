@@ -12,7 +12,7 @@ struct EmailInputView: View {
     
     var body: some View {
         VStack {
-            TextField(viewModel.labelText, text: $viewModel.userInput)
+            TextField(LocalizedStringKey(viewModel.labelText), text: $viewModel.userInput)
                 .keyboardType(.emailAddress)
                 .autocapitalization(.none)
                 .textFieldStyle(RoundedBorderTextFieldStyle())

@@ -12,7 +12,7 @@ struct FormScreenView: View {
     
     var body: some View {
         List {
-            Section(header: Text("Personal Information")) {
+            Section(header: Text("Personal_Information")) {
                 TextInputView(viewModel: viewModel.nameViewModel)
                 SSNInputView(viewModel: viewModel.SSNViewModel)
                 DOBInputView(viewModel: viewModel.DOBViewModel)

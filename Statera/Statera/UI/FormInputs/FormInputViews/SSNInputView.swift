@@ -13,14 +13,14 @@ struct SSNInputView: View {
     var body: some View {
         VStack {
             if !viewModel.userInput.isEmpty {
-                Text(viewModel.labelText)
+                Text(LocalizedStringKey(viewModel.labelText))
                     .alignmentGuide(.leading) { _ in 0 }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .transition(AnyTransition.opacity.animation(.smooth(duration: 0.2)))
                     .foregroundColor(.gray)
                     
             }
-            TextField(viewModel.labelText, text: $viewModel.userInput)
+            TextField(LocalizedStringKey(viewModel.labelText), text: $viewModel.userInput)
                 .keyboardType(.numberPad)
                 .onChange(of: viewModel.userInput, initial: false) { _, newValue  in
                     viewModel.updateText(newValue)
