@@ -10,12 +10,14 @@ import Foundation
 class PasswordInputViewModel: FormInputViewModel {
     
     let isForgotPasswordButtonVisible: Bool
+    let displayPasswordHint: Bool
     let minPasswordLength = 8  // Minimum password length, adjust as needed
     private let maxCharacters = 50
     private let allowedCharacterSet = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{}|;:'\",.<>/?`~")
     
-    init(labelText: String, displayForgotPassword: Bool) {
+    init(labelText: String, displayForgotPassword: Bool, displayPasswordHint: Bool) {
         self.isForgotPasswordButtonVisible = displayForgotPassword
+        self.displayPasswordHint = displayPasswordHint
         super.init(labelText: labelText, preFill: "", isRequired: true)
         self.questionType = .password
     }

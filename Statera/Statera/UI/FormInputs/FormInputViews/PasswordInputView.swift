@@ -10,6 +10,8 @@ import SwiftUI
 struct PasswordInputView: View {
     @ObservedObject var viewModel: PasswordInputViewModel
     @State private var isForgotPasswordVisible: Bool = false
+    @State private var displayPasswordHint: Bool = false
+    
     let formatter = PasswordFormatter()
     
     var body: some View {
@@ -27,22 +29,37 @@ struct PasswordInputView: View {
                     .buttonStyle(SecondaryButtonStyle())
                 }
             }
-
-            if !viewModel.isValidPassword() {
-                Text(String(format: NSLocalizedString("Password_requirements", comment: ""), viewModel.minPasswordLength))
-                    .foregroundColor(.red)
-                    .padding(.top, 4)
+            if displayPasswordHint {
+                PasswordRequirementsView(viewModel: viewModel)
             }
         }
         .onAppear(perform: {
             isForgotPasswordVisible = viewModel.isForgotPasswordButtonVisible
+            displayPasswordHint = viewModel.displayPasswordHint
         })
+    }
+}
+
+private struct PasswordRequirementsView: View {
+    @ObservedObject var viewModel: PasswordInputViewModel
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Password Must contain at least:")
+                .foregroundColor(.gray)
+                .font(.subheadline)
+            // Change the color based on password strength conditions
+            Text("One Uppercase letter \nOne Number \nOne Special Character:  !?/;")
+                .foregroundColor(viewModel.isValidPassword() ? .green : .gray)
+                .font(.footnote)
+                
+        }
     }
 }
 
 struct PasswordInputView_PreviewProvider: PreviewProvider {
     static var previews: some View {
-        let vm = PasswordInputViewModel(labelText: "password please", displayForgotPassword: true)
+        let vm = PasswordInputViewModel(labelText: "password please", displayForgotPassword: false, displayPasswordHint: true)
         PasswordInputView(viewModel: vm)
     }
 }
