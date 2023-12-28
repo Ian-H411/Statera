@@ -34,7 +34,7 @@ class FormScreenViewModel: ObservableObject {
     
     @Published var filingStatusViewModel = PickerInputViewModel(labelText: "Filing_Status", options: filingStatusOptions)
     
-    @Published var dependentsViewModel = PickerInputViewModel(labelText: "How Many Dependents?", options: dependents)
+    @Published var dependentsViewModel = PickerInputViewModel(labelText: "How_Many_Dependents?", options: dependents)
     
     @Published var dependentsInfoViewModels: [[FormInputViewModel]] = []
     
@@ -48,9 +48,9 @@ class FormScreenViewModel: ObservableObject {
     
     func updateDependentViewModels() {
         let baseDependentArray: [FormInputViewModel] = [
-            TextInputViewModel(labelText: "Full Name", preFill: "", minCharacters: 5, maxCharacters: 30, allowedCharacterSet: .alphanumerics),
-            SSNInputViewModel(labelText: "Social Security Number"),
-            DOBInputViewModel(labelText: "Date of Birth")
+            TextInputViewModel(labelText: "Full_Name", preFill: "", minCharacters: 5, maxCharacters: 30, allowedCharacterSet: .alphanumerics),
+            SSNInputViewModel(labelText: "Social_Security_Number"),
+            DOBInputViewModel(labelText: "Date_of_Birth")
         ]
         dependentsInfoViewModels = Array(repeating: baseDependentArray, count: numberOfDependentsFields())
     }
