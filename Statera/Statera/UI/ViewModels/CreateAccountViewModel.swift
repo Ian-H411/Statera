@@ -11,8 +11,8 @@ import AuthenticationServices
 
 class CreateAccountViewModel: ObservableObject {
     
-    @Published var firstNameViewModel = TextInputViewModel(labelText: "First Name", preFill: "", minCharacters: 3, maxCharacters: 25, allowedCharacterSet: .alphanumerics)
-    @Published var lastNameViewModel = TextInputViewModel(labelText: "Last Name", preFill: "", minCharacters: 3, maxCharacters: 25, allowedCharacterSet: .alphanumerics)
+    @Published var firstNameViewModel = TextInputViewModel(labelText: "First_Name", preFill: "", minCharacters: 3, maxCharacters: 25, allowedCharacterSet: .alphanumerics)
+    @Published var lastNameViewModel = TextInputViewModel(labelText: "Last_Name", preFill: "", minCharacters: 3, maxCharacters: 25, allowedCharacterSet: .alphanumerics)
     @Published var emailViewModel = EmailInputViewModel(labelText: "Email", preFill: "")
     
     @Published var passWordViewModel = PasswordInputViewModel(labelText: "Password", preFill: "")

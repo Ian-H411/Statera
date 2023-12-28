@@ -41,6 +41,7 @@
 		6B6BAC0F2B368022008C72AB /* PhoneNumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6BAC0E2B368022008C72AB /* PhoneNumberInputView.swift */; };
 		6B6BAC112B3680B5008C72AB /* ZipcodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6BAC102B3680B5008C72AB /* ZipcodeViewModel.swift */; };
 		6B6BAC132B3680DD008C72AB /* ZipcodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6BAC122B3680DC008C72AB /* ZipcodeInputView.swift */; };
+		6B6CE0FC2B3DF62D00F19068 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6B6CE0FE2B3DF62D00F19068 /* Localizable.strings */; };
 		6B83DCC92AFF008F0000473F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83DCC82AFF008F0000473F /* LoginView.swift */; };
 		6B83DCCD2AFF01530000473F /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83DCCC2AFF01530000473F /* PrimaryButton.swift */; };
 		6B83DCCF2AFF015F0000473F /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83DCCE2AFF015F0000473F /* SecondaryButton.swift */; };
@@ -103,6 +104,8 @@
 		6B6BAC0E2B368022008C72AB /* PhoneNumberInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberInputView.swift; sourceTree = "<group>"; };
 		6B6BAC102B3680B5008C72AB /* ZipcodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipcodeViewModel.swift; sourceTree = "<group>"; };
 		6B6BAC122B3680DC008C72AB /* ZipcodeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipcodeInputView.swift; sourceTree = "<group>"; };
+		6B6CE0FD2B3DF62D00F19068 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6B6CE0FF2B3DF63B00F19068 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6B83DCC82AFF008F0000473F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		6B83DCCC2AFF01530000473F /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		6B83DCCE2AFF015F0000473F /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
@@ -253,7 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				6BA41CF42B1ECE640000A260 /* ViewModels */,
-				6B83DCCB2AFF01240000473F /* Components */,
+				6B83DCCB2AFF01240000473F /* Auxilary Components */,
 				6B83DCCA2AFF00EB0000473F /* Screens */,
 				6B0E87F52AF6B7A50061491E /* FormInputs */,
 			);
@@ -271,13 +274,14 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		6B83DCCB2AFF01240000473F /* Components */ = {
+		6B83DCCB2AFF01240000473F /* Auxilary Components */ = {
 			isa = PBXGroup;
 			children = (
 				6B83DCCC2AFF01530000473F /* PrimaryButton.swift */,
 				6B83DCCE2AFF015F0000473F /* SecondaryButton.swift */,
+				6B6CE0FE2B3DF62D00F19068 /* Localizable.strings */,
 			);
-			path = Components;
+			path = "Auxilary Components";
 			sourceTree = "<group>";
 		};
 		6BA41CF42B1ECE640000A260 /* ViewModels */ = {
@@ -382,6 +386,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 6B5C6C7A2AEEB5F500D88079;
 			packageReferences = (
@@ -404,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B5C6C8F2AEEB5F500D88079 /* Preview Assets.xcassets in Resources */,
+				6B6CE0FC2B3DF62D00F19068 /* Localizable.strings in Resources */,
 				6B5C6C8B2AEEB5F500D88079 /* Assets.xcassets in Resources */,
 				6B6BAC052B33C4F6008C72AB /* GoogleService-Info.plist in Resources */,
 			);
@@ -500,6 +506,18 @@
 			targetProxy = 6B5C6C9F2AEEB5F500D88079 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6B6CE0FE2B3DF62D00F19068 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6B6CE0FD2B3DF62D00F19068 /* en */,
+				6B6CE0FF2B3DF63B00F19068 /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		6B5C6CA62AEEB5F500D88079 /* Debug */ = {

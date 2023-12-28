@@ -17,22 +17,22 @@ class FormScreenViewModel: ObservableObject {
         "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"
     ]
     
-    static let filingStatusOptions = ["Married Filing Joint", "Head of Household", "Single"]
+    static let filingStatusOptions = ["Married_Filing_Joint", "Head_of_Household", "Single"]
     
     static let dependents = ["0","1", "2", "3", "4", "5", "6", "7", "8", "9"]
     
-    @Published var nameViewModel = TextInputViewModel(labelText: "Full Name", preFill: "", minCharacters: 5, maxCharacters: 30, allowedCharacterSet: .alphanumerics)
+    @Published var nameViewModel = TextInputViewModel(labelText: "Full_Name", preFill: "", minCharacters: 5, maxCharacters: 30, allowedCharacterSet: .alphanumerics)
     @Published var SSNViewModel = SSNInputViewModel(labelText: "Social Security Number")
     @Published var DOBViewModel = DOBInputViewModel(labelText: "Date of Birth")
-    @Published var phoneNumberViewModel = PhoneNumberInputViewModel(labelText: "Phone Number", preFill: "")
+    @Published var phoneNumberViewModel = PhoneNumberInputViewModel(labelText: "Phone_Number", preFill: "")
     
-    @Published var addressLine1ViewModel = TextInputViewModel(labelText: "Address Line 1", preFill: "", minCharacters: 5, maxCharacters: 50, allowedCharacterSet: .alphanumerics)
+    @Published var addressLine1ViewModel = TextInputViewModel(labelText: "Address_Line_1", preFill: "", minCharacters: 5, maxCharacters: 50, allowedCharacterSet: .alphanumerics)
     @Published var addressLine2ViewModel = TextInputViewModel(labelText: "Address Line 2", preFill: "", minCharacters: 5, maxCharacters: 50, allowedCharacterSet: .alphanumerics)
     @Published var cityViewModel = TextInputViewModel(labelText: "City", preFill: "", minCharacters: 4, maxCharacters: 20, allowedCharacterSet: .alphanumerics)
     @Published var StateViewModel = PickerInputViewModel(labelText: "State", options: stateCodes)
-    @Published var zipCodeViewModel = ZipCodeInputViewModel(labelText: "Zip Code", preFill: "")
+    @Published var zipCodeViewModel = ZipCodeInputViewModel(labelText: "Zip_Code", preFill: "")
     
-    @Published var filingStatusViewModel = PickerInputViewModel(labelText: "Filing Status", options: filingStatusOptions)
+    @Published var filingStatusViewModel = PickerInputViewModel(labelText: "Filing_Status", options: filingStatusOptions)
     
     @Published var dependentsViewModel = PickerInputViewModel(labelText: "How Many Dependents?", options: dependents)
     

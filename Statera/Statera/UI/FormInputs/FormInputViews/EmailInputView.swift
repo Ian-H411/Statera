@@ -22,7 +22,7 @@ struct EmailInputView: View {
                 }
 
             if !viewModel.isValid() {
-                Text("Invalid Email")
+                Text("Invalid_Email")
                     .foregroundColor(.red)
                     .padding(.top, 4)
             }

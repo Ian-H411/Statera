@@ -15,7 +15,7 @@ struct CreateAccountScreen: View {
     var body: some View {
         VStack(spacing: 20) {
             HStack {
-                Text("Create an account \n with Statera")
+                Text("Create_Account_with_Statera")
                 Image(uiImage: UIImage.checkmark)
                     .scaledToFit()
                     .frame(width: 150, height: 150)
@@ -28,7 +28,7 @@ struct CreateAccountScreen: View {
                 .frame(width: 250)
             PasswordInputView(viewModel: createAccountViewModel.confirmPassWordViewModel)
                 .frame(width: 250)
-            Button("Create Account") {
+            Button("Create_Account") {
                 createAccountViewModel.baseSignUp(completionHandler: { success in
                     
                 })
