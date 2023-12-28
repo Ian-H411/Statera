@@ -29,14 +29,18 @@ struct CreateAccountScreen: View {
             PasswordInputView(viewModel: createAccountViewModel.confirmPassWordViewModel)
                 .frame(width: 250)
             Button("Create Account") {
-                createAccountViewModel.baseSignUp()
+                createAccountViewModel.baseSignUp(completionHandler: { success in
+                    
+                })
             }
             .buttonStyle(PrimaryButtonStyle())
             SeparatorView()
             SignInWithAppleButton(.signUp) { request in
                 request.requestedScopes = [.email, .fullName]
             } onCompletion: { result in
-                createAccountViewModel.createAccountWithApple(result: result)
+                createAccountViewModel.createAccountWithApple(result: result, completionHandler: { success in
+                    
+                })
             }
         }
     }

@@ -13,13 +13,17 @@ class TextInputViewModel: FormInputViewModel {
     var allowedCharacterSet: CharacterSet
     
     var keyboardType: UIKeyboardType {
-        return allowedCharacterSet.isSuperset(of: .decimalDigits) ? .numberPad : .default
+        return allowedCharacterSet == .decimalDigits ? .decimalPad : .default
     }
 
     init(labelText: String, preFill: String, minCharacters: Int, maxCharacters: Int, allowedCharacterSet: CharacterSet, isRequired: Bool = true) {
         self.minCharacters = minCharacters
         self.maxCharacters = maxCharacters
-        self.allowedCharacterSet = allowedCharacterSet
+        if allowedCharacterSet == .alphanumerics {
+            self.allowedCharacterSet = allowedCharacterSet.union(CharacterSet(charactersIn: " "))
+        } else {
+            self.allowedCharacterSet = allowedCharacterSet
+        }
         super.init(labelText: labelText, preFill: preFill, isRequired: isRequired)
         self.questionType = .text
     }

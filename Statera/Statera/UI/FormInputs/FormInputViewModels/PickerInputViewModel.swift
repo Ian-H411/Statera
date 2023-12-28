@@ -11,10 +11,19 @@ class PickerInputViewModel: FormInputViewModel {
     var options: [String]
     @Published var selectedIndex: Int
     
-    init(labelText: String, selectedIndex: Int, options: [String], isRequired: Bool = true) {
+    init(labelText: String, options: [String], preSelectedIndex: Int = 0) {
         self.options = options
-        self.selectedIndex = selectedIndex
-        super.init(labelText: labelText, preFill: "", isRequired: isRequired)
-        self.questionType = .picker
+        self.selectedIndex = preSelectedIndex
+        super.init(labelText: labelText)
+        self.userInput = options[preSelectedIndex]
+    }
+    
+    func updateSelection(_ newIndex: Int) {
+        self.userInput = options[newIndex]
+        self.labelText = options[newIndex]
+    }
+    
+    func setupField() {
+        // Setup initial field state if needed
     }
 }
