@@ -17,13 +17,19 @@ class FormScreenViewModel: ObservableObject {
         "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"
     ]
     
-    static let filingStatusOptions = ["Married_Filing_Joint", "Head_of_Household", "Single"]
+    enum FilingStatus: String {
+        case single = "Single"
+        case marriedFilingJoint = "Married_Filing_Joint"
+        case headOfHousehold = "Head_of_Household"
+    }
+    
+    static let filingStatusOptions: [String] = [FilingStatus.single.rawValue, FilingStatus.marriedFilingJoint.rawValue, FilingStatus.headOfHousehold.rawValue]
     
     static let dependents = ["0","1", "2", "3", "4", "5", "6", "7", "8", "9"]
     
     @Published var nameViewModel = TextInputViewModel(labelText: "Full_Name", preFill: "", minCharacters: 5, maxCharacters: 30, allowedCharacterSet: .alphanumerics)
-    @Published var SSNViewModel = SSNInputViewModel(labelText: "Social Security Number")
-    @Published var DOBViewModel = DOBInputViewModel(labelText: "Date of Birth")
+    @Published var SSNViewModel = SSNInputViewModel(labelText: "Social_Security_Number")
+    @Published var DOBViewModel = DOBInputViewModel(labelText: "Date_of_Birth")
     @Published var phoneNumberViewModel = PhoneNumberInputViewModel(labelText: "Phone_Number", preFill: "")
     
     @Published var addressLine1ViewModel = TextInputViewModel(labelText: "Address_Line_1", preFill: "", minCharacters: 5, maxCharacters: 50, allowedCharacterSet: .alphanumerics)
@@ -34,12 +40,12 @@ class FormScreenViewModel: ObservableObject {
     
     @Published var filingStatusViewModel = PickerInputViewModel(labelText: "Filing_Status", options: filingStatusOptions)
     
-    @Published var dependentsViewModel = PickerInputViewModel(labelText: "How Many Dependents?", options: dependents)
+    @Published var dependentsViewModel = PickerInputViewModel(labelText: "How_Many_Dependents?", options: dependents)
     
     @Published var dependentsInfoViewModels: [[FormInputViewModel]] = []
     
     func shouldAskDependents() -> Bool {
-        return filingStatusViewModel.userInput != "Single"
+        return FilingStatus(rawValue: filingStatusViewModel.userInput) != .single
     }
     
     func numberOfDependentsFields() -> Int {
@@ -48,9 +54,9 @@ class FormScreenViewModel: ObservableObject {
     
     func updateDependentViewModels() {
         let baseDependentArray: [FormInputViewModel] = [
-            TextInputViewModel(labelText: "Full Name", preFill: "", minCharacters: 5, maxCharacters: 30, allowedCharacterSet: .alphanumerics),
-            SSNInputViewModel(labelText: "Social Security Number"),
-            DOBInputViewModel(labelText: "Date of Birth")
+            TextInputViewModel(labelText: "Full_Name", preFill: "", minCharacters: 5, maxCharacters: 30, allowedCharacterSet: .alphanumerics),
+            SSNInputViewModel(labelText: "Social_Security_Number"),
+            DOBInputViewModel(labelText: "Date_of_Birth")
         ]
         dependentsInfoViewModels = Array(repeating: baseDependentArray, count: numberOfDependentsFields())
     }

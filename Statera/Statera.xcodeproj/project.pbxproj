@@ -42,6 +42,9 @@
 		6B6BAC112B3680B5008C72AB /* ZipcodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6BAC102B3680B5008C72AB /* ZipcodeViewModel.swift */; };
 		6B6BAC132B3680DD008C72AB /* ZipcodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6BAC122B3680DC008C72AB /* ZipcodeInputView.swift */; };
 		6B6CE0FC2B3DF62D00F19068 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6B6CE0FE2B3DF62D00F19068 /* Localizable.strings */; };
+		6B6CE1012B3E036E00F19068 /* GrayedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6CE1002B3E036E00F19068 /* GrayedButton.swift */; };
+		6B6CE1032B3E0A4400F19068 /* TitleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6CE1022B3E0A4400F19068 /* TitleText.swift */; };
+		6B6CE1072B3E0BE200F19068 /* TertiaryTextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6CE1062B3E0BE200F19068 /* TertiaryTextStyle.swift */; };
 		6B83DCC92AFF008F0000473F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83DCC82AFF008F0000473F /* LoginView.swift */; };
 		6B83DCCD2AFF01530000473F /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83DCCC2AFF01530000473F /* PrimaryButton.swift */; };
 		6B83DCCF2AFF015F0000473F /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83DCCE2AFF015F0000473F /* SecondaryButton.swift */; };
@@ -106,6 +109,9 @@
 		6B6BAC122B3680DC008C72AB /* ZipcodeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipcodeInputView.swift; sourceTree = "<group>"; };
 		6B6CE0FD2B3DF62D00F19068 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6B6CE0FF2B3DF63B00F19068 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6B6CE1002B3E036E00F19068 /* GrayedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayedButton.swift; sourceTree = "<group>"; };
+		6B6CE1022B3E0A4400F19068 /* TitleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleText.swift; sourceTree = "<group>"; };
+		6B6CE1062B3E0BE200F19068 /* TertiaryTextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TertiaryTextStyle.swift; sourceTree = "<group>"; };
 		6B83DCC82AFF008F0000473F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		6B83DCCC2AFF01530000473F /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		6B83DCCE2AFF015F0000473F /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
@@ -252,6 +258,25 @@
 			path = StateraUITests;
 			sourceTree = "<group>";
 		};
+		6B6CE1042B3E0A4A00F19068 /* Button Styles */ = {
+			isa = PBXGroup;
+			children = (
+				6B83DCCC2AFF01530000473F /* PrimaryButton.swift */,
+				6B83DCCE2AFF015F0000473F /* SecondaryButton.swift */,
+				6B6CE1002B3E036E00F19068 /* GrayedButton.swift */,
+			);
+			path = "Button Styles";
+			sourceTree = "<group>";
+		};
+		6B6CE1052B3E0A6400F19068 /* Text Styles */ = {
+			isa = PBXGroup;
+			children = (
+				6B6CE1022B3E0A4400F19068 /* TitleText.swift */,
+				6B6CE1062B3E0BE200F19068 /* TertiaryTextStyle.swift */,
+			);
+			path = "Text Styles";
+			sourceTree = "<group>";
+		};
 		6B83DCC72AFF00730000473F /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,8 +302,8 @@
 		6B83DCCB2AFF01240000473F /* Auxilary Components */ = {
 			isa = PBXGroup;
 			children = (
-				6B83DCCC2AFF01530000473F /* PrimaryButton.swift */,
-				6B83DCCE2AFF015F0000473F /* SecondaryButton.swift */,
+				6B6CE1052B3E0A6400F19068 /* Text Styles */,
+				6B6CE1042B3E0A4A00F19068 /* Button Styles */,
 				6B6CE0FE2B3DF62D00F19068 /* Localizable.strings */,
 			);
 			path = "Auxilary Components";
@@ -439,6 +464,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B83DCCF2AFF015F0000473F /* SecondaryButton.swift in Sources */,
+				6B6CE1032B3E0A4400F19068 /* TitleText.swift in Sources */,
 				6B6BAC0D2B367FC7008C72AB /* PhoneNumberInputViewModel.swift in Sources */,
 				6B0E88072AF6BA830061491E /* CheckBoxInputViewModel.swift in Sources */,
 				6B0E88152AF6BC630061491E /* CheckBoxInputView.swift in Sources */,
@@ -449,12 +475,14 @@
 				6BA41CF32B1ECCD60000A260 /* FormScreenView.swift in Sources */,
 				6B9133A62B292FC800EB91E1 /* LoginViewModel.swift in Sources */,
 				6B6BAC132B3680DD008C72AB /* ZipcodeInputView.swift in Sources */,
+				6B6CE1072B3E0BE200F19068 /* TertiaryTextStyle.swift in Sources */,
 				6B0E88032AF6BA350061491E /* DOBInputViewModel.swift in Sources */,
 				6B0E88112AF6BC450061491E /* DOBInputView.swift in Sources */,
 				6B9133A02B292A1400EB91E1 /* EmailInputView.swift in Sources */,
 				6B5C6C892AEEB5F500D88079 /* ContentView.swift in Sources */,
 				6B6BAC112B3680B5008C72AB /* ZipcodeViewModel.swift in Sources */,
 				6B5C6C872AEEB5F500D88079 /* StateraApp.swift in Sources */,
+				6B6CE1012B3E036E00F19068 /* GrayedButton.swift in Sources */,
 				6B0E88052AF6BA560061491E /* PickerInputViewModel.swift in Sources */,
 				6B0E88132AF6BC520061491E /* PickerInputView.swift in Sources */,
 				6B6BAC0F2B368022008C72AB /* PhoneNumberInputView.swift in Sources */,

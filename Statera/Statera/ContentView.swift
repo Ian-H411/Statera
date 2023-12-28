@@ -12,10 +12,15 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            if isLoggedIn {
-                HomeScreen()
-            } else {
-                LoginView(isLoggedIn: $isLoggedIn)
+            ZStack{
+                Image("StateraBackground")
+                    .resizable()
+                    .edgesIgnoringSafeArea(.all)
+                if isLoggedIn {
+                    FormScreenView()
+                } else {
+                    LoginView(isLoggedIn: $isLoggedIn)
+                }
             }
         }
         .navigationTitle("Login")

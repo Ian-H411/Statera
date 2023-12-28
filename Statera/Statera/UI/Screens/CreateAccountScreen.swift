@@ -13,15 +13,9 @@ struct CreateAccountScreen: View {
     @Binding var isLoggedIn: Bool
     
     var body: some View {
-        VStack(spacing: 20) {
-            HStack {
-                Text("Create_Account_with_Statera")
-                Image(uiImage: UIImage.checkmark)
-                    .scaledToFit()
-                    .frame(width: 150, height: 150)
-            }
-            TextInputView(viewModel: createAccountViewModel.firstNameViewModel)
-            TextInputView(viewModel: createAccountViewModel.lastNameViewModel)
+        VStack(alignment: .center, spacing: 20) {
+            Text("Create_Account")
+            
             EmailInputView(viewModel: createAccountViewModel.emailViewModel)
                 .frame(width: 250)
             PasswordInputView(viewModel: createAccountViewModel.passWordViewModel)
@@ -30,7 +24,7 @@ struct CreateAccountScreen: View {
                 .frame(width: 250)
             Button("Create_Account") {
                 createAccountViewModel.baseSignUp(completionHandler: { success in
-                    
+                    isLoggedIn = true
                 })
             }
             .buttonStyle(PrimaryButtonStyle())
@@ -42,6 +36,11 @@ struct CreateAccountScreen: View {
                     
                 })
             }
+            .frame(width: 250, height: 50)
         }
     }
+}
+
+#Preview {
+    CreateAccountScreen(isLoggedIn: .constant(false))
 }

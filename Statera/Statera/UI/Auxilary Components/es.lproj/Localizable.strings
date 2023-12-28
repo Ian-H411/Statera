@@ -17,6 +17,8 @@
 
 "Email" = "Correo electrónico";
 
+"Please_Sign_In" = "Por favor, inicia sesión para continuar";
+
 //MARK: - Create Account
 
 "Password_requirements" = "La contraseña debe tener al menos %d caracteres e incluir mayúsculas, minúsculas, números y caracteres especiales";
