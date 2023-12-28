@@ -1,0 +1,72 @@
+//English Localization
+
+//MARK: - Login
+"Login" = "Login";
+
+"Invalid_Email" = "Invalid Email";
+
+"Submit" = "Submit";
+
+"or" = "or";
+
+"Forgot_Password" = "Forgot Password";
+
+"Create_an_account" = "Create an account";
+
+"Password" = "Password";
+
+"Email" = "Email";
+
+//MARK: - Create Account
+
+"Password_requirements" = "Password must be at least %d characters and include uppercase, lowercase, number, and special character";
+
+"Create_Account_with_Statera" = "Create an account \n with Statera";
+
+"Create_Account" = "Create Account";
+
+"First_Name" = "First Name";
+
+"Last_Name" = "Last Name";
+
+//MARK: - Form Strings
+
+"Invalid_DOB" = "Invalid Date of Birth";
+
+"Invalid_SSN" = "Invalid Social Security Number";
+
+"Dependents" = "Dependents";
+
+"Filing_Status" = "Filing Status";
+
+"Address" = "Address";
+
+"Personal_Information" = "Personal Information";
+
+"Married_Filing_Joint" = "Married Filing Joint";
+
+"Head_of_Household" = "Head of Household";
+
+"Single" = "Single";
+
+"Full_Name" = "Full Name";
+
+"Social_Security_Number" = "Social Security Number";
+
+"Date_of_Birth" = "Date of Birth";
+
+"Phone_Number" = "Phone Number";
+
+"Address_Line_1" = "Address Line 1";
+
+"Address_Line_2" = "Address Line 2";
+
+"City" = "City";
+
+"State" = "State";
+
+"Zip_Code" = "Zip Code";
+
+"Filing_Status" = "Filing Status";
+
+"How_Many_Dependents?" = "How Many Dependents?";

@@ -18,7 +18,7 @@ struct PasswordInputView: View {
                 .padding()
             
             if !viewModel.isValidPassword() {
-                Text("Password must be at least \(viewModel.minPasswordLength) characters and include uppercase, lowercase, number, and special character")
+                Text(String(format: NSLocalizedString("Password_requirements", comment: ""), viewModel.minPasswordLength))
                     .foregroundColor(.red)
                     .padding(.top, 4)
             }

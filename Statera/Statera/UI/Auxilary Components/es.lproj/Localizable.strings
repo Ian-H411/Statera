@@ -1,0 +1,70 @@
+// Spanish Localization
+
+//MARK: - Login
+"Login" = "Iniciar sesión";
+
+"Invalid_Email" = "Correo electrónico no válido";
+
+"Submit" = "Enviar";
+
+"or" = "o";
+
+"Forgot_Password" = "¿Olvidaste tu contraseña?";
+
+"Create_an_account" = "Crear una cuenta";
+
+"Password" = "Contraseña";
+
+"Email" = "Correo electrónico";
+
+//MARK: - Create Account
+
+"Password_requirements" = "La contraseña debe tener al menos %d caracteres e incluir mayúsculas, minúsculas, números y caracteres especiales";
+
+"Create_Account_with_Statera" = "Crear una cuenta \n con Statera";
+
+"Create_Account" = "Crear cuenta";
+
+"First_Name" = "Nombre";
+
+"Last_Name" = "Apellido";
+
+//MARK: - Form Strings
+
+"Invalid_DOB" = "Fecha de nacimiento no válida";
+
+"Invalid_SSN" = "Número de Seguro Social no válido";
+
+"Dependents" = "Dependientes";
+
+"Filing_Status" = "Estado civil";
+
+"Address" = "Dirección";
+
+"Personal_Information" = "Información personal";
+
+"Married_Filing_Joint" = "Casado presentando declaración conjunta";
+
+"Head_of_Household" = "Cabeza de familia";
+
+"Single" = "Soltero";
+
+"Full_Name" = "Nombre completo";
+
+"Social_Security_Number" = "Número de Seguro Social";
+
+"Date_of_Birth" = "Fecha de nacimiento";
+
+"Phone_Number" = "Número de teléfono";
+
+"Address_Line_1" = "Dirección línea 1";
+
+"Address_Line_2" = "Dirección línea 2";
+
+"City" = "Ciudad";
+
+"State" = "Estado";
+
+"Zip_Code" = "Código postal";
+
+"How_Many_Dependents?" = "¿Cuántos dependientes?";

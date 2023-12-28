@@ -27,7 +27,7 @@ struct DOBInputView: View {
                 }
 
             if !viewModel.isValid() {
-                Text("Invalid DOB")
+                Text("Invalid_DOB")
                     .foregroundColor(.red)
                     .alignmentGuide(.leading, computeValue: { _ in 0 })
             }

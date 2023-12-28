@@ -27,7 +27,7 @@ struct FormScreenView: View {
                 ZipCodeInputView(viewModel: viewModel.zipCodeViewModel)
             }
             
-            Section(header: Text("Filing Status")) {
+            Section(header: Text("Filing_Status")) {
                 PickerInputView(viewModel: viewModel.filingStatusViewModel) // to be used with drop down later
             }
             

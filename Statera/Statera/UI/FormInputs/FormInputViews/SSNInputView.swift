@@ -27,7 +27,7 @@ struct SSNInputView: View {
                 }
 
             if !viewModel.isValidSSN() {
-                Text("Invalid SSN")
+                Text("Invalid_SSN")
                     .foregroundColor(.red)
                     .alignmentGuide(.leading, computeValue: { _ in 0 })
             }
