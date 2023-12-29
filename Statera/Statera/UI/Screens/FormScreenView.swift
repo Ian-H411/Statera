@@ -9,6 +9,8 @@ import SwiftUI
 
 struct FormScreenView: View {
     @State var viewModel: FormScreenViewModel = FormScreenViewModel()
+    @State var askDependentsNumber: Bool = false
+    @State var displayDependentInputs: Bool = false
     
     var body: some View {
         List {
@@ -28,15 +30,23 @@ struct FormScreenView: View {
             }
             
             Section(header: Text("Filing_Status")) {
-                PickerInputView(viewModel: viewModel.filingStatusViewModel) // to be used with drop down later
+                PickerInputView(viewModel: viewModel.filingStatusViewModel)
+                    .onReceive(viewModel.filingStatusViewModel.$userInput, perform: { _ in
+                        askDependentsNumber = viewModel.shouldAskDependents()
+                    })
             }
             
-            if viewModel.shouldAskDependents() {
+            if askDependentsNumber {
                 Section(header: Text("Dependents")) {
                     PickerInputView(viewModel: viewModel.dependentsViewModel)
+                        .onReceive(viewModel.dependentsViewModel.$userInput, perform: { _ in
+                            displayDependentInputs = false
+                            viewModel.updateDependentViewModels()
+                            displayDependentInputs = viewModel.numberOfDependentsFields() > 0
+                        })
                 }
             }
-            if viewModel.numberOfDependentsFields() > 0 {
+            if displayDependentInputs && askDependentsNumber {
                 ForEach(0..<viewModel.numberOfDependentsFields(), id: \.self) { index in
                     Section(header: Text("Dependent \(index + 1)")) {
                         let inputViewModels = viewModel.dependentsInfoViewModels[index]
@@ -57,9 +67,6 @@ struct FormScreenView: View {
             }
         }
         .listStyle(InsetGroupedListStyle())
-        .onChange(of: viewModel.numberOfDependentsFields()) { _, _ in
-            viewModel.updateDependentViewModels()
-        }
     }
 }
 

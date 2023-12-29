@@ -15,7 +15,7 @@ struct PickerInputView: View {
         VStack {
             Picker(selection: $viewModel.selectedIndex, label: Text(LocalizedStringKey(viewModel.labelText))) {
                 ForEach(0..<viewModel.options.count, id: \.self) { index in
-                    Text(viewModel.options[index])
+                    Text(LocalizedStringKey(viewModel.options[index]))
                 }
             }
             .pickerStyle(MenuPickerStyle())
