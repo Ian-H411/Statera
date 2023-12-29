@@ -17,11 +17,11 @@ struct CreateAccountScreen: View {
             Text("Create_Account")
             
             EmailInputView(viewModel: createAccountViewModel.emailViewModel)
-                .frame(width: 250)
+                .frame(width: 350)
             PasswordInputView(viewModel: createAccountViewModel.passWordViewModel)
-                .frame(width: 250)
+                .frame(width: 350)
             PasswordInputView(viewModel: createAccountViewModel.confirmPassWordViewModel)
-                .frame(width: 250)
+                .frame(width: 350)
             Button("Create_Account") {
                 createAccountViewModel.baseSignUp(completionHandler: { success in
                     isLoggedIn = true

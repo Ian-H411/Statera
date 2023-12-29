@@ -9,7 +9,7 @@
 
 "or" = "or";
 
-"Forgot_Password" = "Forgot Password?";
+"Forgot_Password" = "Forgot?";
 
 "Create_an_account" = "Create an account";
 
@@ -30,6 +30,10 @@
 "First_Name" = "First Name";
 
 "Last_Name" = "Last Name";
+
+"Password_Requirements" = "One Uppercase letter \nOne Number \nOne Special Character:  !?/;";
+
+"Password_requirements_title" = "Password Must contain at least:";
 
 //MARK: - Form Strings
 

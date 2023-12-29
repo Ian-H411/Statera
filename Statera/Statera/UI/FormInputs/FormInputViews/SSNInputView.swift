@@ -20,7 +20,7 @@ struct SSNInputView: View {
                     .foregroundColor(.gray)
                     
             }
-            TextField(LocalizedStringKey(viewModel.labelText), text: $viewModel.userInput)
+            SecureField(LocalizedStringKey(viewModel.labelText), text: $viewModel.userInput)
                 .keyboardType(.numberPad)
                 .onChange(of: viewModel.userInput, initial: false) { _, newValue  in
                     viewModel.updateText(newValue)

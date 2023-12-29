@@ -45,11 +45,10 @@ private struct PasswordRequirementsView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Password Must contain at least:")
+            Text("Password_requirements_title")
                 .foregroundColor(.gray)
                 .font(.subheadline)
-            // Change the color based on password strength conditions
-            Text("One Uppercase letter \nOne Number \nOne Special Character:  !?/;")
+            Text("Password_Requirements")
                 .foregroundColor(viewModel.isValidPassword() ? .green : .gray)
                 .font(.footnote)
                 
