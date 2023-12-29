@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var isLoggedIn = true
+    @State private var isLoggedIn = false
     
     var body: some View {
         NavigationStack {
