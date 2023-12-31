@@ -17,15 +17,18 @@ struct LoginView: View {
     var body: some View {
         VStack(spacing: 15) {
             Image("StateraLogo")
-                .frame(width: 220, height: 220, alignment: .center)
-                .scaledToFit()
+                .resizable()
+                .frame(width: 80, height: 80, alignment: .center)
+                .aspectRatio(contentMode: .fit)
+                .clipShape(Circle())
+                .shadow(radius: 10)
             Text("Statera")
             
             Text("Login")
                 .modifier(TitleTextStyle())
             Text("Please_Sign_In")
                 .modifier(TertiaryTextStyle())
-            
+             
             EmailInputView(viewModel: viewModel.emailViewModel)
                 .frame(width: 350)
             
