@@ -6,7 +6,11 @@
 //
 
 import Foundation
+import SwiftyDropbox
 
 class FileUploadViewModel: ObservableObject {
     
+    
+    init() {
+    }
 }

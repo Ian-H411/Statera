@@ -2,10 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleLocalizations</key>
+	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>Spanish</string>
-		<string>en</string>
+		<string>dbapi-8-emm</string>
+		<string>dbapi-2</string>
+	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>1yjjrtncuw7wytd</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string></string>
+		</dict>
 	</array>
 </dict>
 </plist>

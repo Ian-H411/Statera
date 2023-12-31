@@ -92,3 +92,5 @@ iOSInjectionProject/
 .DS_Store
 
 Statera/GoogleService-Info.plist
+
+Statera/Config.plist
