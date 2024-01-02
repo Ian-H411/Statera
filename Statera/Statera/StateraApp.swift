@@ -11,31 +11,28 @@ import SwiftyDropbox
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     
-    private var apiKey: String {
-        get {
-            guard let filePath = Bundle.main.path(forResource: "Config", ofType: "plist"),
-                  let xml = FileManager.default.contents(atPath: filePath) else {
-                print("error loading plist, does it exist?")
-                return ""
-            }
-            do {
-                let plistData = try PropertyListSerialization.propertyList(from: xml, options: .mutableContainers, format: nil)
-                if let plistDict = plistData as? [String: Any],
-                   let apiKey = plistDict["API_KEY"] as? String {
-                    return apiKey
-                }
-            } catch {
-                print ("Error reading: \(error.localizedDescription)")
-            }
-            return ""
-        }
-    }
-    
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
-        DropboxClientsManager.setupWithAppKey(apiKey)
+        DropboxClientsManager.setupWithAppKey("1yjjrtncuw7wytd")
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        let oauthCompletion: DropboxOAuthCompletion = {
+          if let authResult = $0 {
+              switch authResult {
+              case .success:
+                  print("Success! User is logged into DropboxClientsManager.")
+              case .cancel:
+                  print("Authorization flow was manually canceled by user!")
+              case .error(_, let description):
+                  print("Error: \(String(describing: description))")
+              }
+          }
+        }
+        let canHandleUrl = DropboxClientsManager.handleRedirectURL(url, includeBackgroundClient: false, completion: oauthCompletion)
+        return canHandleUrl
     }
 }
 

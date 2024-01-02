@@ -19,7 +19,7 @@ struct ContentView: View {
                 if isLoggedIn {
                     FormScreenView()
                 } else {
-                    LoginView(isLoggedIn: $isLoggedIn)
+                    FileUploadView()
                 }
             }
         }

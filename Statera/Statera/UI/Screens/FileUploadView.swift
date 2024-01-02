@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftyDropbox
 
 struct FileUploadView: View {
     
@@ -13,7 +14,14 @@ struct FileUploadView: View {
     
     var body: some View {
         VStack {
-            
+            Button("Login") {
+                fileUploadViewModel.login()
+            }
+            Button("Upload") {
+                if let file = "test sample".data(using: String.Encoding.utf8, allowLossyConversion: false) {
+                    fileUploadViewModel.upload(data: file)
+                }
+            }
         }
     }
 }
