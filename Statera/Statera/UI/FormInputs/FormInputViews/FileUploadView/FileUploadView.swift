@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import PhotosUI
 import UniformTypeIdentifiers
 
 struct FileUploadView: View {
     @ObservedObject var viewModel: FileUploadViewModel
     @State private var selectedUploadOption: UploadOption?
     @State private var displayConfirmationDialog: Bool = false
+    @State private var selectedPhotoUrl: URL?
+    @State private var openCameraRoll: Bool = false
     
     var body: some View {
         VStack {
@@ -44,9 +47,11 @@ struct FileUploadView: View {
                 }
                 Button("Use Camera") {
                     selectedUploadOption = .useCamera
+                    openCameraRoll = true
                 }
                 Button("Choose from Photo Library") {
                     selectedUploadOption = .chooseFromLibrary
+                    openCameraRoll = true
                 }
                 Button("Cancel", role: .cancel) {
                     selectedUploadOption = nil
@@ -55,6 +60,14 @@ struct FileUploadView: View {
             }
         }
         .padding()
+        .sheet(isPresented: $openCameraRoll, content: {
+            let sourceType: UIImagePickerController.SourceType = selectedUploadOption == .useCamera ? .camera : .photoLibrary
+            ImagePicker(sourceType: sourceType, selectedImageURL: $selectedPhotoUrl)
+        })
+        .onChange(of: selectedPhotoUrl) { _, newURL in
+            guard let url = newURL else { return }
+            viewModel.addDocument(url)
+        }
     }
 }
 

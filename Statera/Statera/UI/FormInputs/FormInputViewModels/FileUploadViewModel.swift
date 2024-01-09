@@ -24,12 +24,12 @@ class FileUploadViewModel: FormInputViewModel {
     func addDocument(_ fileURL: URL) {
         let newDoc = DocumentFile(url: fileURL, fileName: fileURL.lastPathComponent)
         files.append(newDoc)
-        
+        uploadDocument(newDoc)
     }
     
     private func uploadDocument(_ document: DocumentFile) {
         var document = document
-        let storageRef = Storage.storage().reference().child("users/\(currentUserName)/documents").child(document.url.lastPathComponent)
+        let storageRef = Storage.storage().reference().child("\(currentUserName)").child(document.url.lastPathComponent)
         
         let uploadTask = storageRef.putFile(from: document.url, metadata: nil) { metadata, error in
             if let error = error {
