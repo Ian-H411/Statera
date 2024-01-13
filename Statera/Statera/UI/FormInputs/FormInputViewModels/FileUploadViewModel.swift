@@ -59,7 +59,7 @@ class FileUploadViewModel: FormInputViewModel {
     }
     
     func deleteDocumentFromStorage(_ document: DocumentFile) {
-        let storageRef = Storage.storage().reference().child("users/\(currentUserName)/documents").child(document.url.lastPathComponent)
+        let storageRef = Storage.storage().reference().child("\(currentUserName)").child(document.url.lastPathComponent)
         storageRef.delete { error in
             if let error = error {
                 print("Error Deleting: \(error.localizedDescription)")
