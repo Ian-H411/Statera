@@ -22,7 +22,7 @@ struct PasswordInputView: View {
                     .padding()
                 if isForgotPasswordVisible {
                     //TODO: - change this out once forgot password screen is created
-                    NavigationLink(destination: FormScreenView()) {
+                    NavigationLink(destination: ForgotPasswordScreen()) {
                         Text("Forgot_Password")
                             .foregroundColor(.blue)
                     }
