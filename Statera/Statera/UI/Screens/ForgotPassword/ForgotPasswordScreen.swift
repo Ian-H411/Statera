@@ -10,7 +10,7 @@ import SwiftUI
 struct ForgotPasswordScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: ForgotPasswordViewModel = ForgotPasswordViewModel()
-    @State private var codeSent: Bool = true
+    @State private var codeSent: Bool = false
     
     var body: some View {
         VStack {
@@ -29,6 +29,7 @@ struct ForgotPasswordScreen: View {
                 Text("Forgot Password?")
                 EmailInputView(viewModel: viewModel.emailAddressField)
                 Button("Reset Password") {
+                    guard viewModel.emailAddressField.isValid() else { return }
                     viewModel.sendForgotPasswordEmail { success in
                         if success {
                             codeSent = true
@@ -36,13 +37,13 @@ struct ForgotPasswordScreen: View {
                     }
                 }
                 .buttonStyle(PrimaryButtonStyle())
-                .disabled(viewModel.emailAddressField.isValid())
             } else {
                 Text("Please input code sent to: \n\(viewModel.emailAddressField.userInput)")
                 PasswordResetFieldView(viewModel: viewModel.passwordResetFieldVM)
                 PasswordInputView(viewModel: viewModel.newPasswordVM)
                     .frame(height: 150)
                 Button("Change Password") {
+                    guard viewModel.enablePasswordResetWithCodeButton() else { return }
                     viewModel.submitCode { success in
                         if success {
                             presentationMode.wrappedValue.dismiss()
@@ -50,7 +51,6 @@ struct ForgotPasswordScreen: View {
                     }
                 }
                 .buttonStyle(PrimaryButtonStyle())
-                .disabled(viewModel.enablePasswordResetWithCodeButton())
                 Spacer()
                     .frame(height: 20)
                 Button("Resend password reset email") {
