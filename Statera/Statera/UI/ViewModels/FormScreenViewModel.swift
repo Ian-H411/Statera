@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PDFKit
 
 class FormScreenViewModel: ObservableObject {
     
@@ -59,5 +60,28 @@ class FormScreenViewModel: ObservableObject {
             DOBInputViewModel(labelText: "Date_of_Birth")
         ]
         dependentsInfoViewModels = Array(repeating: baseDependentArray, count: numberOfDependentsFields())
+    }
+    
+    private func createPDF() {
+        let pdfDocument = PDFDocument()
+        let page = PDFPage()
+        let textAnnotation = PDFAnnotation(bounds: page.bounds(for: .mediaBox),
+                                           forType: .text, withProperties: nil)
+        textAnnotation.font = UIFont.systemFont(ofSize: 14)
+        textAnnotation.color = UIColor.black
+        textAnnotation.contents = createPDFTextContent()
+        page.addAnnotation(textAnnotation)
+        pdfDocument.insert(page, at: 0)
+    }
+    
+    private func createPDFTextContent() -> String {
+        var dependentString = ""
+        for (index, dependentsInfoViewModel) in dependentsInfoViewModels.enumerated() {
+            let name = dependentsInfoViewModel[0].userInput
+            let ssn = dependentsInfoViewModel[1].userInput
+            let dob = dependentsInfoViewModel[2].userInput
+            dependentString.append("Dependent: \(index + 1) \n Name: \(name) \n Social: \(ssn) \n Date Of Birth: \(dob) \n\n")
+        }
+        return "FullName: \(nameViewModel.userInput) \n Social: \(SSNViewModel.userInput) \n Date of Birth: \(DOBViewModel.userInput) \n Phone Number: \(phoneNumberViewModel.userInput) \n Address: \(addressLine1ViewModel) \n    \(addressLine2ViewModel.userInput) \n   \(cityViewModel.userInput), \(StateViewModel.userInput), \(zipCodeViewModel.userInput) \n\n Filing Status: \(filingStatusViewModel.userInput) \n Number of Dependents: \(dependentsViewModel.userInput) \n \(dependentString)"
     }
 }
