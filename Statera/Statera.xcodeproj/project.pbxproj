@@ -61,6 +61,13 @@
 		6B9133A62B292FC800EB91E1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9133A52B292FC800EB91E1 /* LoginViewModel.swift */; };
 		6BA41CF32B1ECCD60000A260 /* FormScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA41CF22B1ECCD60000A260 /* FormScreenView.swift */; };
 		6BA41CF62B1ECE7B0000A260 /* FormScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA41CF52B1ECE7B0000A260 /* FormScreenViewModel.swift */; };
+		6BBEF5FD2B53332C00B2CA5A /* ForgotPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBEF5FC2B53332C00B2CA5A /* ForgotPasswordScreen.swift */; };
+		6BBEF5FF2B53339700B2CA5A /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBEF5FE2B53339700B2CA5A /* ForgotPasswordViewModel.swift */; };
+		6BBEF6032B533B0800B2CA5A /* PasswordResetFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBEF6022B533B0800B2CA5A /* PasswordResetFieldViewModel.swift */; };
+		6BBEF6052B533B1700B2CA5A /* PasswordResetFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBEF6042B533B1700B2CA5A /* PasswordResetFieldView.swift */; };
+		6BBEF6072B5344B200B2CA5A /* ErrorBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBEF6062B5344B200B2CA5A /* ErrorBannerView.swift */; };
+		6BBEF60A2B5344CC00B2CA5A /* ErrorBannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBEF6092B5344CC00B2CA5A /* ErrorBannerViewModel.swift */; };
+		6BBEF60C2B53462100B2CA5A /* LoadingOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBEF60B2B53462100B2CA5A /* LoadingOverlayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +138,13 @@
 		6B9133A52B292FC800EB91E1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		6BA41CF22B1ECCD60000A260 /* FormScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormScreenView.swift; sourceTree = "<group>"; };
 		6BA41CF52B1ECE7B0000A260 /* FormScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormScreenViewModel.swift; sourceTree = "<group>"; };
+		6BBEF5FC2B53332C00B2CA5A /* ForgotPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordScreen.swift; sourceTree = "<group>"; };
+		6BBEF5FE2B53339700B2CA5A /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		6BBEF6022B533B0800B2CA5A /* PasswordResetFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetFieldViewModel.swift; sourceTree = "<group>"; };
+		6BBEF6042B533B1700B2CA5A /* PasswordResetFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetFieldView.swift; sourceTree = "<group>"; };
+		6BBEF6062B5344B200B2CA5A /* ErrorBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorBannerView.swift; sourceTree = "<group>"; };
+		6BBEF6092B5344CC00B2CA5A /* ErrorBannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorBannerViewModel.swift; sourceTree = "<group>"; };
+		6BBEF60B2B53462100B2CA5A /* LoadingOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +200,7 @@
 				6B91339F2B292A1400EB91E1 /* EmailInputView.swift */,
 				6B6BAC0E2B368022008C72AB /* PhoneNumberInputView.swift */,
 				6B6BAC122B3680DC008C72AB /* ZipcodeInputView.swift */,
+				6BBEF6042B533B1700B2CA5A /* PasswordResetFieldView.swift */,
 			);
 			path = FormInputViews;
 			sourceTree = "<group>";
@@ -205,6 +220,7 @@
 				6B6BAC0C2B367FC7008C72AB /* PhoneNumberInputViewModel.swift */,
 				6B6BAC102B3680B5008C72AB /* ZipcodeViewModel.swift */,
 				6B74D8732B448C4900E41235 /* FileUploadViewModel.swift */,
+				6BBEF6022B533B0800B2CA5A /* PasswordResetFieldViewModel.swift */,
 			);
 			path = FormInputViewModels;
 			sourceTree = "<group>";
@@ -310,6 +326,7 @@
 		6B83DCCA2AFF00EB0000473F /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				6BBEF6002B53395400B2CA5A /* ForgotPassword */,
 				6B83DCC82AFF008F0000473F /* LoginView.swift */,
 				6B83DCD22AFF09840000473F /* CreateAccountScreen.swift */,
 				6B83DCD42AFF0E9A0000473F /* HomeScreen.swift */,
@@ -321,9 +338,11 @@
 		6B83DCCB2AFF01240000473F /* Auxilary Components */ = {
 			isa = PBXGroup;
 			children = (
+				6BBEF6082B5344B700B2CA5A /* ErrorBanner */,
 				6B6CE1052B3E0A6400F19068 /* Text Styles */,
 				6B6CE1042B3E0A4A00F19068 /* Button Styles */,
 				6B6CE0FE2B3DF62D00F19068 /* Localizable.strings */,
+				6BBEF60B2B53462100B2CA5A /* LoadingOverlayView.swift */,
 			);
 			path = "Auxilary Components";
 			sourceTree = "<group>";
@@ -331,11 +350,37 @@
 		6BA41CF42B1ECE640000A260 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				6BBEF6012B53396000B2CA5A /* ForgotPassword */,
 				6BA41CF52B1ECE7B0000A260 /* FormScreenViewModel.swift */,
 				6B9133A52B292FC800EB91E1 /* LoginViewModel.swift */,
 				6B6BAC082B33C6D6008C72AB /* CreateAccountViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		6BBEF6002B53395400B2CA5A /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				6BBEF5FC2B53332C00B2CA5A /* ForgotPasswordScreen.swift */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		6BBEF6012B53396000B2CA5A /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				6BBEF5FE2B53339700B2CA5A /* ForgotPasswordViewModel.swift */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		6BBEF6082B5344B700B2CA5A /* ErrorBanner */ = {
+			isa = PBXGroup;
+			children = (
+				6BBEF6062B5344B200B2CA5A /* ErrorBannerView.swift */,
+				6BBEF6092B5344CC00B2CA5A /* ErrorBannerViewModel.swift */,
+			);
+			path = ErrorBanner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -487,10 +532,12 @@
 				6B6CE1032B3E0A4400F19068 /* TitleText.swift in Sources */,
 				6B6BAC0D2B367FC7008C72AB /* PhoneNumberInputViewModel.swift in Sources */,
 				6B0E88072AF6BA830061491E /* CheckBoxInputViewModel.swift in Sources */,
+				6BBEF6052B533B1700B2CA5A /* PasswordResetFieldView.swift in Sources */,
 				6B0E88152AF6BC630061491E /* CheckBoxInputView.swift in Sources */,
 				6B74D8742B448C4900E41235 /* FileUploadViewModel.swift in Sources */,
 				6B0E88012AF6BA0D0061491E /* SSNInputViewModel.swift in Sources */,
 				6B41E99F2B4CF49100962F2B /* ImagePicker.swift in Sources */,
+				6BBEF60A2B5344CC00B2CA5A /* ErrorBannerViewModel.swift in Sources */,
 				6B0E87FB2AF6B9930061491E /* TextInputViewModel.swift in Sources */,
 				6B0E87FD2AF6B9BC0061491E /* CurrencyInputViewModel.swift in Sources */,
 				6B74D8762B448C5D00E41235 /* FileUploadView.swift in Sources */,
@@ -499,18 +546,23 @@
 				6B9133A62B292FC800EB91E1 /* LoginViewModel.swift in Sources */,
 				6B6BAC132B3680DD008C72AB /* ZipcodeInputView.swift in Sources */,
 				6B6CE1072B3E0BE200F19068 /* TertiaryTextStyle.swift in Sources */,
+				6BBEF5FF2B53339700B2CA5A /* ForgotPasswordViewModel.swift in Sources */,
 				6B0E88032AF6BA350061491E /* DOBInputViewModel.swift in Sources */,
 				6B0E88112AF6BC450061491E /* DOBInputView.swift in Sources */,
 				6B9133A02B292A1400EB91E1 /* EmailInputView.swift in Sources */,
 				6B5C6C892AEEB5F500D88079 /* ContentView.swift in Sources */,
 				6B6BAC112B3680B5008C72AB /* ZipcodeViewModel.swift in Sources */,
+				6BBEF6072B5344B200B2CA5A /* ErrorBannerView.swift in Sources */,
 				6B5C6C872AEEB5F500D88079 /* StateraApp.swift in Sources */,
 				6B6CE1012B3E036E00F19068 /* GrayedButton.swift in Sources */,
 				6B0E88052AF6BA560061491E /* PickerInputViewModel.swift in Sources */,
 				6B0E88132AF6BC520061491E /* PickerInputView.swift in Sources */,
 				6B6BAC0F2B368022008C72AB /* PhoneNumberInputView.swift in Sources */,
 				6B0E880F2AF6BC380061491E /* SSNInputView.swift in Sources */,
+				6BBEF60C2B53462100B2CA5A /* LoadingOverlayView.swift in Sources */,
 				6B0E87F92AF6B9320061491E /* FormInputViewModel.swift in Sources */,
+				6BBEF6032B533B0800B2CA5A /* PasswordResetFieldViewModel.swift in Sources */,
+				6BBEF5FD2B53332C00B2CA5A /* ForgotPasswordScreen.swift in Sources */,
 				6B0E880B2AF6BC050061491E /* CurrencyInputView.swift in Sources */,
 				6B83DCCD2AFF01530000473F /* PrimaryButton.swift in Sources */,
 				6B83DCC92AFF008F0000473F /* LoginView.swift in Sources */,
