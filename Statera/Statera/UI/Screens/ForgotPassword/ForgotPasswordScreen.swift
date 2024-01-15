@@ -11,21 +11,29 @@ struct ForgotPasswordScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: ForgotPasswordViewModel = ForgotPasswordViewModel()
     @State private var codeSent: Bool = false
+    @StateObject private var errorViewModel = ErrorViewModel()
+    @State private var isLoading: Bool = false
     
     var body: some View {
-        VStack {
-            Text("Statera Accounting")
-                .modifier(TitleTextStyle())
-                .frame(height: 100)
-            Image("StateraLogo")
-                .resizable()
-                .frame(width: 80, height: 80, alignment: .center)
-                .aspectRatio(contentMode: .fit)
-                .clipShape(Circle())
-                .shadow(radius: 10)
-            Spacer()
-                .frame(height: 20)
-            if !codeSent {
+        ZStack {
+            VStack {
+                if errorViewModel.showErrorBanner {
+                    Spacer()
+                    ErrorBannerView(errorViewModel: errorViewModel)
+                        .frame(width: 330, height: 120)
+                }
+                Text("Statera Accounting")
+                    .modifier(TitleTextStyle())
+                    .frame(height: 100)
+                Image("StateraLogo")
+                    .resizable()
+                    .frame(width: 80, height: 80, alignment: .center)
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(Circle())
+                    .shadow(radius: 10)
+                Spacer()
+                    .frame(height: 20)
+                
                 Text("Forgot Password?")
                 EmailInputView(viewModel: viewModel.emailAddressField)
                 Button("Reset Password") {
@@ -37,31 +45,12 @@ struct ForgotPasswordScreen: View {
                     }
                 }
                 .buttonStyle(PrimaryButtonStyle())
-            } else {
-                Text("Please input code sent to: \n\(viewModel.emailAddressField.userInput)")
-                PasswordResetFieldView(viewModel: viewModel.passwordResetFieldVM)
-                PasswordInputView(viewModel: viewModel.newPasswordVM)
-                    .frame(height: 150)
-                Button("Change Password") {
-                    guard viewModel.enablePasswordResetWithCodeButton() else { return }
-                    viewModel.submitCode { success in
-                        if success {
-                            presentationMode.wrappedValue.dismiss()
-                        }
-                    }
-                }
-                .buttonStyle(PrimaryButtonStyle())
                 Spacer()
-                    .frame(height: 20)
-                Button("Resend password reset email") {
-                    viewModel.sendForgotPasswordEmail { _ in
-                    
-                    }
-                }
-                .buttonStyle(SecondaryButtonStyle())
+                    .frame(height: 150)
             }
-            Spacer()
-                .frame(height: 150)
+            if isLoading {
+                LoadingOverlayView(isLoading: $isLoading)
+            }
         }
     }
 }

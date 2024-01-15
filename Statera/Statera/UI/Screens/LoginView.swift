@@ -13,53 +13,67 @@ struct LoginView: View {
     
     @ObservedObject var viewModel = LoginViewModel()
     @Binding var isLoggedIn: Bool
+    @ObservedObject var errorViewModel: ErrorViewModel
+    @State private var isLoading: Bool = false
     
     var body: some View {
-        VStack(spacing: 15) {
-            Image("StateraLogo")
-                .resizable()
-                .frame(width: 80, height: 80, alignment: .center)
-                .aspectRatio(contentMode: .fit)
-                .clipShape(Circle())
-                .shadow(radius: 10)
-            Text("Statera")
-            
-            Text("Login")
-                .modifier(TitleTextStyle())
-            Text("Please_Sign_In")
-                .modifier(TertiaryTextStyle())
-             
-            EmailInputView(viewModel: viewModel.emailViewModel)
-                .frame(width: 350)
-            
-            PasswordInputView(viewModel: viewModel.passWordViewModel)
-                .frame(width: 350)
-            
-            
-            Button("Login") {
-                viewModel.handleBaseLogin(completionHandler: { success in
-                    if success {
-                        self.isLoggedIn = true
-                    }
-                })
+        ZStack {
+            VStack(spacing: 15) {
+                Image("StateraLogo")
+                    .resizable()
+                    .frame(width: 80, height: 80, alignment: .center)
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(Circle())
+                    .shadow(radius: 10)
+                Text("Statera")
+                
+                Text("Login")
+                    .modifier(TitleTextStyle())
+                Text("Please_Sign_In")
+                    .modifier(TertiaryTextStyle())
+                
+                EmailInputView(viewModel: viewModel.emailViewModel)
+                    .frame(width: 350)
+                
+                PasswordInputView(viewModel: viewModel.passWordViewModel)
+                    .frame(width: 350)
+                
+                
+                Button("Login") {
+                    isLoading = true
+                    viewModel.handleBaseLogin(completionHandler: { success in
+                        isLoading = false
+                        if success {
+                            self.isLoggedIn = true
+                        } else {
+                            errorViewModel.errorMessage = "Login Failed, please check your login credentials and network connectivity"
+                            errorViewModel.showErrorBanner = true
+                        }
+                    })
+                }
+                .buttonStyle(PrimaryButtonStyle())
+                .frame(width: 200)
+                .disabled(!viewModel.isValidCredentials())
+                
+                SeparatorView()
+                SignInWithAppleButton(.signIn) { request in
+                    isLoading = true
+                    request.requestedScopes = [.fullName, .email]
+                } onCompletion: { result in
+                    isLoading = false
+                    viewModel.handleAppleLogin(result: result)
+                }
+                .frame(width: 250, height: 50)
+                NavigationLink("Create_an_account") {
+                    CreateAccountScreen(isLoggedIn: $isLoggedIn, errorViewModel: errorViewModel)
+                }
+                .buttonStyle(GrayedButton())
             }
-            .buttonStyle(PrimaryButtonStyle())
-            .frame(width: 200)
-            .disabled(!viewModel.isValidCredentials())
-            
-            SeparatorView()
-            SignInWithAppleButton(.signIn) { request in
-                request.requestedScopes = [.fullName, .email]
-            } onCompletion: { result in
-                viewModel.handleAppleLogin(result: result)
-            }
-            .frame(width: 250, height: 50)
-            NavigationLink("Create_an_account") {
-                CreateAccountScreen(isLoggedIn: $isLoggedIn)
-            }
-            .buttonStyle(GrayedButton())
+            .edgesIgnoringSafeArea(.bottom)
         }
-        .edgesIgnoringSafeArea(.bottom)
+        if isLoading {
+            LoadingOverlayView(isLoading: $isLoading)
+        }
     }
 }
 
@@ -80,5 +94,5 @@ struct SeparatorView: View {
 }
 
 #Preview(body: {
-    LoginView(isLoggedIn: .constant(false))
+    LoginView(isLoggedIn: .constant(false), errorViewModel: ErrorViewModel())
 })

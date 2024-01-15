@@ -10,7 +10,6 @@ import SwiftUI
 struct ContentView: View {
     @State private var isLoggedIn = false
     @StateObject private var errorViewModel = ErrorViewModel()
-    @State private var isLoading = false
     
     var body: some View {
         NavigationStack {
@@ -25,14 +24,11 @@ struct ContentView: View {
                             .frame(width: 330, height: 120)
                     }
                     if isLoggedIn {
-                        FormScreenView()
+                        FormScreenView(errorViewModel: errorViewModel)
                     } else {
-                        LoginView(isLoggedIn: $isLoggedIn)
+                        LoginView(isLoggedIn: $isLoggedIn, errorViewModel: errorViewModel)
                     }
                     
-                }
-                if isLoading {
-                    LoadingOverlayView(isLoading: $isLoading)
                 }
             }
         }

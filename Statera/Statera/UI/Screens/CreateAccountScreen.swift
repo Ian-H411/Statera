@@ -11,36 +11,50 @@ struct CreateAccountScreen: View {
     
     var createAccountViewModel = CreateAccountViewModel()
     @Binding var isLoggedIn: Bool
+    @State private var isLoading: Bool = false
+    @StateObject var errorViewModel: ErrorViewModel
     
     var body: some View {
-        VStack(alignment: .center, spacing: 20) {
-            Text("Create_Account")
-            
-            EmailInputView(viewModel: createAccountViewModel.emailViewModel)
-                .frame(width: 350)
-            PasswordInputView(viewModel: createAccountViewModel.passWordViewModel)
-                .frame(width: 350)
-            PasswordInputView(viewModel: createAccountViewModel.confirmPassWordViewModel)
-                .frame(width: 350)
-            Button("Create_Account") {
-                createAccountViewModel.baseSignUp(completionHandler: { success in
-                    isLoggedIn = true
-                })
+        ZStack {
+            VStack(alignment: .center, spacing: 20) {
+                Text("Create_Account")
+                
+                EmailInputView(viewModel: createAccountViewModel.emailViewModel)
+                    .frame(width: 350)
+                PasswordInputView(viewModel: createAccountViewModel.passWordViewModel)
+                    .frame(width: 350)
+                PasswordInputView(viewModel: createAccountViewModel.confirmPassWordViewModel)
+                    .frame(width: 350)
+                Button("Create_Account") {
+                    isLoading = true
+                    createAccountViewModel.baseSignUp(completionHandler: { success in
+                        isLoading = false
+                        if success {
+                            isLoggedIn = true
+                        } else {
+                            errorViewModel.errorMessage = "error occured while creating account.  please ensure you do not have an active account, or try again."
+                        }
+                    })
+                }
+                .buttonStyle(PrimaryButtonStyle())
+                SeparatorView()
+                SignInWithAppleButton(.signUp) { request in
+                    isLoading = true
+                    request.requestedScopes = [.email, .fullName]
+                } onCompletion: { result in
+                    createAccountViewModel.createAccountWithApple(result: result, completionHandler: { success in
+                        isLoading = false
+                    })
+                }
+                .frame(width: 250, height: 50)
             }
-            .buttonStyle(PrimaryButtonStyle())
-            SeparatorView()
-            SignInWithAppleButton(.signUp) { request in
-                request.requestedScopes = [.email, .fullName]
-            } onCompletion: { result in
-                createAccountViewModel.createAccountWithApple(result: result, completionHandler: { success in
-                    
-                })
+            if isLoading {
+                LoadingOverlayView(isLoading: $isLoading)
             }
-            .frame(width: 250, height: 50)
         }
     }
 }
 
 #Preview {
-    CreateAccountScreen(isLoggedIn: .constant(false))
+    CreateAccountScreen(isLoggedIn: .constant(false), errorViewModel: ErrorViewModel())
 }
