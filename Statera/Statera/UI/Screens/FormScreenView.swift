@@ -65,7 +65,15 @@ struct FormScreenView: View {
                 }
                 Section {
                     Button("Submit") {
-                        
+                        guard viewModel.enableSubmitButton() else { return }
+                        isLoading = true
+                        viewModel.submitData { success in
+                            isLoading = false
+                            if !success {
+                                errorViewModel.errorMessage = "Error Uploading information please try again"
+                                errorViewModel.showErrorBanner = true
+                            }
+                        }
                     }
                 }
             }

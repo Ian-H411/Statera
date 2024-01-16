@@ -7,6 +7,8 @@
 
 import Foundation
 import PDFKit
+import FirebaseStorage
+import FirebaseAuth
 
 class FormScreenViewModel: ObservableObject {
     
@@ -23,6 +25,16 @@ class FormScreenViewModel: ObservableObject {
         case marriedFilingJoint = "Married_Filing_Joint"
         case headOfHousehold = "Head_of_Household"
     }
+    
+    private var currentUserName: String {
+        return Auth.auth().currentUser?.displayName ?? "UNKNOWN"
+    }
+    
+    private var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
+        return dateFormatter
+    }()
     
     static let filingStatusOptions: [String] = [FilingStatus.single.rawValue, FilingStatus.marriedFilingJoint.rawValue, FilingStatus.headOfHousehold.rawValue]
     
@@ -62,7 +74,37 @@ class FormScreenViewModel: ObservableObject {
         dependentsInfoViewModels = Array(repeating: baseDependentArray, count: numberOfDependentsFields())
     }
     
-    private func createPDF() {
+    func enableSubmitButton() -> Bool {
+        let dependentsInfoComplete = dependentsInfoViewModels.contains { inputViewModels in
+            inputViewModels.contains(where: { !$0.isValid() })
+        }
+        return dependentsInfoComplete && dependentsViewModel.isValid() &&
+            filingStatusViewModel.isValid() && zipCodeViewModel.isValid() &&
+            StateViewModel.isValid() && cityViewModel.isValid() &&
+            addressLine1ViewModel.isValid() && phoneNumberViewModel.isValid() &&
+            DOBViewModel.isValid() && SSNViewModel.isValidSSN() && nameViewModel.isValid()
+    }
+    
+    func submitData(completionHandler: @escaping (Bool) -> Void) {
+        guard let pdfData = createPDF().dataRepresentation() else {
+            return
+        }
+        let time = dateFormatter.string(from: Date())
+        let fileName = "\(nameViewModel.userInput) \(time)"
+        let storageRef = Storage.storage().reference().child("\(currentUserName)").child(fileName)
+        
+        let uploadTask = storageRef.putData(pdfData) { metaData, error in
+            guard metaData != nil, error == nil else {
+                completionHandler(false)
+                return
+            }
+        }
+        uploadTask.observe(.success) { snapshot in
+            completionHandler(true)
+        }
+    }
+    
+    private func createPDF() -> PDFDocument {
         let pdfDocument = PDFDocument()
         let page = PDFPage()
         let textAnnotation = PDFAnnotation(bounds: page.bounds(for: .mediaBox),
@@ -72,6 +114,7 @@ class FormScreenViewModel: ObservableObject {
         textAnnotation.contents = createPDFTextContent()
         page.addAnnotation(textAnnotation)
         pdfDocument.insert(page, at: 0)
+        return pdfDocument
     }
     
     private func createPDFTextContent() -> String {
