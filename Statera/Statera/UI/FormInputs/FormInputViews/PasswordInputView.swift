@@ -17,11 +17,10 @@ struct PasswordInputView: View {
     var body: some View {
         VStack {
             HStack {
-                TextField(LocalizedStringKey(viewModel.labelText), value: $viewModel.userInput, formatter: formatter)
+                SecureField(LocalizedStringKey(viewModel.labelText), text: $viewModel.userInput)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 if isForgotPasswordVisible {
-                    //TODO: - change this out once forgot password screen is created
                     NavigationLink(destination: ForgotPasswordScreen()) {
                         Text("Forgot_Password")
                             .foregroundColor(.blue)
