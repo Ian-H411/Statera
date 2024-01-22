@@ -68,6 +68,7 @@
 		6BBEF6072B5344B200B2CA5A /* ErrorBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBEF6062B5344B200B2CA5A /* ErrorBannerView.swift */; };
 		6BBEF60A2B5344CC00B2CA5A /* ErrorBannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBEF6092B5344CC00B2CA5A /* ErrorBannerViewModel.swift */; };
 		6BBEF60C2B53462100B2CA5A /* LoadingOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBEF60B2B53462100B2CA5A /* LoadingOverlayView.swift */; };
+		6BDF48BE2B5DBDE6001FE11C /* MoreInfoSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BDF48BD2B5DBDE6001FE11C /* MoreInfoSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +146,8 @@
 		6BBEF6062B5344B200B2CA5A /* ErrorBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorBannerView.swift; sourceTree = "<group>"; };
 		6BBEF6092B5344CC00B2CA5A /* ErrorBannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorBannerViewModel.swift; sourceTree = "<group>"; };
 		6BBEF60B2B53462100B2CA5A /* LoadingOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlayView.swift; sourceTree = "<group>"; };
+		6BDF48BC2B5DB82C001FE11C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6BDF48BD2B5DBDE6001FE11C /* MoreInfoSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +261,7 @@
 		6B5C6C852AEEB5F500D88079 /* Statera */ = {
 			isa = PBXGroup;
 			children = (
+				6BDF48BC2B5DB82C001FE11C /* Info.plist */,
 				6B83DCC72AFF00730000473F /* UI */,
 				6B5C6C862AEEB5F500D88079 /* StateraApp.swift */,
 				6B5C6C882AEEB5F500D88079 /* ContentView.swift */,
@@ -343,6 +347,7 @@
 				6B6CE1042B3E0A4A00F19068 /* Button Styles */,
 				6B6CE0FE2B3DF62D00F19068 /* Localizable.strings */,
 				6BBEF60B2B53462100B2CA5A /* LoadingOverlayView.swift */,
+				6BDF48BD2B5DBDE6001FE11C /* MoreInfoSheet.swift */,
 			);
 			path = "Auxilary Components";
 			sourceTree = "<group>";
@@ -564,6 +569,7 @@
 				6BBEF6032B533B0800B2CA5A /* PasswordResetFieldViewModel.swift in Sources */,
 				6BBEF5FD2B53332C00B2CA5A /* ForgotPasswordScreen.swift in Sources */,
 				6B0E880B2AF6BC050061491E /* CurrencyInputView.swift in Sources */,
+				6BDF48BE2B5DBDE6001FE11C /* MoreInfoSheet.swift in Sources */,
 				6B83DCCD2AFF01530000473F /* PrimaryButton.swift in Sources */,
 				6B83DCC92AFF008F0000473F /* LoginView.swift in Sources */,
 				6B9133A22B292A4600EB91E1 /* EmailInputViewModel.swift in Sources */,
@@ -750,6 +756,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Statera/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Needed for file upload purposes";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -766,7 +774,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ian.statera;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ian.statera2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -789,6 +797,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Statera/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Needed for file upload purposes";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -805,7 +815,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ian.statera;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ian.statera2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";

@@ -13,6 +13,7 @@ struct CreateAccountScreen: View {
     @Binding var isLoggedIn: Bool
     @State private var isLoading: Bool = false
     @StateObject var errorViewModel: ErrorViewModel
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         ZStack {
@@ -31,6 +32,7 @@ struct CreateAccountScreen: View {
                         isLoading = false
                         if success {
                             isLoggedIn = true
+                            self.presentationMode.wrappedValue.dismiss()
                         } else {
                             errorViewModel.errorMessage = "error occured while creating account.  please ensure you do not have an active account, or try again."
                         }
