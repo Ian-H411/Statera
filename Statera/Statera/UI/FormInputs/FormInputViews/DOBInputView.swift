@@ -20,10 +20,13 @@ struct DOBInputView: View {
                     .foregroundColor(.gray)
                     
             }
-            SecureField(LocalizedStringKey(viewModel.labelText), text: $viewModel.userInput)
+            ToggleableSecureField(title: viewModel.labelText, text: $viewModel.userInput, prompt: nil)
+                .environment(\.secureToggleImageShow, Image(systemName: "eye.circle"))
+                .environment(\.secureToggleImageHide, Image(systemName: "eye.slash.circle"))
+                .environment(\.secureToggleImageTintColor, .blue)
                 .keyboardType(.numberPad)
-                .onChange(of: viewModel.userInput, initial: false) { _, newValue  in
-                    viewModel.updateText(newValue)
+                .onChange(of: viewModel.userInput, initial: false) { oldValue, newValue  in
+                    viewModel.updateText(oldValue: oldValue, newValue: newValue)
                 }
 
             if !viewModel.isValid() {
