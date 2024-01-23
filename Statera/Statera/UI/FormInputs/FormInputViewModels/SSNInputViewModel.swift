@@ -19,27 +19,35 @@ class SSNInputViewModel: FormInputViewModel {
         self.questionType = .ssn
     }
 
-    override func updateText(_ newValue: String) {
+    func updateText(oldValue: String, newValue: String) {
         self.begunEditing = true
+        let didBackSpace = isBackSpace(oldValue: oldValue, newValue: newValue)
         let cleanedSSN = newValue.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-        
         var formattedSSN = ""
         var index = cleanedSSN.startIndex
         
-        for character in "XXX-XX-XXXX" {
-            if character == "X" {
-                if index < cleanedSSN.endIndex {
-                    formattedSSN.append(cleanedSSN[index])
-                    index = cleanedSSN.index(after: index)
+        if let finalCharOfOld = oldValue.last,
+           didBackSpace && finalCharOfOld == "-" {
+            formattedSSN = String(cleanedSSN.dropLast())
+        } else {
+            for character in "XXX-XX-XXXX" {
+                if character == "X" {
+                    if index < cleanedSSN.endIndex {
+                        formattedSSN.append(cleanedSSN[index])
+                        index = cleanedSSN.index(after: index)
+                    } else {
+                        break
+                    }
                 } else {
-                    break
+                    formattedSSN.append(character)
                 }
-            } else {
-                formattedSSN.append(character)
             }
         }
-
         self.userInput = formattedSSN
+    }
+    
+    private func isBackSpace(oldValue: String, newValue: String) -> Bool {
+        return oldValue.count > newValue.count
     }
 
     func isValidSSN() -> Bool {

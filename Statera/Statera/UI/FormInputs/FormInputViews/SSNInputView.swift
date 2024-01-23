@@ -25,8 +25,8 @@ struct SSNInputView: View {
                 .environment(\.secureToggleImageHide, Image(systemName: "eye.slash.circle"))
                 .environment(\.secureToggleImageTintColor, .blue)
                 .keyboardType(.numberPad)
-                .onChange(of: viewModel.userInput, initial: false) { _, newValue  in
-                    viewModel.updateText(newValue)
+                .onChange(of: viewModel.userInput, initial: false) { oldValue, newValue  in
+                    viewModel.updateText(oldValue: oldValue, newValue: newValue)
                 }
 
             if !viewModel.isValidSSN() {
