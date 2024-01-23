@@ -33,6 +33,11 @@ struct PhoneNumberInputView: View {
                 viewModel.updateText(newValue)
             })
             .keyboardType(viewModel.keyboardType)
+            if !viewModel.isValid() {
+                Text("Invalid_PhoneNumber")
+                    .foregroundColor(.red)
+                    .alignmentGuide(.leading, computeValue: { _ in 0 })
+            }
         }
     }
 }

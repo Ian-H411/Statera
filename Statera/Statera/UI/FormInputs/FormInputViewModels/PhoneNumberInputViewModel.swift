@@ -43,6 +43,13 @@ class PhoneNumberInputViewModel: TextInputViewModel {
             }
             formattedPhoneNumber.append(char)
         }
+        if formattedPhoneNumber.count == 13 {
+            formattedPhoneNumber = String(formattedPhoneNumber.dropLast())
+        }
         return formattedPhoneNumber
+    }
+    
+    override func isValid() -> Bool {
+       return self.userInput.count == 12
     }
 }
