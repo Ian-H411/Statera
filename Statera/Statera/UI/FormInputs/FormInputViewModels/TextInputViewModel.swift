@@ -20,7 +20,7 @@ class TextInputViewModel: FormInputViewModel {
         self.minCharacters = minCharacters
         self.maxCharacters = maxCharacters
         if allowedCharacterSet == .alphanumerics {
-            self.allowedCharacterSet = allowedCharacterSet.union(CharacterSet(charactersIn: " "))
+            self.allowedCharacterSet = allowedCharacterSet.union(CharacterSet(charactersIn: " ."))
         } else {
             self.allowedCharacterSet = allowedCharacterSet
         }
