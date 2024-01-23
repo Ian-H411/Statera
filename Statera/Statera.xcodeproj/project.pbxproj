@@ -61,6 +61,9 @@
 		6B9133A62B292FC800EB91E1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9133A52B292FC800EB91E1 /* LoginViewModel.swift */; };
 		6BA41CF32B1ECCD60000A260 /* FormScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA41CF22B1ECCD60000A260 /* FormScreenView.swift */; };
 		6BA41CF62B1ECE7B0000A260 /* FormScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA41CF52B1ECE7B0000A260 /* FormScreenViewModel.swift */; };
+		6BB94B1A2B5F5E1C0073FA6A /* ToggleableSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB94B192B5F5E1C0073FA6A /* ToggleableSecureField.swift */; };
+		6BB94B1D2B5F5E7C0073FA6A /* ToggleableSecureFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB94B1C2B5F5E7C0073FA6A /* ToggleableSecureFieldExtensions.swift */; };
+		6BB94B1F2B5F5E9A0073FA6A /* ToggleableSecureFieldStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB94B1E2B5F5E9A0073FA6A /* ToggleableSecureFieldStyles.swift */; };
 		6BBEF5FD2B53332C00B2CA5A /* ForgotPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBEF5FC2B53332C00B2CA5A /* ForgotPasswordScreen.swift */; };
 		6BBEF5FF2B53339700B2CA5A /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBEF5FE2B53339700B2CA5A /* ForgotPasswordViewModel.swift */; };
 		6BBEF6032B533B0800B2CA5A /* PasswordResetFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBEF6022B533B0800B2CA5A /* PasswordResetFieldViewModel.swift */; };
@@ -139,6 +142,9 @@
 		6B9133A52B292FC800EB91E1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		6BA41CF22B1ECCD60000A260 /* FormScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormScreenView.swift; sourceTree = "<group>"; };
 		6BA41CF52B1ECE7B0000A260 /* FormScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormScreenViewModel.swift; sourceTree = "<group>"; };
+		6BB94B192B5F5E1C0073FA6A /* ToggleableSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleableSecureField.swift; sourceTree = "<group>"; };
+		6BB94B1C2B5F5E7C0073FA6A /* ToggleableSecureFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleableSecureFieldExtensions.swift; sourceTree = "<group>"; };
+		6BB94B1E2B5F5E9A0073FA6A /* ToggleableSecureFieldStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleableSecureFieldStyles.swift; sourceTree = "<group>"; };
 		6BBEF5FC2B53332C00B2CA5A /* ForgotPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordScreen.swift; sourceTree = "<group>"; };
 		6BBEF5FE2B53339700B2CA5A /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		6BBEF6022B533B0800B2CA5A /* PasswordResetFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetFieldViewModel.swift; sourceTree = "<group>"; };
@@ -192,6 +198,7 @@
 		6B0E87F62AF6B7B20061491E /* FormInputViews */ = {
 			isa = PBXGroup;
 			children = (
+				6BB94B1B2B5F5E5B0073FA6A /* ToggleableSecureField */,
 				6B41E99D2B4CF47A00962F2B /* FileUploadView */,
 				6B0E88082AF6BBF20061491E /* TextInputView.swift */,
 				6B0E880A2AF6BC050061491E /* CurrencyInputView.swift */,
@@ -361,6 +368,16 @@
 				6B6BAC082B33C6D6008C72AB /* CreateAccountViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		6BB94B1B2B5F5E5B0073FA6A /* ToggleableSecureField */ = {
+			isa = PBXGroup;
+			children = (
+				6BB94B192B5F5E1C0073FA6A /* ToggleableSecureField.swift */,
+				6BB94B1C2B5F5E7C0073FA6A /* ToggleableSecureFieldExtensions.swift */,
+				6BB94B1E2B5F5E9A0073FA6A /* ToggleableSecureFieldStyles.swift */,
+			);
+			path = ToggleableSecureField;
 			sourceTree = "<group>";
 		};
 		6BBEF6002B53395400B2CA5A /* ForgotPassword */ = {
@@ -533,6 +550,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BB94B1A2B5F5E1C0073FA6A /* ToggleableSecureField.swift in Sources */,
 				6B83DCCF2AFF015F0000473F /* SecondaryButton.swift in Sources */,
 				6B6CE1032B3E0A4400F19068 /* TitleText.swift in Sources */,
 				6B6BAC0D2B367FC7008C72AB /* PhoneNumberInputViewModel.swift in Sources */,
@@ -549,6 +567,7 @@
 				6BA41CF62B1ECE7B0000A260 /* FormScreenViewModel.swift in Sources */,
 				6BA41CF32B1ECCD60000A260 /* FormScreenView.swift in Sources */,
 				6B9133A62B292FC800EB91E1 /* LoginViewModel.swift in Sources */,
+				6BB94B1D2B5F5E7C0073FA6A /* ToggleableSecureFieldExtensions.swift in Sources */,
 				6B6BAC132B3680DD008C72AB /* ZipcodeInputView.swift in Sources */,
 				6B6CE1072B3E0BE200F19068 /* TertiaryTextStyle.swift in Sources */,
 				6BBEF5FF2B53339700B2CA5A /* ForgotPasswordViewModel.swift in Sources */,
@@ -564,6 +583,7 @@
 				6B0E88132AF6BC520061491E /* PickerInputView.swift in Sources */,
 				6B6BAC0F2B368022008C72AB /* PhoneNumberInputView.swift in Sources */,
 				6B0E880F2AF6BC380061491E /* SSNInputView.swift in Sources */,
+				6BB94B1F2B5F5E9A0073FA6A /* ToggleableSecureFieldStyles.swift in Sources */,
 				6BBEF60C2B53462100B2CA5A /* LoadingOverlayView.swift in Sources */,
 				6B0E87F92AF6B9320061491E /* FormInputViewModel.swift in Sources */,
 				6BBEF6032B533B0800B2CA5A /* PasswordResetFieldViewModel.swift in Sources */,
