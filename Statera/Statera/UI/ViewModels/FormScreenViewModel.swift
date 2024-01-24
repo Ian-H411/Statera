@@ -77,8 +77,11 @@ class FormScreenViewModel: ObservableObject {
     }
     
     func enableSubmitButton() -> Bool {
-        let dependentsInfoComplete = dependentsInfoViewModels.contains { inputViewModels in
+        var dependentsInfoComplete = dependentsInfoViewModels.contains { inputViewModels in
             inputViewModels.contains(where: { !$0.isValid() })
+        }
+        if dependentsInfoViewModels.isEmpty {
+            dependentsInfoComplete = true
         }
         return dependentsInfoComplete && dependentsViewModel.isValid() &&
             filingStatusViewModel.isValid() && zipCodeViewModel.isValid() &&
