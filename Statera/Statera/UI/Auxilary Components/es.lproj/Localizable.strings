@@ -1,5 +1,12 @@
 // Spanish Localization
 
+//MARK: - global menu
+"Contact_US" = "Contáctenos";
+
+"Close_Menu" = "Cerrar menú";
+
+"Log_out" = "Cerrar sesión";
+
 //MARK: - Login
 "Login" = "Iniciar sesión";
 

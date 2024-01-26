@@ -1,5 +1,12 @@
 //English Localization
 
+//MARK: - global menu
+"Contact_US" = "Contact Us";
+
+"Close_Menu" = "Close Menu";
+
+"Log_out" = "Log out";
+
 //MARK: - Login
 "Login" = "Login";
 

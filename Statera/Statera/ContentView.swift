@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var isLoggedIn = false
     @StateObject private var errorViewModel = ErrorViewModel()
-    
+    @State private var displayMenu = false
     var body: some View {
         NavigationStack {
             ZStack{
@@ -30,9 +30,40 @@ struct ContentView: View {
                     }
                     
                 }
+                if displayMenu {
+                    Color.black.opacity(0.3)
+                        .edgesIgnoringSafeArea(.all)
+                        .onTapGesture {
+                            displayMenu = false
+                        }
+                    VStack {
+                        HStack {
+                            Spacer()
+                                .frame(width: .infinity)
+                            FloatingMenu(isMenuDisplayed: $displayMenu, isLoggedIn: $isLoggedIn)
+                        }
+                        
+                        Spacer()
+                    }
+                    .onTapGesture {
+                        displayMenu = false
+                    }
+                }
             }
+            .toolbar(content: {
+                ToolbarItemGroup(placement: .confirmationAction) {
+                    Button(action: {
+                        displayMenu.toggle()
+                    }, label: {
+                        Image(systemName: "line.horizontal.3")
+                            .imageScale(.large)
+                            .padding()
+                    })
+                }
+            })
         }
         .navigationTitle("Login")
+
     }
 }
 
