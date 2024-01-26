@@ -45,7 +45,13 @@ struct CreateAccountScreen: View {
                     request.requestedScopes = [.email, .fullName]
                 } onCompletion: { result in
                     createAccountViewModel.createAccountWithApple(result: result, completionHandler: { success in
-                        isLoading = false
+                        if success {
+                            isLoggedIn = true
+                            isLoading = false
+                            self.presentationMode.wrappedValue.dismiss()
+                        } else {
+                            errorViewModel.errorMessage = "error occured while creating account.  please ensure you do not have an active account, or try again."
+                        }
                     })
                 }
                 .frame(width: 250, height: 50)

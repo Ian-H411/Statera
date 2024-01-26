@@ -50,6 +50,7 @@ class PhoneNumberInputViewModel: TextInputViewModel {
     }
     
     override func isValid() -> Bool {
-       return self.userInput.count == 12
+        guard self.begunEditing else { return false }
+        return self.userInput.count == 12
     }
 }

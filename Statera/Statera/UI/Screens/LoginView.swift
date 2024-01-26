@@ -60,8 +60,15 @@ struct LoginView: View {
                     isLoading = true
                     request.requestedScopes = [.fullName, .email]
                 } onCompletion: { result in
-                    isLoading = false
-                    viewModel.handleAppleLogin(result: result)
+                    viewModel.handleAppleLogin(result: result, completionHandler: { success in
+                        isLoading = false
+                        if success {
+                            self.isLoggedIn = true
+                        } else {
+                            errorViewModel.errorMessage = "Login Failed, please check your login credentials and network connectivity"
+                            errorViewModel.showErrorBanner = true
+                        }
+                    })
                 }
                 .frame(width: 250, height: 50)
                 NavigationLink("Create_an_account") {
