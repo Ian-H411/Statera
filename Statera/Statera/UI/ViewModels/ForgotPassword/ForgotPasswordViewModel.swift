@@ -12,7 +12,7 @@ class ForgotPasswordViewModel: ObservableObject {
     
     @Published var emailAddressField: EmailInputViewModel = EmailInputViewModel(labelText: "Email")
     @Published var passwordResetFieldVM: PasswordResetFieldViewModel = PasswordResetFieldViewModel()
-    @Published var newPasswordVM: PasswordInputViewModel = PasswordInputViewModel(labelText: "New Password", displayForgotPassword: false, displayPasswordHint: true)
+    @Published var newPasswordVM: PasswordInputViewModel = PasswordInputViewModel(labelText: "New_Password", displayForgotPassword: false, displayPasswordHint: true)
     
     func sendForgotPasswordEmail(completionHandler: @escaping (Bool) -> Void) {
         let email = emailAddressField.userInput

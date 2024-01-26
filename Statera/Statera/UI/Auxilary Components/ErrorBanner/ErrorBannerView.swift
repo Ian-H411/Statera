@@ -22,7 +22,7 @@ struct ErrorBannerView: View {
                         .padding(.leading, 5)
                     
                     VStack {
-                        Text(errorViewModel.errorMessage)
+                        Text(LocalizedStringKey(errorViewModel.errorMessage))
                             .foregroundColor(.white)
                             .padding()
                         Spacer()

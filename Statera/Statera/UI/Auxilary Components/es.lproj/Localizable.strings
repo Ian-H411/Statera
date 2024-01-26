@@ -35,6 +35,13 @@
 
 "Password_requirements_title" = "La contraseña debe contener al menos:";
 
+//MARK: - Forgot password
+"New_Password" = "nueva contraseña";
+
+//MARK: - Generic Error
+
+"Error_Generic" = "Login Failed, please check your login credentials and network connectivity";
+
 //MARK: - Form Strings
 
 "Invalid_DOB" = "Fecha de nacimiento no válida";

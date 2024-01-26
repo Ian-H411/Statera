@@ -46,7 +46,7 @@ struct LoginView: View {
                         if success {
                             self.isLoggedIn = true
                         } else {
-                            errorViewModel.errorMessage = "Login Failed, please check your login credentials and network connectivity"
+                            errorViewModel.errorMessage = "Error_Generic"
                             errorViewModel.showErrorBanner = true
                         }
                     })
