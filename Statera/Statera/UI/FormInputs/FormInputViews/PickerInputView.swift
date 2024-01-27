@@ -18,6 +18,7 @@ struct PickerInputView: View {
                     Text(LocalizedStringKey(viewModel.options[index]))
                 }
             }
+            .foregroundColor(viewModel.tintTextColor)
             .pickerStyle(MenuPickerStyle())
             .onAppear(perform: {
                 viewModel.setupField()

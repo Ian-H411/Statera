@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ErrorBannerView: View {
     @ObservedObject var errorViewModel: ErrorViewModel
-
+    let frameSize: CGFloat = 45
     var body: some View {
         if errorViewModel.showErrorBanner {
             ZStack {
@@ -21,29 +21,28 @@ struct ErrorBannerView: View {
                         .frame(width: 5)
                         .padding(.leading, 5)
                     
-                    VStack {
+                    HStack {
                         Text(LocalizedStringKey(errorViewModel.errorMessage))
                             .foregroundColor(.white)
                             .padding()
-                        Spacer()
+                            .frame(alignment: .leading)
                         if errorViewModel.dismissCountdown > 0 {
                             Text("\(errorViewModel.dismissCountdown)")
                                 .foregroundColor(.white)
                                 .padding()
-                                .background(Circle().stroke(Color.white, lineWidth: 2))
+                                .background(Circle().stroke(Color.white, lineWidth: 2).frame(width: frameSize, height: frameSize))
+                                .frame(width: frameSize, height: frameSize)
                         } else {
                             Button(action: {
                                 errorViewModel.showErrorBanner = false
                                 errorViewModel.dismissCountdown = 3
                             }) {
-                                Text("Dismiss")
+                                Text("X")
                                     .foregroundColor(.white)
                                     .padding()
-                                    .background(RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.white, lineWidth: 2))
+                                    .background(Circle().stroke(Color.white, lineWidth: 2).frame(width: frameSize, height: frameSize))
+                                    .frame(width: frameSize, height: frameSize)
                             }
-                            Spacer()
-                                .frame(height: 10)
                         }
                     }
                 }

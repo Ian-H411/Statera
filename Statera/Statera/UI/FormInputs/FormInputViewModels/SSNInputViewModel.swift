@@ -51,7 +51,6 @@ class SSNInputViewModel: FormInputViewModel {
     }
 
     func isValidSSN() -> Bool {
-        guard self.begunEditing else { return true }
         let ssnTest = NSPredicate(format:"SELF MATCHES %@", ssnRegex)
         return ssnTest.evaluate(with: userInput)
     }

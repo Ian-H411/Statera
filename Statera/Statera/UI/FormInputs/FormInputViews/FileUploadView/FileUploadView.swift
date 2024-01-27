@@ -10,7 +10,7 @@ import PhotosUI
 import UniformTypeIdentifiers
 
 struct FileUploadView: View {
-    @ObservedObject var viewModel: FileUploadViewModel
+    @ObservedObject var viewModel: FileUploadViewModel = FileUploadViewModel(labelText: "Upload Documents")
     @State private var selectedUploadOption: UploadOption?
     @State private var displayConfirmationDialog: Bool = false
     @State private var selectedPhotoUrl: URL?

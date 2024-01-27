@@ -18,7 +18,7 @@ struct ZipCodeInputView: View {
                     .alignmentGuide(.leading) { _ in 0 }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .transition(AnyTransition.opacity.animation(.smooth(duration: 0.2)))
-                    .foregroundColor(.gray)
+                    .foregroundColor(viewModel.tintTextColor)
             }
             
             TextField(

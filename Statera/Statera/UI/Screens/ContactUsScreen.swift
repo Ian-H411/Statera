@@ -27,7 +27,7 @@ struct ContactUsScreen: View {
                         Spacer()
                             .frame(width: 17)
                         Image(systemName: "globe")
-                        Link("Visit our website", destination: URL(string: "https://www.yourwebsite.com")!)
+                        Link("Visit our website", destination: URL(string: "https://www.yourwebsite.com")!)//TODO: Localize
                             .foregroundColor(.blue)
                     }
                     HStack {
@@ -42,7 +42,7 @@ struct ContactUsScreen: View {
                             HStack {
                                 Image(systemName: "envelope")
                                     .foregroundColor(.black)
-                                Text("Send us an email")
+                                Text("Send us an email")//TODO: Localize
                                     .foregroundColor(.blue)
                             }
                             .frame(height: 0)
@@ -51,13 +51,13 @@ struct ContactUsScreen: View {
                     }
                     
                 } header: {
-                    Text("  Lets Get in Touch")
+                    Text("  Lets Get in Touch")//TODO: Localize
                         .font(.title)
                         .padding()
                 }
             }
         }
-        .background(Color(.systemGray6)) // Set the background color here
+        .background(Color(.systemGray6))
         .edgesIgnoringSafeArea(.all)
     }
 }

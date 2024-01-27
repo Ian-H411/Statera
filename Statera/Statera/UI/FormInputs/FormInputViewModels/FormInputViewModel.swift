@@ -5,11 +5,14 @@
 //  Created by Ian Hall on 11/4/23.
 //
 
-import Foundation
+import SwiftUI
 
 class FormInputViewModel: Hashable, Equatable, ObservableObject {
 
     @Published var userInput: String = ""
+    @Published var tintTextColor: Color = .gray
+    private var tintTextRed: Bool = false
+    
     var id: UUID
     var labelText: String
     var isRequired: Bool
@@ -33,7 +36,16 @@ class FormInputViewModel: Hashable, Equatable, ObservableObject {
     }
     
     func updateText(_ newValue: String) { }
-    func isValid() -> Bool { return true }
+    func isValid() -> Bool { return !userInput.isEmpty }
+    
+    func toggleLabelTint() {
+        tintTextRed.toggle()
+        if tintTextRed {
+            tintTextColor = .red
+        } else {
+            tintTextColor = .gray
+        }
+    }
 }
 
 enum InputType {

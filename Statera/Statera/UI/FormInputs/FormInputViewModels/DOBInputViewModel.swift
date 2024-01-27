@@ -47,7 +47,6 @@ class DOBInputViewModel: FormInputViewModel {
     }
     
     override func isValid() -> Bool {
-        guard self.begunEditing else { return true }
         return userInput.count == "XX/XX/XXXX".count
     }
 }

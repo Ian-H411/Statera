@@ -25,15 +25,12 @@ struct PhoneNumberInputView: View {
                 LocalizedStringKey(viewModel.labelText),
                 text: $viewModel.userInput
             )
-            .onAppear(perform: {
-                viewModel.setupField()
-            })
             .onChange(of: viewModel.userInput,
                       initial: false, { _, newValue in
                 viewModel.updateText(newValue)
             })
             .keyboardType(viewModel.keyboardType)
-            if !viewModel.isValid() {
+            if !viewModel.isValid() && viewModel.begunEditing {
                 Text("Invalid_PhoneNumber")
                     .foregroundColor(.red)
                     .alignmentGuide(.leading, computeValue: { _ in 0 })

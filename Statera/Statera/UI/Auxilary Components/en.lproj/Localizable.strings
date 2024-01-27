@@ -26,6 +26,8 @@
 
 "Please_Sign_In" = "Please sign in to continue";
 
+"Invalid_PhoneNumber" = "Invalid Phone Number";
+
 //MARK: - Create Account
 
 "Password_requirements" = "Password must be at least %d characters and include uppercase, lowercase, number, and special character";

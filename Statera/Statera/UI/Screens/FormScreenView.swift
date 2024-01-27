@@ -15,6 +15,7 @@ struct FormScreenView: View {
     @State private var isLoading: Bool = false
     @State private var isSheetPresented = false
     @FocusState private var focusedField: Int?
+    @State private var activateNavigation: Bool = false
     var body: some View {
         ZStack {
             List {
@@ -30,6 +31,10 @@ struct FormScreenView: View {
                 LoadingOverlayView(isLoading: $isLoading)
             }
         }
+        .navigationDestination(
+             isPresented: $activateNavigation) {
+                  FileUploadView()
+             }
     }
     
     @ViewBuilder
@@ -217,10 +222,13 @@ struct FormScreenView: View {
                     if !success {
                         errorViewModel.errorMessage = "Error Uploading information please try again"
                         errorViewModel.showErrorBanner = true
+                    } else {
+                        activateNavigation = true
                     }
                 }
             }
             .buttonStyle(PrimaryButtonStyle())
+            .disabled(!viewModel.enableSubmitButton())
             .frame(width: 200)
             Spacer()
                 .frame(width: 45)

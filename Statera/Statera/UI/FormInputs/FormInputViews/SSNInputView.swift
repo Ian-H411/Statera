@@ -17,7 +17,7 @@ struct SSNInputView: View {
                     .alignmentGuide(.leading) { _ in 0 }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .transition(AnyTransition.opacity.animation(.smooth(duration: 0.2)))
-                    .foregroundColor(.gray)
+                    .foregroundColor(viewModel.tintTextColor)
                     
             }
             ToggleableSecureField(title: viewModel.labelText, text: $viewModel.userInput, prompt: nil)
@@ -29,7 +29,7 @@ struct SSNInputView: View {
                     viewModel.updateText(oldValue: oldValue, newValue: newValue)
                 }
 
-            if !viewModel.isValidSSN() {
+            if !viewModel.isValidSSN() && viewModel.begunEditing {
                 Text("Invalid_SSN")
                     .foregroundColor(.red)
                     .alignmentGuide(.leading, computeValue: { _ in 0 })

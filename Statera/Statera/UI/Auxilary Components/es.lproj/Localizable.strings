@@ -26,6 +26,8 @@
 
 "Please_Sign_In" = "Por favor, inicia sesión para continuar";
 
+"Invalid_PhoneNumber" = "Número de Teléfono Inválido";
+
 //MARK: - Create Account
 
 "Password_requirements" = "La contraseña debe tener al menos %d caracteres e incluir mayúsculas, minúsculas, números y caracteres especiales";
