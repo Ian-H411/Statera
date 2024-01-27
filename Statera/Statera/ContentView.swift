@@ -11,8 +11,9 @@ struct ContentView: View {
     @State private var isLoggedIn = false
     @StateObject private var errorViewModel = ErrorViewModel()
     @State private var displayMenu = false
+    @State var path = NavigationPath()
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             ZStack{
                 Image("StateraBackground")
                     .resizable()

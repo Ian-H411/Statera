@@ -31,6 +31,11 @@ struct FormScreenView: View {
                 LoadingOverlayView(isLoading: $isLoading)
             }
         }
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                toolBar()
+            }
+        }
         .navigationDestination(
              isPresented: $activateNavigation) {
                   FileUploadView()
@@ -41,10 +46,25 @@ struct FormScreenView: View {
     func toolBar() -> some View {
         HStack {
             
-            Button(">") {
+            Button(action: {
+                focusedField = max((focusedField ?? 0) - 1, 0)
+            }, label: {
+                Image(systemName: "chevron.backward.square.fill")
+            })
+            
+            Button(action: {
                 focusedField = (focusedField ?? 0) + 1
-            }
-            .foregroundColor(.blue)
+            }, label: {
+                Image(systemName: "chevron.forward.square.fill")
+            })
+            
+            Spacer()
+            Button(action: {
+                UIApplication.shared.endEditing()
+            }, label: {
+                Image(systemName: "keyboard.chevron.compact.down")
+            })
+            
         }
     }
     
@@ -239,5 +259,11 @@ struct FormScreenView: View {
 struct FormScreenView_PreviewProvider: PreviewProvider {
     static var previews: some View {
         FormScreenView(errorViewModel: ErrorViewModel())
+    }
+}
+
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
