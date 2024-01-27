@@ -91,9 +91,7 @@ class FormScreenViewModel: ObservableObject {
     }
     
     func submitData(completionHandler: @escaping (Bool) -> Void) {
-        guard let pdfData = createPDF().dataRepresentation() else {
-            return
-        }
+        let pdfData = createPDF()
         let time = dateFormatter.string(from: Date())
         let fileName = "\(nameViewModel.userInput) \(time)"
         let storageRef = Storage.storage().reference().child("\(currentUserName)").child(fileName)
@@ -109,17 +107,35 @@ class FormScreenViewModel: ObservableObject {
         }
     }
     
-    private func createPDF() -> PDFDocument {
-        let pdfDocument = PDFDocument()
-        let page = PDFPage()
-        let textAnnotation = PDFAnnotation(bounds: page.bounds(for: .mediaBox),
-                                           forType: .text, withProperties: nil)
-        textAnnotation.font = UIFont.systemFont(ofSize: 14)
-        textAnnotation.color = UIColor.black
-        textAnnotation.contents = createPDFTextContent()
-        page.addAnnotation(textAnnotation)
-        pdfDocument.insert(page, at: 0)
-        return pdfDocument
+    private func createPDF() -> Data {
+        // 1
+        let pdfMetaData = [
+          kCGPDFContextCreator: "Martin Medina",
+          kCGPDFContextAuthor: "Statera.com"
+        ]
+        let format = UIGraphicsPDFRendererFormat()
+        format.documentInfo = pdfMetaData as [String: Any]
+
+        // 2
+        let pageWidth = 8.5 * 72.0
+        let pageHeight = 11 * 72.0
+        let pageRect = CGRect(x: 0, y: 0, width: pageWidth, height: pageHeight)
+
+        // 3
+        let renderer = UIGraphicsPDFRenderer(bounds: pageRect, format: format)
+        // 4
+        let data = renderer.pdfData { (context) in
+          // 5
+          context.beginPage()
+          // 6
+          let attributes = [
+            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)
+          ]
+          let text = createPDFTextContent()
+          text.draw(at: CGPoint(x: 0, y: 0), withAttributes: attributes)
+        }
+
+        return data
     }
     
     private func createPDFTextContent() -> String {
@@ -130,6 +146,6 @@ class FormScreenViewModel: ObservableObject {
             let dob = dependentsInfoViewModel[2].userInput
             dependentString.append("Dependent: \(index + 1) \n Name: \(name) \n Social: \(ssn) \n Date Of Birth: \(dob) \n\n")
         }
-        return "FullName: \(nameViewModel.userInput) \n Social: \(SSNViewModel.userInput) \n Date of Birth: \(DOBViewModel.userInput) \n Phone Number: \(phoneNumberViewModel.userInput) \n Address: \(addressLine1ViewModel) \n    \(addressLine2ViewModel.userInput) \n   \(cityViewModel.userInput), \(StateViewModel.userInput), \(zipCodeViewModel.userInput) \n\n Filing Status: \(filingStatusViewModel.userInput) \n Number of Dependents: \(dependentsViewModel.userInput) \n \(dependentString)"
+        return "FullName: \(nameViewModel.userInput) \n Social: \(SSNViewModel.userInput) \n Date of Birth: \(DOBViewModel.userInput) \n Phone Number: \(phoneNumberViewModel.userInput) \n Address: \(addressLine1ViewModel.userInput) \n    \(addressLine2ViewModel.userInput) \n   \(cityViewModel.userInput), \(StateViewModel.userInput), \(zipCodeViewModel.userInput) \n\n Filing Status: \(filingStatusViewModel.userInput) \n Number of Dependents: \(dependentsViewModel.userInput) \n \(dependentString)"
     }
 }

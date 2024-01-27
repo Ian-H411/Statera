@@ -35,13 +35,16 @@ struct FloatingMenu: View {
                 // TODO: NAV LINK TO CONTACT US PAGE
                 isMenuDisplayed = false
             }) {
-                HStack {
-                    Image(systemName: "person")
-                        .foregroundColor(.blue)
-                        .font(.title)
-                    Text("Contact_US")
-                        .font(.body)
-                        .frame(alignment: .trailing)
+                NavigationLink(destination: ContactUsScreen()) {
+                    HStack {
+                        Image(systemName: "person")
+                            .foregroundColor(.blue)
+                            .font(.title)
+                        Text("Contact_US")
+                            .font(.body)
+                            .frame(alignment: .trailing)
+                            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    }
                 }
             }
             Rectangle()
