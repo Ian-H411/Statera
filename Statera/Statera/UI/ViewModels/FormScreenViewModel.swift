@@ -68,12 +68,13 @@ class FormScreenViewModel: ObservableObject {
     }
     
     func updateDependentViewModels() {
-        let baseDependentArray: [FormInputViewModel] = [
-            TextInputViewModel(labelText: "Full_Name", preFill: "", minCharacters: 5, maxCharacters: 30, allowedCharacterSet: .alphanumerics),
-            SSNInputViewModel(labelText: "Social_Security_Number"),
-            DOBInputViewModel(labelText: "Date_of_Birth")
-        ]
-        dependentsInfoViewModels = Array(repeating: baseDependentArray, count: numberOfDependentsFields())
+        dependentsInfoViewModels = Array(repeating: 0, count: numberOfDependentsFields()).map { _ in
+            return [
+                TextInputViewModel(labelText: "Full_Name", preFill: "", minCharacters: 5, maxCharacters: 30, allowedCharacterSet: .alphanumerics),
+                SSNInputViewModel(labelText: "Social_Security_Number"),
+                DOBInputViewModel(labelText: "Date_of_Birth")
+            ]
+        }
     }
     
     func enableSubmitButton() -> Bool {
