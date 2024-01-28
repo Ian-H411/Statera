@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PrimaryButtonStyle: ButtonStyle {
+    @State var enabled: Bool = false
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .foregroundColor(.white)
@@ -19,8 +20,8 @@ struct PrimaryButtonStyle: ButtonStyle {
             .background(
                 EllipticalGradient(
                     stops: [
-                        Gradient.Stop(color: Color(red: 0.05, green: 0.29, blue: 1), location: 0.34),
-                        Gradient.Stop(color: Color(red: 0.05, green: 0.29, blue: 1).opacity(0.8), location: 1.00),
+                        Gradient.Stop(color: enabled ? Color(red: 0.05, green: 0.29, blue: 1) : Color.gray, location: 0.34),
+                        Gradient.Stop(color: enabled ? Color(red: 0.05, green: 0.29, blue: 1).opacity(0.8) : Color.gray.opacity(0.8), location: 1.00),
                     ],
                     center: UnitPoint(x: 0.5, y: 0.51)
                 )

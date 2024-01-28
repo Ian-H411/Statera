@@ -38,7 +38,7 @@ struct FormScreenView: View {
         }
         .navigationDestination(
              isPresented: $activateNavigation) {
-                  FileUploadView()
+                  FileUploadScreen()
              }
     }
     
@@ -233,7 +233,7 @@ struct FormScreenView: View {
     func submitButton() -> some View {
         HStack(alignment: .center) {
             Spacer()
-                .frame(width: 45)
+                .frame(width: 50)
             Button("Submit") {
                 guard viewModel.enableSubmitButton() else { return }
                 isLoading = true
@@ -247,7 +247,7 @@ struct FormScreenView: View {
                     }
                 }
             }
-            .buttonStyle(PrimaryButtonStyle())
+            .buttonStyle(PrimaryButtonStyle(enabled: viewModel.enableSubmitButton()))
             .disabled(!viewModel.enableSubmitButton())
             .frame(width: 200)
             Spacer()
