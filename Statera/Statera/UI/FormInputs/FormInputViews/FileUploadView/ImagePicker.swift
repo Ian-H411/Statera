@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import UIKit.UIImage
 
 struct ImagePicker: UIViewControllerRepresentable {
 
     var sourceType: UIImagePickerController.SourceType = .photoLibrary
     
     @Binding var selectedImageURL: URL?
+    @Binding var selectedImageData: UIImage?
     @Environment(\.presentationMode) private var presentationMode
     
     func makeUIViewController(context: Context) -> some UIViewController {
@@ -40,6 +42,8 @@ struct ImagePicker: UIViewControllerRepresentable {
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let imageURL = info[UIImagePickerController.InfoKey.imageURL] as? URL {
                 parent.selectedImageURL = imageURL
+            } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                parent.selectedImageData = image
             }
             parent.presentationMode.wrappedValue.dismiss()
         }

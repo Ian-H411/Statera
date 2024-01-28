@@ -10,10 +10,11 @@ import PhotosUI
 import UniformTypeIdentifiers
 
 struct FileUploadScreen: View {
-    @ObservedObject var viewModel: FileUploadViewModel = FileUploadViewModel(labelText: "Upload Documents")
+    @StateObject var viewModel: FileUploadViewModel = FileUploadViewModel(labelText: "Upload Documents")
     @State private var selectedUploadOption: UploadOption?
     @State private var displayConfirmationDialog: Bool = false
     @State private var selectedPhotoUrl: URL?
+    @State private var selectedPhoto: UIImage?
     @State private var openCameraRoll: Bool = false
     let headerText: String = "Almost Done"
     
@@ -30,11 +31,15 @@ struct FileUploadScreen: View {
         }
         .sheet(isPresented: $openCameraRoll, content: {
             let sourceType: UIImagePickerController.SourceType = selectedUploadOption == .useCamera ? .camera : .photoLibrary
-            ImagePicker(sourceType: sourceType, selectedImageURL: $selectedPhotoUrl)
+            ImagePicker(sourceType: sourceType, selectedImageURL: $selectedPhotoUrl, selectedImageData: $selectedPhoto)
         })
         .onChange(of: selectedPhotoUrl) { _, newURL in
             guard let url = newURL else { return }
             viewModel.addDocument(url)
+        }
+        .onChange(of: selectedPhoto) { _, newImage in
+            guard let image = newImage else { return }
+            viewModel.addDocument(image)
         }
     }
     
