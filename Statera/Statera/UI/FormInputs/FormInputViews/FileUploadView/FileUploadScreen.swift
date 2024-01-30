@@ -16,6 +16,7 @@ struct FileUploadScreen: View {
     @State private var selectedPhotoUrl: URL?
     @State private var selectedPhoto: UIImage?
     @State private var openCameraRoll: Bool = false
+    @State private var openFileExplorer: Bool = false
     let headerText: String = "Almost Done"
     
     var body: some View {
@@ -41,6 +42,21 @@ struct FileUploadScreen: View {
             guard let image = newImage else { return }
             viewModel.addDocument(image)
         }
+        .fileImporter(isPresented: $openFileExplorer, allowedContentTypes: [.heic,.jpeg,.png,.pdf]) { result in
+            do  {
+                let possibleURL = try result.get()
+                let coordinator = NSFileCoordinator(filePresenter: nil)
+                var error: NSError?
+                coordinator.coordinate(readingItemAt: possibleURL, options: .withoutChanges, error: &error) { (newURL) in
+                    selectedPhotoUrl = newURL
+                }
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            } catch {
+                print("Error importing file")
+            }
+        }
     }
     
     @ViewBuilder
@@ -59,14 +75,7 @@ struct FileUploadScreen: View {
         HStack {
             Image(systemName: "folder")
             Button("Choose Files") {
-                selectedUploadOption = .chooseFiles
-            }
-        }
-        HStack {
-            Image(systemName: "camera")
-            Button("Use Camera") {
-                selectedUploadOption = .useCamera
-                openCameraRoll = true
+                openFileExplorer = true
             }
         }
         HStack {
@@ -82,7 +91,7 @@ struct FileUploadScreen: View {
     func uploadedFileView() -> some View {
         Section("Selected files") { //TODO: Localize
             List(viewModel.files) { file in
-                uploadedFile(file: file)
+                UploadedFileView(file: file, viewModel: viewModel)
             }
         }
     }
@@ -95,9 +104,13 @@ struct FileUploadScreen: View {
         .foregroundColor(.blue)
         .fontWeight(.bold)
     }
+}
+
+struct UploadedFileView: View {
+    @StateObject var file:  DocumentFile
+    @ObservedObject var viewModel: FileUploadViewModel
     
-    @ViewBuilder
-    func uploadedFile(file: DocumentFile) -> some View {
+    var body: some View {
         HStack {
             VStack(alignment: .leading) {
                 Text(file.fileName)
@@ -128,7 +141,7 @@ struct FileUploadScreen: View {
 }
 
 enum UploadOption: Identifiable {
-    case chooseFiles, useCamera, chooseFromLibrary
+    case useCamera, chooseFromLibrary
 
     var id: UploadOption { self }
 }

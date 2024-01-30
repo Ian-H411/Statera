@@ -9,6 +9,7 @@ import FirebaseStorage
 import UniformTypeIdentifiers
 import FirebaseAuth
 import UIKit.UIImage
+import Combine
 
 class FileUploadViewModel: FormInputViewModel {
     @Published var files: [DocumentFile] = []
@@ -44,28 +45,39 @@ class FileUploadViewModel: FormInputViewModel {
         var uploadTask: StorageUploadTask?
         if let url = document.url {
             uploadTask = storageRef.putFile(from: url, metadata: nil) { metadata, error in
-                if let error = error {
-                    document.uploadStatus = "Upload Failed: \(error.localizedDescription)"
-                } else {
-                    document.uploadStatus = "Upload Successful"
-                    document.isUploaded = true
+                DispatchQueue.main.async {
+                    if let error = error {
+                        document.uploadStatus = "Upload Failed: \(error.localizedDescription)"
+                    } else {
+                        document.uploadStatus = "Upload Successful"
+                        document.isUploaded = true
+                    }
                 }
             }
         } else if let data = document.data {
             uploadTask = storageRef.putData(data, metadata: nil, completion: { metaData, error in
-                if let error = error {
-                    document.uploadStatus = "Upload Failed: \(error.localizedDescription)"
-                } else {
-                    document.uploadStatus = "Upload Successful"
-                    document.isUploaded = true
+                DispatchQueue.main.async {
+                    if let error = error {
+                        document.uploadStatus = "Upload Failed: \(error.localizedDescription)"
+                    } else {
+                        document.uploadStatus = "Upload Successful"
+                        document.isUploaded = true
+                    }
                 }
             })
         }
 
         uploadTask?.observe(.progress) { snapshot in
             guard let progress = snapshot.progress else { return }
-            document.uploadStatus = "Uploading (\(Int(progress.fractionCompleted * 100))%)"
+            DispatchQueue.main.async {
+                document.uploadStatus = "Uploading (\(Int(progress.fractionCompleted * 100))%)"
+            }
         }
+    }
+    
+    func documentUploadComplete(_ file: DocumentFile) -> Bool {
+        return file.uploadStatus == "Upload Successful" || //TODO: Localize
+            file.uploadStatus.contains("Upload Failed")
     }
     
     func deleteDocument(_ document: DocumentFile) {
@@ -92,12 +104,12 @@ class FileUploadViewModel: FormInputViewModel {
     }
 }
 
-struct DocumentFile: Identifiable {
+class DocumentFile: Identifiable, ObservableObject {
     let id = UUID()
     var url: URL?
     var data: Data?
     let fileName: String
-    var uploadStatus: String = "Not Uploaded"
+    @Published var uploadStatus: String = "Not Uploaded"
     var isUploaded: Bool = false
     
     init(url: URL? = nil, imageData: Data? = nil, fileName: String) {
