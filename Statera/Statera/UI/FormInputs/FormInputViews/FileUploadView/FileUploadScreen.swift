@@ -11,7 +11,7 @@ import UniformTypeIdentifiers
 
 struct FileUploadScreen: View {
     @StateObject var viewModel: FileUploadViewModel = FileUploadViewModel(labelText: "Upload Documents")
-    @State private var selectedUploadOption: UploadOption?
+    @State private var selectedUploadOption: UploadOption = .useCamera
     @State private var displayConfirmationDialog: Bool = false
     @State private var selectedPhotoUrl: URL?
     @State private var selectedPhoto: UIImage?
@@ -36,7 +36,7 @@ struct FileUploadScreen: View {
         })
         .onChange(of: selectedPhotoUrl) { _, newURL in
             guard let url = newURL else { return }
-            viewModel.addDocument(url)
+            viewModel.addDocument(url, type: .photoLibrary)
         }
         .onChange(of: selectedPhoto) { _, newImage in
             guard let image = newImage else { return }
@@ -48,7 +48,7 @@ struct FileUploadScreen: View {
                 let coordinator = NSFileCoordinator(filePresenter: nil)
                 var error: NSError?
                 coordinator.coordinate(readingItemAt: possibleURL, options: .withoutChanges, error: &error) { (newURL) in
-                    selectedPhotoUrl = newURL
+                    viewModel.addDocument(newURL, type: .file)
                 }
                 if let error = error {
                     print(error.localizedDescription)
@@ -76,6 +76,13 @@ struct FileUploadScreen: View {
             Image(systemName: "folder")
             Button("Choose Files") {
                 openFileExplorer = true
+            }
+        }
+        HStack {
+            Image(systemName: "camera")
+            Button("Use Camera") {
+                selectedUploadOption = .useCamera
+                openCameraRoll = true
             }
         }
         HStack {

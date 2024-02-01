@@ -25,46 +25,30 @@ class FileUploadViewModel: FormInputViewModel {
     }()
     
     //MARK: - File Network Handling
-    func addDocument(_ fileURL: URL) {
-        let newDoc = DocumentFile(url: fileURL, fileName: fileURL.lastPathComponent)
+    func addDocument(_ fileURL: URL, type: DocumentFile.FileType) {
+        let newDoc = DocumentFile(url: fileURL, fileName: fileURL.lastPathComponent, type: type)
         files.append(newDoc)
         uploadDocument(newDoc)
     }
     
     func addDocument(_ image: UIImage) {
-        let imageData = image.jpegData(compressionQuality: 1.0)
+        let imageData = image.pngData()
         let imageName = dateFormatter.string(from: Date())
-        let newDoc = DocumentFile(imageData: imageData, fileName: "\(imageName).jpeg")
+        let newDoc = DocumentFile(imageData: imageData, fileName: "\(imageName).png", type: .camera)
         files.append(newDoc)
         uploadDocument(newDoc)
     }
     
     private func uploadDocument(_ document: DocumentFile) {
-        var document = document
         let storageRef = Storage.storage().reference().child("\(currentUserName)")
         var uploadTask: StorageUploadTask?
-        if let url = document.url {
-            uploadTask = storageRef.putFile(from: url, metadata: nil) { metadata, error in
-                DispatchQueue.main.async {
-                    if let error = error {
-                        document.uploadStatus = "Upload Failed: \(error.localizedDescription)"
-                    } else {
-                        document.uploadStatus = "Upload Successful"
-                        document.isUploaded = true
-                    }
-                }
-            }
-        } else if let data = document.data {
-            uploadTask = storageRef.putData(data, metadata: nil, completion: { metaData, error in
-                DispatchQueue.main.async {
-                    if let error = error {
-                        document.uploadStatus = "Upload Failed: \(error.localizedDescription)"
-                    } else {
-                        document.uploadStatus = "Upload Successful"
-                        document.isUploaded = true
-                    }
-                }
-            })
+        switch document.type {
+        case .file:
+            uploadTask = uploadDocumentFromFile(file: document, storageRef: storageRef)
+        case .photoLibrary:
+            uploadTask = uploadDocumentFromLibrary(file: document, storageRef: storageRef)
+        case .camera:
+            uploadTask = uploadDocumentFromCamera(file: document, storageRef: storageRef)
         }
 
         uploadTask?.observe(.progress) { snapshot in
@@ -72,6 +56,65 @@ class FileUploadViewModel: FormInputViewModel {
             DispatchQueue.main.async {
                 document.uploadStatus = "Uploading (\(Int(progress.fractionCompleted * 100))%)"
             }
+        }
+    }
+    
+    private func uploadDocumentFromFile(file: DocumentFile, storageRef: StorageReference) -> StorageUploadTask? {
+        if let url = file.url,
+           url.startAccessingSecurityScopedResource() {
+            guard let data = try? Data(contentsOf: url) else {
+                return nil
+            }
+            url.stopAccessingSecurityScopedResource()
+            return storageRef.putData(data, metadata: nil) { metaData, error in
+                DispatchQueue.main.async {
+                    if let error = error {
+                        file.uploadStatus = "Upload Failed: \(error.localizedDescription)"
+                    } else {
+                        file.uploadStatus = "Upload Successful"
+                        file.isUploaded = true
+                    }
+                }
+            }
+        } else {
+            file.isUploaded = false
+            file.uploadStatus = "Upload Failed: Check Phone permissions"
+            return nil
+        }
+    }
+    
+    private func uploadDocumentFromCamera(file: DocumentFile, storageRef: StorageReference) -> StorageUploadTask? {
+        guard let data = file.data else {
+            return nil
+        }
+        return storageRef.putData(data, metadata: nil) { metaData, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    file.uploadStatus = "Upload Failed: \(error.localizedDescription)"
+                } else {
+                    file.uploadStatus = "Upload Successful"
+                    file.isUploaded = true
+                }
+            }
+        }
+    }
+    
+    private func uploadDocumentFromLibrary(file: DocumentFile, storageRef: StorageReference) -> StorageUploadTask? {
+        if let url = file.url {
+            return storageRef.putFile(from: url) { metaData, error in
+                DispatchQueue.main.async {
+                    if let error = error {
+                        file.uploadStatus = "Upload Failed: \(error.localizedDescription)"
+                    } else {
+                        file.uploadStatus = "Upload Successful"
+                        file.isUploaded = true
+                    }
+                }
+            }
+        } else {
+            file.isUploaded = false
+            file.uploadStatus = "Upload Failed: Check Phone permissions"
+            return nil
         }
     }
     
@@ -105,15 +148,23 @@ class FileUploadViewModel: FormInputViewModel {
 }
 
 class DocumentFile: Identifiable, ObservableObject {
+    enum FileType {
+        case file
+        case photoLibrary
+        case camera
+    }
     let id = UUID()
     var url: URL?
     var data: Data?
     let fileName: String
+    let type: FileType
     @Published var uploadStatus: String = "Not Uploaded"
     var isUploaded: Bool = false
     
-    init(url: URL? = nil, imageData: Data? = nil, fileName: String) {
+    init(url: URL? = nil, imageData: Data? = nil, fileName: String, type: FileType) {
         self.url = url
         self.fileName = fileName
+        self.type = type
+        self.data = imageData
     }
 }
