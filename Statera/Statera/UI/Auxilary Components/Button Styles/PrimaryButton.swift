@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PrimaryButtonStyle: ButtonStyle {
-    @State var enabled: Bool = false
+    @State var enabled: Bool = true
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .foregroundColor(.white)

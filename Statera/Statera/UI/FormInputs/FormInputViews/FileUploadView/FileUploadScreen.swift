@@ -27,8 +27,8 @@ struct FileUploadScreen: View {
             }
             if !viewModel.files.isEmpty {
                 uploadedFileView()
+                submitButton()
             }
-            submitButton()
         }
         .sheet(isPresented: $openCameraRoll, content: {
             let sourceType: UIImagePickerController.SourceType = selectedUploadOption == .useCamera ? .camera : .photoLibrary
@@ -106,7 +106,7 @@ struct FileUploadScreen: View {
     @ViewBuilder
     func submitButton() -> some View {
         NavigationLink("Submit") {
-            
+            SuccessScreen()
         }
         .foregroundColor(.blue)
         .fontWeight(.bold)

@@ -16,6 +16,8 @@ struct FormScreenView: View {
     @State private var isSheetPresented = false
     @FocusState private var focusedField: Int?
     @State private var activateNavigation: Bool = false
+    @State private var buttonStyle: PrimaryButtonStyle = PrimaryButtonStyle(enabled: false)
+    
     var body: some View {
         ZStack {
             List {
@@ -39,6 +41,9 @@ struct FormScreenView: View {
         .navigationDestination(
              isPresented: $activateNavigation) {
                   FileUploadScreen()
+             }
+             .onChange(of: viewModel.enableSubmitButton()) { _, newValue in
+                 buttonStyle.enabled = newValue
              }
     }
     
@@ -247,7 +252,7 @@ struct FormScreenView: View {
                     }
                 }
             }
-            .buttonStyle(PrimaryButtonStyle(enabled: viewModel.enableSubmitButton()))
+            .buttonStyle(buttonStyle)
             .disabled(!viewModel.enableSubmitButton())
             .frame(width: 200)
             Spacer()
