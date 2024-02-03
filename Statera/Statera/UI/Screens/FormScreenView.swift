@@ -16,7 +16,7 @@ struct FormScreenView: View {
     @State private var isSheetPresented = false
     @FocusState private var focusedField: Int?
     @State private var activateNavigation: Bool = false
-    @State private var buttonStyle: PrimaryButtonStyle = PrimaryButtonStyle(enabled: false)
+    @State private var buttonStyle: PrimaryButtonStyle = PrimaryButtonStyle(enabled: true)
     
     var body: some View {
         ZStack {

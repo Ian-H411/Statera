@@ -94,18 +94,49 @@ class FormScreenViewModel: ObservableObject {
     func submitData(completionHandler: @escaping (Bool) -> Void) {
         let pdfData = createPDF()
         let time = dateFormatter.string(from: Date())
-        let fileName = "\(nameViewModel.userInput) \(time)"
-        let storageRef = Storage.storage().reference().child("\(currentUserName)").child(fileName)
-        
-        let uploadTask = storageRef.putData(pdfData) { metaData, error in
+        let year = Calendar.current.component(.year, from: Date())
+        let fileName = "\(nameViewModel.userInput)"
+        let storageRef = Storage.storage().reference().child("\(currentUserName)").child("\(year)")
+        let uploadTask = storageRef.child(fileName).putData(pdfData) { metaData, error in
             guard metaData != nil, error == nil else {
                 completionHandler(false)
                 return
             }
         }
+        
+        let jsonCopy = createJSON()
+        let jsonFileName = "\(nameViewModel.userInput).json"
+        let jsonUpload = storageRef.child(jsonFileName).putData(jsonCopy ?? Data())
         uploadTask.observe(.success) { snapshot in
             completionHandler(true)
         }
+    }
+    
+    private func createJSON() -> Data? {
+        var dependentInfo: [String: Any] = [String: Any]()
+        for (index, viewModel) in dependentsInfoViewModels.enumerated() {
+            dependentInfo["dependent\(index + 1)"] = [
+                "name": viewModel[0].userInput,
+                "ssn": viewModel[1].userInput,
+                "dob": viewModel[2].userInput
+            ]
+        }
+        let baseData: [String: Any] = [
+            "name": nameViewModel.userInput,
+            "ssn": SSNViewModel.userInput,
+            "dob": DOBViewModel.userInput,
+            "phoneNumber": phoneNumberViewModel.userInput,
+            "addressLine1": addressLine1ViewModel.userInput,
+            "addressLine2": addressLine2ViewModel.userInput,
+            "City": cityViewModel.userInput,
+            "state": StateViewModel.userInput,
+            "zip": zipCodeViewModel.userInput,
+            "filingStatus": filingStatusViewModel.userInput,
+            "NumberOfDependents": dependentsViewModel.userInput,
+            "dependentsInfo": dependentInfo
+        ]
+        let jsonData = try? JSONSerialization.data(withJSONObject: baseData, options: .fragmentsAllowed)
+        return jsonData
     }
     
     private func createPDF() -> Data {

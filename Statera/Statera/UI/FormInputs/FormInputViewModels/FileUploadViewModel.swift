@@ -40,7 +40,8 @@ class FileUploadViewModel: FormInputViewModel {
     }
     
     private func uploadDocument(_ document: DocumentFile) {
-        let storageRef = Storage.storage().reference().child("\(currentUserName)")
+        let year = Calendar.current.component(.year, from: Date())
+        let storageRef = Storage.storage().reference().child("\(currentUserName)").child("\(year)")
         var uploadTask: StorageUploadTask?
         switch document.type {
         case .file:
@@ -66,7 +67,7 @@ class FileUploadViewModel: FormInputViewModel {
                 return nil
             }
             url.stopAccessingSecurityScopedResource()
-            return storageRef.putData(data, metadata: nil) { metaData, error in
+            return storageRef.child("\(file.fileName)").putData(data, metadata: nil) { metaData, error in
                 DispatchQueue.main.async {
                     if let error = error {
                         file.uploadStatus = "Upload Failed: \(error.localizedDescription)"
@@ -87,7 +88,7 @@ class FileUploadViewModel: FormInputViewModel {
         guard let data = file.data else {
             return nil
         }
-        return storageRef.putData(data, metadata: nil) { metaData, error in
+        return storageRef.child("\(file.fileName)").putData(data, metadata: nil) { metaData, error in
             DispatchQueue.main.async {
                 if let error = error {
                     file.uploadStatus = "Upload Failed: \(error.localizedDescription)"
@@ -101,7 +102,7 @@ class FileUploadViewModel: FormInputViewModel {
     
     private func uploadDocumentFromLibrary(file: DocumentFile, storageRef: StorageReference) -> StorageUploadTask? {
         if let url = file.url {
-            return storageRef.putFile(from: url) { metaData, error in
+            return storageRef.child("\(file.fileName)").putFile(from: url) { metaData, error in
                 DispatchQueue.main.async {
                     if let error = error {
                         file.uploadStatus = "Upload Failed: \(error.localizedDescription)"
