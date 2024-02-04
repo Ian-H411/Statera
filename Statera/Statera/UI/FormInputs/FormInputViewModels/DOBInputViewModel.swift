@@ -8,8 +8,10 @@
 import Foundation
 
 class DOBInputViewModel: FormInputViewModel {
+    var isOver18Verification: Bool
     
-    override init(labelText: String, preFill: String = "", isRequired: Bool = true) {
+    init(labelText: String, preFill: String = "", isRequired: Bool = true, over18: Bool) {
+        self.isOver18Verification = over18
         super.init(labelText: labelText, preFill: preFill, isRequired: isRequired)
         self.questionType = .dob
     }
@@ -47,6 +49,33 @@ class DOBInputViewModel: FormInputViewModel {
     }
     
     override func isValid() -> Bool {
-        return userInput.count == "XX/XX/XXXX".count
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+
+        guard let date = dateFormatter.date(from: userInput) else {
+            // Invalid date format
+            return false
+        }
+
+        // Check if the date is in the past
+        guard date < Date() else {
+            return false
+        }
+
+        // Calculate age
+        let calendar = Calendar.current
+        if let age = calendar.dateComponents([.year], from: date, to: Date()).year,
+           let minAgeDate = calendar.date(byAdding: .year, value: -120, to: Date()),
+           let maxAgeDate = calendar.date(byAdding: .year, value: -18, to: Date()) {
+            // Check if age is within the desired range (18 to 120)
+            if isOver18Verification {
+                return age >= 18 && date > minAgeDate && date < maxAgeDate
+            } else {
+                return  date > minAgeDate
+            }
+            
+        }
+
+        return false
     }
 }

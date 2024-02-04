@@ -44,7 +44,7 @@ class FormScreenViewModel: ObservableObject {
     
     @Published var nameViewModel = TextInputViewModel(labelText: "Full_Name", preFill: "", minCharacters: 5, maxCharacters: 30, allowedCharacterSet: .alphanumerics)
     @Published var SSNViewModel = SSNInputViewModel(labelText: "Social_Security_Number")
-    @Published var DOBViewModel = DOBInputViewModel(labelText: "Date_of_Birth")
+    @Published var DOBViewModel = DOBInputViewModel(labelText: "Date_of_Birth", over18: true)
     @Published var phoneNumberViewModel = PhoneNumberInputViewModel(labelText: "Phone_Number", preFill: "")
     
     @Published var addressLine1ViewModel = TextInputViewModel(labelText: "Address_Line_1", preFill: "", minCharacters: 5, maxCharacters: 50, allowedCharacterSet: .alphanumerics)
@@ -72,7 +72,7 @@ class FormScreenViewModel: ObservableObject {
             return [
                 TextInputViewModel(labelText: "Full_Name", preFill: "", minCharacters: 5, maxCharacters: 30, allowedCharacterSet: .alphanumerics),
                 SSNInputViewModel(labelText: "Social_Security_Number"),
-                DOBInputViewModel(labelText: "Date_of_Birth")
+                DOBInputViewModel(labelText: "Date_of_Birth", over18: false)
             ]
         }
     }

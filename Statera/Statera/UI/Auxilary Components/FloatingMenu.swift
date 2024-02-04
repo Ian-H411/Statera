@@ -9,13 +9,13 @@ import SwiftUI
 
 struct FloatingMenu: View {
     @Binding var isMenuDisplayed: Bool
-    @Binding var isLoggedIn: Bool
+    @Binding var isLoggedIn: LoginStatus
     var body: some View {
         
         VStack {
-            if isLoggedIn {
+            if isLoggedIn != .loggedOut {
                 Button(action: {
-                    isLoggedIn = false
+                    isLoggedIn = .loggedOut
                     isMenuDisplayed = false
                 }) {
                     HStack {
@@ -70,5 +70,5 @@ struct FloatingMenu: View {
 }
 
 #Preview {
-    FloatingMenu(isMenuDisplayed: .constant(true), isLoggedIn: .constant(true))
+    FloatingMenu(isMenuDisplayed: .constant(true), isLoggedIn: .constant(.loggedIn))
 }
