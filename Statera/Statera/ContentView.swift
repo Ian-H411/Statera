@@ -7,8 +7,14 @@
 
 import SwiftUI
 
+enum LoginStatus {
+    case loggedInNewUser
+    case loggedOut
+    case loggedIn
+}
+
 struct ContentView: View {
-    @State private var isLoggedIn = false
+    @State private var isLoggedIn: LoginStatus = .loggedOut
     @State private var isFirstLogin = false
     @StateObject private var errorViewModel = ErrorViewModel()
     @State private var displayMenu = false
@@ -41,12 +47,13 @@ struct ContentView: View {
     
     @ViewBuilder
     func flowDirector() -> some View {
-        if isLoggedIn && isFirstLogin {
+        switch isLoggedIn {
+        case .loggedInNewUser:
             FormScreenView(errorViewModel: errorViewModel)
-        } else if isLoggedIn && isFirstLogin {
-            HomeScreen(errorViewModel: errorViewModel)
-        } else {
+        case .loggedOut:
             LoginView(isLoggedIn: $isLoggedIn, errorViewModel: errorViewModel)
+        case .loggedIn:
+            HomeScreen(errorViewModel: errorViewModel)
         }
     }
     

@@ -8,24 +8,31 @@
 import Foundation
 import AuthenticationServices
 import FirebaseAuth
+import FirebaseStorage
 
 class LoginViewModel: ObservableObject {
     
     @Published var emailViewModel = EmailInputViewModel(labelText: "Email", preFill: "")
     @Published var passWordViewModel = PasswordInputViewModel(labelText: "Password", displayForgotPassword: true, displayPasswordHint: false)
     
+    private var currentUserName: String {
+        return Auth.auth().currentUser?.displayName ?? "UNKNOWN"
+    }
+    
     func isValidCredentials() -> Bool {
         return emailViewModel.isValid() && passWordViewModel.isValid()
     }
     
-    func handleBaseLogin(completionHandler: @escaping (Bool) -> Void) {
+    func handleBaseLogin(completionHandler: @escaping (Bool, Bool) -> Void) {
         let email = emailViewModel.userInput
         let password = passWordViewModel.userInput
-        baseSignIn(email: email, password: password) { success in
+        baseSignIn(email: email, password: password) { [weak self] success in
             if success {
-                completionHandler(true)
+                self?.hasSubmittedData { hasSubmittedPrior in
+                    completionHandler(true, hasSubmittedPrior)
+                }
             } else {
-                completionHandler(false)
+                completionHandler(false, false)
             }
         }
     }
@@ -64,6 +71,22 @@ class LoginViewModel: ObservableObject {
                     print("successful Sign in")
                 }
             }
+        }
+    }
+    
+    func hasSubmittedData(completionHandler: @escaping (Bool) -> Void) {
+        let year = Calendar.current.component(.year, from: Date())
+        let temporaryDirectoryURL = FileManager.default.temporaryDirectory
+        let temporaryFileURL = temporaryDirectoryURL.appendingPathComponent("userData.json")
+        let submissionsRef = Storage.storage().reference().child("\(currentUserName)").child("\(year)").child("userData.json")
+        
+        let _ = submissionsRef.write(toFile: temporaryFileURL) { _, error in
+            if let error = error {
+                completionHandler(false)
+                return
+            }
+            completionHandler(true)
+            return
         }
     }
     

@@ -105,7 +105,7 @@ class FormScreenViewModel: ObservableObject {
         }
         
         let jsonCopy = createJSON()
-        let jsonFileName = "\(nameViewModel.userInput).json"
+        let jsonFileName = "userData.json"
         let jsonUpload = storageRef.child(jsonFileName).putData(jsonCopy ?? Data())
         uploadTask.observe(.success) { snapshot in
             completionHandler(true)

@@ -12,7 +12,7 @@ import _AuthenticationServices_SwiftUI
 struct LoginView: View {
     
     @ObservedObject var viewModel = LoginViewModel()
-    @Binding var isLoggedIn: Bool
+    @Binding var isLoggedIn: LoginStatus
     @ObservedObject var errorViewModel: ErrorViewModel
     @State private var isLoading: Bool = false
     
@@ -41,10 +41,12 @@ struct LoginView: View {
                 
                 Button("Login") {
                     isLoading = true
-                    viewModel.handleBaseLogin(completionHandler: { success in
+                    viewModel.handleBaseLogin(completionHandler: { successfulLogin, hasSignedInBefore in
                         isLoading = false
-                        if success {
-                            self.isLoggedIn = true
+                        if successfulLogin && hasSignedInBefore {
+                            self.isLoggedIn = .loggedIn
+                        } else if successfulLogin && !hasSignedInBefore {
+                            self.isLoggedIn = .loggedInNewUser
                         } else {
                             errorViewModel.errorMessage = "Error_Generic"
                             errorViewModel.showErrorBanner = true
