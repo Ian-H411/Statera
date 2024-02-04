@@ -10,7 +10,7 @@ import _AuthenticationServices_SwiftUI
 struct CreateAccountScreen: View {
     
     var createAccountViewModel = CreateAccountViewModel()
-    @Binding var isLoggedIn: Bool
+    @Binding var isLoggedIn: LoginStatus
     @State private var isLoading: Bool = false
     @StateObject var errorViewModel: ErrorViewModel
     @Environment(\.presentationMode) var presentationMode
@@ -31,7 +31,7 @@ struct CreateAccountScreen: View {
                     createAccountViewModel.baseSignUp(completionHandler: { success in
                         isLoading = false
                         if success {
-                            isLoggedIn = true
+                            isLoggedIn = .loggedInNewUser
                             self.presentationMode.wrappedValue.dismiss()
                         } else {
                             errorViewModel.errorMessage = "error occured while creating account.  please ensure you do not have an active account, or try again."
@@ -46,7 +46,7 @@ struct CreateAccountScreen: View {
                 } onCompletion: { result in
                     createAccountViewModel.createAccountWithApple(result: result, completionHandler: { success in
                         if success {
-                            isLoggedIn = true
+                            isLoggedIn = .loggedIn
                             isLoading = false
                             self.presentationMode.wrappedValue.dismiss()
                         } else {
@@ -64,5 +64,5 @@ struct CreateAccountScreen: View {
 }
 
 #Preview {
-    CreateAccountScreen(isLoggedIn: .constant(false), errorViewModel: ErrorViewModel())
+    CreateAccountScreen(isLoggedIn: .constant(.loggedOut), errorViewModel: ErrorViewModel())
 }

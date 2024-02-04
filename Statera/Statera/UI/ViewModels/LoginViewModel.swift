@@ -92,14 +92,18 @@ class LoginViewModel: ObservableObject {
     
     //MARK: - 3rd party sign in
     
-    func handleAppleLogin(result: Result<ASAuthorization, Error>, completionHandler: @escaping (Bool) -> Void) {
+    func handleAppleLogin(result: Result<ASAuthorization, Error>, completionHandler: @escaping (Bool, Bool) -> Void) {
         switch result {
         case .success(let authResult):
-            signInApple(ASAuth: authResult, completionHandler: { success in
-                completionHandler(success)
+            signInApple(ASAuth: authResult, completionHandler: { [weak self] success in
+                if success {
+                    self?.hasSubmittedData { hasSubmitted in
+                        completionHandler(success, hasSubmitted)
+                    }
+                }
             })
         case .failure(let failure):
-            completionHandler(false)
+            completionHandler(false, false)
             print("Login failed error: \(failure.localizedDescription)")
         }
     }

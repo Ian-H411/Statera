@@ -62,10 +62,12 @@ struct LoginView: View {
                     isLoading = true
                     request.requestedScopes = [.fullName, .email]
                 } onCompletion: { result in
-                    viewModel.handleAppleLogin(result: result, completionHandler: { success in
+                    viewModel.handleAppleLogin(result: result, completionHandler: { successfulLogin, hasSubmitted in
                         isLoading = false
-                        if success {
-                            self.isLoggedIn = true
+                        if successfulLogin && !hasSubmitted {
+                            self.isLoggedIn = .loggedInNewUser
+                        } else if successfulLogin && hasSubmitted {
+                            self.isLoggedIn = .loggedIn
                         } else {
                             errorViewModel.errorMessage = "Login Failed, please check your login credentials and network connectivity"
                             errorViewModel.showErrorBanner = true
@@ -103,5 +105,5 @@ struct SeparatorView: View {
 }
 
 #Preview(body: {
-    LoginView(isLoggedIn: .constant(false), errorViewModel: ErrorViewModel())
+    LoginView(isLoggedIn: .constant(.loggedOut), errorViewModel: ErrorViewModel())
 })
