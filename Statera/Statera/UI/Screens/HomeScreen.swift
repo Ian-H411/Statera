@@ -8,27 +8,41 @@
 import SwiftUI
 
 struct HomeScreen: View {
+    @ObservedObject var errorViewModel: ErrorViewModel
+    
     var body: some View {
         VStack {
-            Text("Welcome To Statera")
-            NavigationLink("Start on your taxes") {
+            Spacer()
+            Image("StateraLogo")
+                .resizable()
+                .frame(width: 80, height: 80, alignment: .center)
+                .aspectRatio(contentMode: .fit)
+                .clipShape(Circle())
+                .shadow(radius: 10)
+            Spacer()
+                .frame(height: 30)
+            Text("Welcome To Statera Accounting")
+                .modifier(TitleTextStyle())
+            List {
+                NavigationLink("Resubmit Personal Info") {
+                    FormScreenView(errorViewModel: errorViewModel)
+                }
+                .foregroundColor(.blue)
+                .fontWeight(.bold)
                 
+                NavigationLink("Upload More Documents") {
+                    FileUploadScreen()
+                }
+                .foregroundColor(.blue)
+                .fontWeight(.bold)
             }
-                .buttonStyle(PrimaryButtonStyle())
-                .frame(width: 200, height: 200)
-            NavigationLink("File Business Texes with Statera") {
-                
-            }
-                .buttonStyle(PrimaryButtonStyle())
-                .frame(width: 200, height: 200)
-            Image(uiImage: UIImage.checkmark)
-                .frame(width: 100, height: 100)
         }
+        .background(Color.init(uiColor: .systemGray6))
     }
 }
 
 struct HomeScreen_PreviewProvider: PreviewProvider {
     static var previews: some View {
-        HomeScreen()
+        HomeScreen(errorViewModel: ErrorViewModel())
     }
 }
