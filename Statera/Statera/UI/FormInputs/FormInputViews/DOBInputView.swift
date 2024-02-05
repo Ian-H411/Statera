@@ -40,7 +40,7 @@ struct DOBInputView: View {
 
 struct DOBInputView_PreviewProvider: PreviewProvider {
     static var previews: some View {
-        let dobInputViewModel = DOBInputViewModel(labelText: "DOB")
+        let dobInputViewModel = DOBInputViewModel(labelText: "DOB", over18: true)
         DOBInputView(viewModel: dobInputViewModel)
     }
 }
