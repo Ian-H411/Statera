@@ -14,7 +14,7 @@ enum LoginStatus {
 }
 
 struct ContentView: View {
-    @State private var isLoggedIn: LoginStatus = .loggedOut
+    @State private var isLoggedIn: LoginStatus = .loggedInNewUser
     @State private var isFirstLogin = false
     @StateObject private var errorViewModel = ErrorViewModel()
     @State private var displayMenu = false
@@ -49,11 +49,11 @@ struct ContentView: View {
     func flowDirector() -> some View {
         switch isLoggedIn {
         case .loggedInNewUser:
-            FormScreenView(errorViewModel: errorViewModel)
+            FormScreenView(isLoggedIn: $isLoggedIn, errorViewModel: errorViewModel)
         case .loggedOut:
             LoginView(isLoggedIn: $isLoggedIn, errorViewModel: errorViewModel)
         case .loggedIn:
-            HomeScreen(errorViewModel: errorViewModel)
+            HomeScreen(errorViewModel: errorViewModel, loginStatus: $isLoggedIn)
         }
     }
     

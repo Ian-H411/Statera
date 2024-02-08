@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FormScreenView: View {
+    @Binding var isLoggedIn: LoginStatus
     @State var viewModel: FormScreenViewModel = FormScreenViewModel()
     @State var askDependentsNumber: Bool = false
     @State var displayDependentInputs: Bool = false
@@ -17,6 +18,7 @@ struct FormScreenView: View {
     @FocusState private var focusedField: Int?
     @State private var activateNavigation: Bool = false
     @State private var buttonStyle: PrimaryButtonStyle = PrimaryButtonStyle(enabled: true)
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         ZStack {
@@ -40,7 +42,7 @@ struct FormScreenView: View {
         }
         .navigationDestination(
              isPresented: $activateNavigation) {
-                  FileUploadScreen()
+                 FileUploadScreen(loginStatus: $isLoggedIn)
              }
              .onChange(of: viewModel.enableSubmitButton()) { _, newValue in
                  buttonStyle.enabled = newValue
@@ -247,8 +249,10 @@ struct FormScreenView: View {
                     if !success {
                         errorViewModel.errorMessage = "Error Uploading information please try again"
                         errorViewModel.showErrorBanner = true
-                    } else {
+                    } else if isLoggedIn == .loggedInNewUser{
                         activateNavigation = true
+                    } else {
+                        presentationMode.wrappedValue.dismiss()
                     }
                 }
             }
@@ -263,7 +267,7 @@ struct FormScreenView: View {
 
 struct FormScreenView_PreviewProvider: PreviewProvider {
     static var previews: some View {
-        FormScreenView(errorViewModel: ErrorViewModel())
+        FormScreenView(isLoggedIn: .constant(.loggedIn), errorViewModel: ErrorViewModel())
     }
 }
 

@@ -17,6 +17,9 @@ struct FileUploadScreen: View {
     @State private var selectedPhoto: UIImage?
     @State private var openCameraRoll: Bool = false
     @State private var openFileExplorer: Bool = false
+    @Environment(\.presentationMode) var presentationMode
+    @Binding var loginStatus: LoginStatus
+    
     let headerText: String = "Almost Done"
     
     var body: some View {
@@ -62,8 +65,7 @@ struct FileUploadScreen: View {
     @ViewBuilder
     func headerView() -> some View {
         Section {
-            Text("Help us by uploading documents pertaining to your taxes.  Ian doesnt know exactly what documents would help but he is going to write a very long message here so that way he can test  how much text he can put here")
-                .fontWeight(.light)
+            Text("Help us complete your taxes by uploading your applicable documents. \n\nEmployment Documents: W2 \n\nSelf-Employed/Small Business: 1099-NEC and/or Profit & Loss Statements \n\nInvestment Income: 1099-B \n\nInterest Income: 1099-INT \n\nDividend Income: 1099-DIV \n\nRetirement Income: 1099-R \n\nSocial Security Benefits Income: SSA-1099")// TODO: - Localize
         } header: {
             Text(headerText)
                 .modifier(TitleTextStyle())
@@ -105,11 +107,21 @@ struct FileUploadScreen: View {
     
     @ViewBuilder
     func submitButton() -> some View {
-        NavigationLink("Submit") {
-            SuccessScreen()
+        if loginStatus == .loggedInNewUser {
+            NavigationLink("Submit") {
+                SuccessScreen()
+            }
+            .foregroundColor(.blue)
+            .fontWeight(.bold)
+        } else {
+            Button {
+                presentationMode.wrappedValue.dismiss()
+            } label: {
+                Text("Submit")
+                    .foregroundColor(.blue)
+                    .fontWeight(.bold)
+            }
         }
-        .foregroundColor(.blue)
-        .fontWeight(.bold)
     }
 }
 
@@ -154,5 +166,5 @@ enum UploadOption: Identifiable {
 }
 
 #Preview {
-    FileUploadScreen()
+    FileUploadScreen(loginStatus: .constant(.loggedIn))
 }

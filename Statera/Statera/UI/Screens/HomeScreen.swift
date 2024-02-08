@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeScreen: View {
     @ObservedObject var errorViewModel: ErrorViewModel
-    
+    @Binding var loginStatus: LoginStatus
     var body: some View {
         VStack {
             Spacer()
@@ -25,13 +25,13 @@ struct HomeScreen: View {
                 .modifier(TitleTextStyle())
             List {
                 NavigationLink("Resubmit Personal Info") {
-                    FormScreenView(errorViewModel: errorViewModel)
+                    FormScreenView(isLoggedIn: $loginStatus, errorViewModel: errorViewModel)
                 }
                 .foregroundColor(.blue)
                 .fontWeight(.bold)
                 
                 NavigationLink("Upload More Documents") {
-                    FileUploadScreen()
+                    FileUploadScreen(loginStatus: $loginStatus)
                 }
                 .foregroundColor(.blue)
                 .fontWeight(.bold)
@@ -43,6 +43,6 @@ struct HomeScreen: View {
 
 struct HomeScreen_PreviewProvider: PreviewProvider {
     static var previews: some View {
-        HomeScreen(errorViewModel: ErrorViewModel())
+        HomeScreen(errorViewModel: ErrorViewModel(), loginStatus: .constant(.loggedIn))
     }
 }
