@@ -26,8 +26,8 @@ class FormScreenViewModel: ObservableObject {
         case headOfHousehold = "Head_of_Household"
     }
     
-    private var currentUserName: String {
-        return Auth.auth().currentUser?.displayName ?? "UNKNOWN"
+    private var currentUsersEmail: String {
+        return Auth.auth().currentUser?.email ?? "UNKNOWN"
     }
     
     private var dateFormatter: DateFormatter = {
@@ -96,7 +96,7 @@ class FormScreenViewModel: ObservableObject {
         let time = dateFormatter.string(from: Date())
         let year = Calendar.current.component(.year, from: Date())
         let fileName = "\(nameViewModel.userInput)"
-        let storageRef = Storage.storage().reference().child("\(currentUserName)").child("\(year)")
+        let storageRef = Storage.storage().reference().child("\(currentUsersEmail)").child("\(year)")
         let uploadTask = storageRef.child(fileName).putData(pdfData) { metaData, error in
             guard metaData != nil, error == nil else {
                 completionHandler(false)

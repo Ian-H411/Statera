@@ -15,8 +15,8 @@ class LoginViewModel: ObservableObject {
     @Published var emailViewModel = EmailInputViewModel(labelText: "Email", preFill: "")
     @Published var passWordViewModel = PasswordInputViewModel(labelText: "Password", displayForgotPassword: true, displayPasswordHint: false)
     
-    private var currentUserName: String {
-        return Auth.auth().currentUser?.displayName ?? "UNKNOWN"
+    private var currentUsersEmail: String {
+        return Auth.auth().currentUser?.email ?? "UNKNOWN"
     }
     
     func isValidCredentials() -> Bool {
@@ -78,7 +78,7 @@ class LoginViewModel: ObservableObject {
         let year = Calendar.current.component(.year, from: Date())
         let temporaryDirectoryURL = FileManager.default.temporaryDirectory
         let temporaryFileURL = temporaryDirectoryURL.appendingPathComponent("userData.json")
-        let submissionsRef = Storage.storage().reference().child("\(currentUserName)").child("\(year)").child("userData.json")
+        let submissionsRef = Storage.storage().reference().child("\(currentUsersEmail)").child("\(year)").child("userData.json")
         
         let _ = submissionsRef.write(toFile: temporaryFileURL) { _, error in
             if let error = error {

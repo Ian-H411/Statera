@@ -14,7 +14,7 @@ enum LoginStatus {
 }
 
 struct ContentView: View {
-    @State private var isLoggedIn: LoginStatus = .loggedInNewUser
+    @State private var isLoggedIn: LoginStatus = .loggedOut
     @State private var isFirstLogin = false
     @StateObject private var errorViewModel = ErrorViewModel()
     @State private var displayMenu = false

@@ -14,8 +14,8 @@ import Combine
 class FileUploadViewModel: FormInputViewModel {
     @Published var files: [DocumentFile] = []
     
-    private var currentUserName: String {
-        return Auth.auth().currentUser?.displayName ?? "UNKNOWN"
+    private var currentUsersEmail: String {
+        return Auth.auth().currentUser?.email ?? "UNKNOWN"
     }
     
     let dateFormatter: DateFormatter = {
@@ -41,7 +41,7 @@ class FileUploadViewModel: FormInputViewModel {
     
     private func uploadDocument(_ document: DocumentFile) {
         let year = Calendar.current.component(.year, from: Date())
-        let storageRef = Storage.storage().reference().child("\(currentUserName)").child("\(year)")
+        let storageRef = Storage.storage().reference().child("\(currentUsersEmail)").child("\(year)")
         var uploadTask: StorageUploadTask?
         switch document.type {
         case .file:
@@ -137,7 +137,7 @@ class FileUploadViewModel: FormInputViewModel {
     }
     
     func deleteDocumentFromStorage(_ document: DocumentFile) {
-        let storageRef = Storage.storage().reference().child("\(currentUserName)").child(document.fileName)
+        let storageRef = Storage.storage().reference().child("\(currentUsersEmail)").child(document.fileName)
         storageRef.delete { error in
             if let error = error {
                 print("Error Deleting: \(error.localizedDescription)")
