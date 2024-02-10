@@ -126,8 +126,9 @@ struct FileUploadScreen: View {
 }
 
 struct UploadedFileView: View {
-    @StateObject var file:  DocumentFile
+    @ObservedObject var file: DocumentFile
     @ObservedObject var viewModel: FileUploadViewModel
+    @State private var deletionConfirmation = false
     
     var body: some View {
         HStack {
@@ -137,15 +138,27 @@ struct UploadedFileView: View {
                     .modifier(TertiaryTextStyle())
             }
             Spacer()
-            if file.uploadStatus == "Upload Successful" || //TODO: Localize
+            if file.uploadStatus == "Upload Successful" ||
                 file.uploadStatus.contains("Upload Failed") {
                 Button(action: {
-                    viewModel.deleteDocumentFromStorage(file)
-                    viewModel.deleteDocument(file)
+                    deletionConfirmation.toggle()
                 }, label: {
                     Image(systemName: "trash.fill")
                         .foregroundColor(.red)
                 })
+                .frame(width: 20, height: 20)
+                .alert(isPresented: $deletionConfirmation) {
+                    Alert(
+                        title: Text("Confirm Deletion"),
+                        message: Text("Are you sure you want to delete this file?"),
+                        primaryButton: .default(Text("Cancel")),
+                        secondaryButton: .destructive(Text("Delete")) {
+                            // Perform deletion
+                            viewModel.deleteDocumentFromStorage(file)
+                            viewModel.deleteDocument(file)
+                        }
+                    )
+                }
             } else {
                 ProgressView()
                     .scaleEffect(1)
