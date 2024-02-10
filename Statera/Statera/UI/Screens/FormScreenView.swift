@@ -52,19 +52,6 @@ struct FormScreenView: View {
     @ViewBuilder
     func toolBar() -> some View {
         HStack {
-            
-            Button(action: {
-                focusedField = max((focusedField ?? 0) - 1, 0)
-            }, label: {
-                Image(systemName: "chevron.backward.square.fill")
-            })
-            
-            Button(action: {
-                focusedField = (focusedField ?? 0) + 1
-            }, label: {
-                Image(systemName: "chevron.forward.square.fill")
-            })
-            
             Spacer()
             Button(action: {
                 UIApplication.shared.endEditing()
@@ -80,31 +67,12 @@ struct FormScreenView: View {
         Section(header: Text("Personal_Information")) {
             TextInputView(viewModel: viewModel.nameViewModel)
                 .textContentType(.name)
-                .focused($focusedField, equals: 0)
-                .submitLabel(.next)
-                .onSubmit {
-                    focusedField = (focusedField ?? 0) + 1
-                }
             SSNInputView(viewModel: viewModel.SSNViewModel)
                 .focused($focusedField, equals: 1)
-                .submitLabel(.next)
-                .onSubmit {
-                    focusedField = (focusedField ?? 0) + 1
-                }
             DOBInputView(viewModel: viewModel.DOBViewModel)
                 .textContentType(.birthdateDay)
-                .focused($focusedField, equals: 2)
-                .submitLabel(.next)
-                .onSubmit {
-                    focusedField = (focusedField ?? 0) + 1
-                }
             PhoneNumberInputView(viewModel: viewModel.phoneNumberViewModel)
                 .textContentType(.telephoneNumber)
-                .focused($focusedField, equals: 3)
-                .submitLabel(.next)
-                .onSubmit {
-                    focusedField = (focusedField ?? 0) + 1
-                }
         }
     }
     
@@ -113,39 +81,15 @@ struct FormScreenView: View {
         Section(header: Text("Address")) {
             TextInputView(viewModel: viewModel.addressLine1ViewModel)
                 .textContentType(.streetAddressLine1)
-                .focused($focusedField, equals: 4)
-                .submitLabel(.next)
-                .onSubmit {
-                    focusedField = (focusedField ?? 0) + 1
-                }
             TextInputView(viewModel: viewModel.addressLine2ViewModel)
                 .textContentType(.streetAddressLine2)
-                .focused($focusedField, equals: 5)
-                .submitLabel(.next)
-                .onSubmit {
-                    focusedField = (focusedField ?? 0) + 1
-                }
             TextInputView(viewModel: viewModel.cityViewModel)
                 .textContentType(.addressCity)
-                .focused($focusedField, equals: 6)
-                .submitLabel(.next)
-                .onSubmit {
-                    focusedField = (focusedField ?? 0) + 1
-                }
             PickerInputView(viewModel: viewModel.StateViewModel)
                 .textContentType(.addressState)
-                .focused($focusedField, equals: 7)
-                .submitLabel(.next)
-                .onSubmit {
-                    focusedField = (focusedField ?? 0) + 1
-                }
             ZipCodeInputView(viewModel: viewModel.zipCodeViewModel)
                 .textContentType(.postalCode)
-                .focused($focusedField, equals: 8)
-                .submitLabel(.next)
-                .onSubmit {
-                    focusedField = (focusedField ?? 0) + 1
-                }
+
         }
     }
     
@@ -213,23 +157,8 @@ struct FormScreenView: View {
                        let ssnVM = inputViewModels[1] as? SSNInputViewModel,
                        let dobVM = inputViewModels[2] as? DOBInputViewModel {
                         TextInputView(viewModel: nameVM)
-                            .focused($focusedField, equals: 10 + (index * 3))
-                            .submitLabel(.next)
-                            .onSubmit {
-                                focusedField = min((focusedField ?? 0) + 1, 1)
-                            }
                         SSNInputView(viewModel: ssnVM)
-                            .focused($focusedField, equals: 11 + (index * 3))
-                            .submitLabel(.next)
-                            .onSubmit {
-                                focusedField = min((focusedField ?? 0) + 1, 1)
-                            }
                         DOBInputView(viewModel: dobVM)
-                            .focused($focusedField, equals: 12 + (index * 3))
-                            .submitLabel(.next)
-                            .onSubmit {
-                                focusedField = min((focusedField ?? 0) + 1, 1)
-                            }
                     }
                 }
             }

@@ -78,7 +78,7 @@ struct LoginView: View {
                 NavigationLink("Create_an_account") {
                     CreateAccountScreen(isLoggedIn: $isLoggedIn, errorViewModel: errorViewModel)
                 }
-                .buttonStyle(GrayedButton())
+                .buttonStyle(PrimaryButtonStyle())
             }
             .edgesIgnoringSafeArea(.bottom)
         }
