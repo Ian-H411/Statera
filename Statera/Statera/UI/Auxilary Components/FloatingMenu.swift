@@ -22,7 +22,7 @@ struct FloatingMenu: View {
                         Image(systemName: "rectangle.portrait.and.arrow.right")
                             .foregroundColor(.blue)
                             .font(.title)
-                        Text("Log_Out")
+                        Text("Log_out")
                             .font(.body)
                             .frame(alignment: .trailing)
                     }

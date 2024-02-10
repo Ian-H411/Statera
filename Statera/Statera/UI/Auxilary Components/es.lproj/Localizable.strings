@@ -103,3 +103,5 @@
 "thanks_submit" = "¡Gracias por enviar, por favor tómate un momento para contactarnos para que podamos comenzar tus impuestos!";
 "allowableFiles" = "Ayúdanos a completar tus impuestos subiendo tus documentos aplicables. \n\nDocumentos de Empleo: W2 \n\nTrabajador por Cuenta Propia/Pequeña Empresa: 1099-NEC y/o Estados de Pérdidas y Ganancias \n\nIngresos de Inversiones: 1099-B \n\nIngresos de Intereses: 1099-INT \n\nIngresos de Dividendos: 1099-DIV \n\nIngresos de Jubilación: 1099-R \n\nIngresos de Beneficios del Seguro Social: SSA-1099";
 "selected_Files" = "Archivos seleccionados";
+"newAccountError" = "Se produjo un error al crear la cuenta. Por favor, asegúrese de no tener una cuenta activa o intente nuevamente.";
+"Confirm_Password" = "Confirmar Contraseña";

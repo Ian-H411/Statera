@@ -34,7 +34,7 @@ struct CreateAccountScreen: View {
                             isLoggedIn = .loggedInNewUser
                             self.presentationMode.wrappedValue.dismiss()
                         } else {
-                            errorViewModel.errorMessage = "error occured while creating account.  please ensure you do not have an active account, or try again."
+                            errorViewModel.errorMessage = "newAccountError"
                         }
                     })
                 }
@@ -50,7 +50,7 @@ struct CreateAccountScreen: View {
                             isLoading = false
                             self.presentationMode.wrappedValue.dismiss()
                         } else {
-                            errorViewModel.errorMessage = "error occured while creating account.  please ensure you do not have an active account, or try again."
+                            errorViewModel.errorMessage = "newAccountError"
                         }
                     })
                 }

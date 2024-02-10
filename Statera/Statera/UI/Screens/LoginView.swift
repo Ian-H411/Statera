@@ -40,6 +40,7 @@ struct LoginView: View {
                 
                 
                 Button("Login") {
+                    guard viewModel.isValidCredentials() else { return }
                     isLoading = true
                     viewModel.handleBaseLogin(completionHandler: { successfulLogin, hasSignedInBefore in
                         isLoading = false
@@ -55,7 +56,6 @@ struct LoginView: View {
                 }
                 .buttonStyle(PrimaryButtonStyle())
                 .frame(width: 200)
-                .disabled(!viewModel.isValidCredentials())
                 
                 SeparatorView()
                 SignInWithAppleButton(.signIn) { request in
@@ -69,7 +69,7 @@ struct LoginView: View {
                         } else if successfulLogin && hasSubmitted {
                             self.isLoggedIn = .loggedIn
                         } else {
-                            errorViewModel.errorMessage = "Login Failed, please check your login credentials and network connectivity"
+                            errorViewModel.errorMessage = "Error_Generic"
                             errorViewModel.showErrorBanner = true
                         }
                     })
