@@ -11,11 +11,11 @@ import UniformTypeIdentifiers
 
 struct FileUploadScreen: View {
     @StateObject var viewModel: FileUploadViewModel = FileUploadViewModel(labelText: "Upload Documents")
-    @State private var selectedUploadOption: UploadOption = .useCamera
     @State private var displayConfirmationDialog: Bool = false
     @State private var selectedPhotoUrl: URL?
     @State private var selectedPhoto: UIImage?
     @State private var openCameraRoll: Bool = false
+    @State private var openPhotoLibrary: Bool = false
     @State private var openFileExplorer: Bool = false
     @Environment(\.presentationMode) var presentationMode
     @Binding var loginStatus: LoginStatus
@@ -34,8 +34,10 @@ struct FileUploadScreen: View {
             }
         }
         .sheet(isPresented: $openCameraRoll, content: {
-            let sourceType: UIImagePickerController.SourceType = selectedUploadOption == .useCamera ? .camera : .photoLibrary
-            ImagePicker(sourceType: sourceType, selectedImageURL: $selectedPhotoUrl, selectedImageData: $selectedPhoto)
+            ImagePicker(sourceType: .camera, selectedImageURL: $selectedPhotoUrl, selectedImageData: $selectedPhoto)
+        })
+        .sheet(isPresented: $openPhotoLibrary, content: {
+            ImagePicker(sourceType: .photoLibrary, selectedImageURL: $selectedPhotoUrl, selectedImageData: $selectedPhoto)
         })
         .onChange(of: selectedPhotoUrl) { _, newURL in
             guard let url = newURL else { return }
@@ -83,15 +85,13 @@ struct FileUploadScreen: View {
         HStack {
             Image(systemName: "camera")
             Button("Use Camera") {
-                selectedUploadOption = .useCamera
                 openCameraRoll = true
             }
         }
         HStack {
             Image(systemName: "photo.on.rectangle.angled")
             Button("Choose from Photo Library") {
-                selectedUploadOption = .chooseFromLibrary
-                openCameraRoll = true
+                openPhotoLibrary = true
             }
         }
     }
