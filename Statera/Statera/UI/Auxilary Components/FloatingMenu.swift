@@ -32,7 +32,6 @@ struct FloatingMenu: View {
             }
             
             Button(action: {
-                // TODO: NAV LINK TO CONTACT US PAGE
                 isMenuDisplayed = false
             }) {
                 NavigationLink(destination: ContactUsScreen()) {

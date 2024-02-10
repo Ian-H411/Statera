@@ -92,3 +92,14 @@
 "How_Many_Dependents?" = "¿Cuántos dependientes?";
 
 "filing_Status_Info" = "Soltero/a: Un estado civil de declaración de impuestos para personas que no están casadas y no califican para ningún otro estado civil de declaración. \n \n Casado/a Presentando Conjuntamente: Un estado civil de declaración de impuestos para parejas casadas que eligen presentar su declaración de impuestos sobre la renta juntas, combinando sus ingresos y deducciones. \n\n Jefe/a de Familia: Un estado civil de declaración de impuestos para personas solteras que tienen dependientes y cumplen con ciertos criterios. Este estado civil a menudo ofrece tasas impositivas más favorables y una deducción estándar más alta.";
+
+
+//MARK: - organize later
+
+"VisitWebsite" = "Visita nuestro sitio web";
+"sendEmail" = "Envíanos un correo electrónico";
+
+"getInTouch"  = "Ponte en contacto";
+"thanks_submit" = "¡Gracias por enviar, por favor tómate un momento para contactarnos para que podamos comenzar tus impuestos!";
+"allowableFiles" = "Ayúdanos a completar tus impuestos subiendo tus documentos aplicables. \n\nDocumentos de Empleo: W2 \n\nTrabajador por Cuenta Propia/Pequeña Empresa: 1099-NEC y/o Estados de Pérdidas y Ganancias \n\nIngresos de Inversiones: 1099-B \n\nIngresos de Intereses: 1099-INT \n\nIngresos de Dividendos: 1099-DIV \n\nIngresos de Jubilación: 1099-R \n\nIngresos de Beneficios del Seguro Social: SSA-1099";
+"selected_Files" = "Archivos seleccionados";

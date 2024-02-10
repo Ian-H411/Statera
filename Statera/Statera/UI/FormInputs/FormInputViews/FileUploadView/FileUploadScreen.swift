@@ -67,7 +67,7 @@ struct FileUploadScreen: View {
     @ViewBuilder
     func headerView() -> some View {
         Section {
-            Text("Help us complete your taxes by uploading your applicable documents. \n\nEmployment Documents: W2 \n\nSelf-Employed/Small Business: 1099-NEC and/or Profit & Loss Statements \n\nInvestment Income: 1099-B \n\nInterest Income: 1099-INT \n\nDividend Income: 1099-DIV \n\nRetirement Income: 1099-R \n\nSocial Security Benefits Income: SSA-1099")// TODO: - Localize
+            Text("allowableFiles")
         } header: {
             Text(headerText)
                 .modifier(TitleTextStyle())
@@ -98,7 +98,7 @@ struct FileUploadScreen: View {
     
     @ViewBuilder
     func uploadedFileView() -> some View {
-        Section("Selected files") { //TODO: Localize
+        Section("selected_Files") { //TODO: Localize
             List(viewModel.files) { file in
                 UploadedFileView(file: file, viewModel: viewModel)
             }

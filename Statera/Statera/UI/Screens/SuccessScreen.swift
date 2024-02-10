@@ -22,7 +22,7 @@ struct SuccessScreen: View {
                 .frame(height: 50)
             Text("Thank you!")
                 .modifier(TitleTextStyle())
-            Text("Thank you for submitting, please take a moment to reach out to us so we can begin your taxes!")
+            Text("thanks_submit")
             Button(action: {
                 // Open the default mail app
                 sendUsAnEmailTapped = true
@@ -34,7 +34,7 @@ struct SuccessScreen: View {
                 HStack {
                     Image(systemName: "envelope")
                         .foregroundColor(.black)
-                    Text("Send us an email")//TODO: Localize
+                    Text("sendEmail")//TODO: Localize
                         .foregroundColor(.blue)
                 }
                 .frame(height: 0)
