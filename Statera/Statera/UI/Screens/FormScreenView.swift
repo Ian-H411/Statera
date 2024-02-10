@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FormScreenView: View {
     @Binding var isLoggedIn: LoginStatus
-    @State var viewModel: FormScreenViewModel = FormScreenViewModel()
+    @ObservedObject var viewModel: FormScreenViewModel = FormScreenViewModel()
     @State var askDependentsNumber: Bool = false
     @State var displayDependentInputs: Bool = false
     @ObservedObject var errorViewModel: ErrorViewModel
@@ -17,7 +17,6 @@ struct FormScreenView: View {
     @State private var isSheetPresented = false
     @FocusState private var focusedField: Int?
     @State private var activateNavigation: Bool = false
-    @State private var buttonStyle: PrimaryButtonStyle = PrimaryButtonStyle(enabled: true)
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -28,7 +27,9 @@ struct FormScreenView: View {
                 filingStatusSection()
                 numberOfDependentsSection()
                 multiDependentInputView()
-                submitButton()
+                if viewModel.isSubmitButtonEnabled {
+                    submitButton()
+                }
             }
             .listStyle(InsetGroupedListStyle())
             if isLoading {
@@ -43,9 +44,6 @@ struct FormScreenView: View {
         .navigationDestination(
              isPresented: $activateNavigation) {
                  FileUploadScreen(loginStatus: $isLoggedIn)
-             }
-             .onChange(of: viewModel.enableSubmitButton()) { _, newValue in
-                 buttonStyle.enabled = newValue
              }
     }
     
@@ -169,9 +167,9 @@ struct FormScreenView: View {
     func submitButton() -> some View {
         HStack(alignment: .center) {
             Spacer()
-                .frame(width: 50)
+                .frame(width: 60)
             Button("Submit") {
-                guard viewModel.enableSubmitButton() else { return }
+                guard viewModel.isSubmitButtonEnabled else { return }
                 isLoading = true
                 viewModel.submitData { success in
                     isLoading = false
@@ -185,8 +183,7 @@ struct FormScreenView: View {
                     }
                 }
             }
-            .buttonStyle(buttonStyle)
-            .disabled(!viewModel.enableSubmitButton())
+            .buttonStyle(PrimaryButtonStyle())
             .frame(width: 200)
             Spacer()
                 .frame(width: 45)

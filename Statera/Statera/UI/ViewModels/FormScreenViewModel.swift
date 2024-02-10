@@ -9,8 +9,13 @@ import Foundation
 import PDFKit
 import FirebaseStorage
 import FirebaseAuth
+import Combine
 
 class FormScreenViewModel: ObservableObject {
+    
+    init() {
+        self.observeViewModels()
+    }
     
     static let stateCodes = [
         "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
@@ -41,6 +46,10 @@ class FormScreenViewModel: ObservableObject {
     static let filingStatusOptions: [String] = [FilingStatus.single.rawValue, FilingStatus.marriedFilingJoint.rawValue, FilingStatus.headOfHousehold.rawValue]
     
     static let dependents = ["0","1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    
+    private var cancellables = Set<AnyCancellable>()
+    
+    @Published var isSubmitButtonEnabled = false
     
     @Published var nameViewModel = TextInputViewModel(labelText: "Full_Name", preFill: "", minCharacters: 5, maxCharacters: 30, allowedCharacterSet: .alphanumerics)
     @Published var SSNViewModel = SSNInputViewModel(labelText: "Social_Security_Number")
@@ -75,25 +84,71 @@ class FormScreenViewModel: ObservableObject {
                 DOBInputViewModel(labelText: "Date_of_Birth", over18: false)
             ]
         }
+        observeViewModels()
     }
     
-    func enableSubmitButton() -> Bool {
+    private func observeViewModels() {
+        cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
+        for viewModelArray in dependentsInfoViewModels {
+            for viewModel in viewModelArray {
+                if let textInputViewModel = viewModel as? TextInputViewModel {
+                    textInputViewModel.objectWillChange.sink { _ in
+                        self.updateSubmitButtonState()
+                    }.store(in: &cancellables)
+                } else if let ssnInputViewModel = viewModel as? SSNInputViewModel {
+                    ssnInputViewModel.objectWillChange.sink { _ in
+                        self.updateSubmitButtonState()
+                    }.store(in: &cancellables)
+                } else if let dobViewModel = viewModel as? DOBInputViewModel {
+                    dobViewModel.objectWillChange.sink { _ in
+                        self.updateSubmitButtonState()
+                    }.store(in: &cancellables)
+                }
+            }
+        }
+        nameViewModel.objectWillChange.sink { _ in
+            self.updateSubmitButtonState()
+        }.store(in: &cancellables)
+        SSNViewModel.objectWillChange.sink { _ in
+            self.updateSubmitButtonState()
+        }.store(in: &cancellables)
+        DOBViewModel.objectWillChange.sink { _ in
+            self.updateSubmitButtonState()
+        }.store(in: &cancellables)
+        phoneNumberViewModel.objectWillChange.sink { _ in
+            self.updateSubmitButtonState()
+        }.store(in: &cancellables)
+        addressLine1ViewModel.objectWillChange.sink { _ in
+            self.updateSubmitButtonState()
+        }.store(in: &cancellables)
+        cityViewModel.objectWillChange.sink { _ in
+            self.updateSubmitButtonState()
+        }.store(in: &cancellables)
+        zipCodeViewModel.objectWillChange.sink { _ in
+            self.updateSubmitButtonState()
+        }.store(in: &cancellables)
+    }
+    
+    private func enableSubmitButton() -> Bool {
         var dependentsInfoComplete = dependentsInfoViewModels.contains { inputViewModels in
             inputViewModels.contains(where: { !$0.isValid() })
         }
         if dependentsInfoViewModels.isEmpty {
             dependentsInfoComplete = true
         }
-        return dependentsInfoComplete && dependentsViewModel.isValid() &&
-            filingStatusViewModel.isValid() && zipCodeViewModel.isValid() &&
-            StateViewModel.isValid() && cityViewModel.isValid() &&
-            addressLine1ViewModel.isValid() && phoneNumberViewModel.isValid() &&
-            DOBViewModel.isValid() && SSNViewModel.isValidSSN() && nameViewModel.isValid()
+        return dependentsInfoComplete && zipCodeViewModel.isValid() &&
+        cityViewModel.isValid() && addressLine1ViewModel.isValid() &&
+        phoneNumberViewModel.isValid() && DOBViewModel.isValid() &&
+        SSNViewModel.isValidSSN() && nameViewModel.isValid()
+    }
+    
+    func updateSubmitButtonState() {
+        isSubmitButtonEnabled = enableSubmitButton()
     }
     
     func submitData(completionHandler: @escaping (Bool) -> Void) {
         let pdfData = createPDF()
-        let time = dateFormatter.string(from: Date())
         let year = Calendar.current.component(.year, from: Date())
         let fileName = "\(nameViewModel.userInput)"
         let storageRef = Storage.storage().reference().child("\(currentUsersEmail)").child("\(year)")
