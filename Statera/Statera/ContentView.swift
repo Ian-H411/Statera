@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 enum LoginStatus {
     case loggedInNewUser
@@ -43,6 +44,15 @@ struct ContentView: View {
             })
         }
         .navigationTitle("Login")
+        .onChange(of: isLoggedIn) { _, newValue in
+            if newValue == .loggedOut {
+                do {
+                    try Auth.auth().signOut()
+                } catch let error {
+                    print("Error signing out: \(error.localizedDescription)")
+                }
+            }
+        }
     }
     
     @ViewBuilder
