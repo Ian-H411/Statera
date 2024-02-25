@@ -40,7 +40,7 @@ class FileUploadViewModel: FormInputViewModel {
     }
     
     private func uploadDocument(_ document: DocumentFile) {
-        let year = Calendar.current.component(.year, from: Date())
+        let year = Calendar.current.component(.year, from: Date()) - 1
         let storageRef = Storage.storage().reference().child("\(currentUsersEmail)").child("\(year)")
         var uploadTask: StorageUploadTask?
         switch document.type {

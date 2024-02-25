@@ -149,7 +149,7 @@ class FormScreenViewModel: ObservableObject {
     
     func submitData(completionHandler: @escaping (Bool) -> Void) {
         let pdfData = createPDF()
-        let year = Calendar.current.component(.year, from: Date())
+        let year = Calendar.current.component(.year, from: Date()) - 1
         let fileName = "\(nameViewModel.userInput)"
         let storageRef = Storage.storage().reference().child("\(currentUsersEmail)").child("\(year)")
         let uploadTask = storageRef.child(fileName).putData(pdfData) { metaData, error in

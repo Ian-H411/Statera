@@ -75,7 +75,7 @@ class LoginViewModel: ObservableObject {
     }
     
     func hasSubmittedData(completionHandler: @escaping (Bool) -> Void) {
-        let year = Calendar.current.component(.year, from: Date())
+        let year = Calendar.current.component(.year, from: Date()) - 1
         let temporaryDirectoryURL = FileManager.default.temporaryDirectory
         let temporaryFileURL = temporaryDirectoryURL.appendingPathComponent("userData.json")
         let submissionsRef = Storage.storage().reference().child("\(currentUsersEmail)").child("\(year)").child("userData.json")
