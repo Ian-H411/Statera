@@ -34,7 +34,7 @@ struct SuccessScreen: View {
                 HStack {
                     Image(systemName: "envelope")
                         .foregroundColor(.black)
-                    Text("sendEmail")//TODO: Localize
+                    Text("sendEmail")
                         .foregroundColor(.blue)
                 }
                 .frame(height: 0)
@@ -42,7 +42,7 @@ struct SuccessScreen: View {
             if sendUsAnEmailTapped {
                 Spacer()
                     .frame(height: 40)
-                Button("Log_Out") {
+                Button("Log_out") {
                     
                 }
                 .buttonStyle(PrimaryButtonStyle())

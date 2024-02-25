@@ -70,9 +70,10 @@ class FileUploadViewModel: FormInputViewModel {
             return storageRef.child("\(file.fileName)").putData(data, metadata: nil) { metaData, error in
                 DispatchQueue.main.async {
                     if let error = error {
-                        file.uploadStatus = "Upload Failed: \(error.localizedDescription)"
+                        let string = LocalizedStringResource(stringLiteral: "uploadFailed")
+                        file.uploadStatus = "\(string): \(error.localizedDescription)"
                     } else {
-                        file.uploadStatus = "Upload Successful"
+                        file.uploadStatus = "uploadsuccess"
                         file.isUploaded = true
                     }
                 }
@@ -120,7 +121,7 @@ class FileUploadViewModel: FormInputViewModel {
     }
     
     func documentUploadComplete(_ file: DocumentFile) -> Bool {
-        return file.uploadStatus == "Upload Successful" || //TODO: Localize
+        return file.uploadStatus == "Upload Successful" ||
             file.uploadStatus.contains("Upload Failed")
     }
     

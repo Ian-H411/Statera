@@ -10,7 +10,7 @@ import PhotosUI
 import UniformTypeIdentifiers
 
 struct FileUploadScreen: View {
-    @StateObject var viewModel: FileUploadViewModel = FileUploadViewModel(labelText: "Upload Documents")
+    @StateObject var viewModel: FileUploadViewModel = FileUploadViewModel(labelText: "uploadDocuments")
     @State private var displayConfirmationDialog: Bool = false
     @State private var selectedPhotoUrl: URL?
     @State private var selectedPhoto: UIImage?
@@ -20,7 +20,7 @@ struct FileUploadScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var loginStatus: LoginStatus
     
-    let headerText: String = "Almost Done"
+    let headerText: String = "almostDone"
     
     var body: some View {
         Form {
@@ -78,19 +78,19 @@ struct FileUploadScreen: View {
     func fileUploadOptions() -> some View {
         HStack {
             Image(systemName: "folder")
-            Button("Choose Files") {
+            Button("chooseFiles") {
                 openFileExplorer = true
             }
         }
         HStack {
             Image(systemName: "camera")
-            Button("Use Camera") {
+            Button("useCamera") {
                 openCameraRoll = true
             }
         }
         HStack {
             Image(systemName: "photo.on.rectangle.angled")
-            Button("Choose from Photo Library") {
+            Button("usePhotoLibrary") {
                 openPhotoLibrary = true
             }
         }
@@ -98,7 +98,7 @@ struct FileUploadScreen: View {
     
     @ViewBuilder
     func uploadedFileView() -> some View {
-        Section("selected_Files") { //TODO: Localize
+        Section("selected_Files") {
             List(viewModel.files) { file in
                 UploadedFileView(file: file, viewModel: viewModel)
             }

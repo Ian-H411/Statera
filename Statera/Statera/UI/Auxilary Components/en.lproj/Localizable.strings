@@ -106,3 +106,10 @@
 "selected_Files" = "Selected files";
 "newAccountError" = "error occured while creating account.  please ensure you do not have an active account, or try again.";
 "Confirm_Password" = "Confirm Password";
+"uploadsuccess" = "Upload Successful";
+"uploadFailed" = "Upload Failed";
+"almostDone" = "Almost Done";
+"uploadDocuments" = "Upload Documents";
+"useCamera" = "Use Camera";
+"usePhotoLibrary" = "Choose from Photo Library";
+"chooseFiles" = "Choose Files";

@@ -105,3 +105,10 @@
 "selected_Files" = "Archivos seleccionados";
 "newAccountError" = "Se produjo un error al crear la cuenta. Por favor, asegúrese de no tener una cuenta activa o intente nuevamente.";
 "Confirm_Password" = "Confirmar Contraseña";
+"uploadsuccess" = "Carga exitosa";
+"uploadFailed" = "Carga fallida";
+"almostDone" = "Casi terminado";
+"uploadDocuments" = "Cargar documentos";
+"useCamera" = "Usar cámara";
+"usePhotoLibrary" = "Elegir de la biblioteca de fotos";
+"chooseFiles" = "Elegir archivos";
