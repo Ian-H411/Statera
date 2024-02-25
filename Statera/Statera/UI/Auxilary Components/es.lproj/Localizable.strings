@@ -112,3 +112,6 @@
 "useCamera" = "Usar cámara";
 "usePhotoLibrary" = "Elegir de la biblioteca de fotos";
 "chooseFiles" = "Elegir archivos";
+"welcome" = "Bienvenido a Statera Contabilidad";
+"resubmit" = "Volver a enviar información personal";
+"uploadMore" = "Subir más documentos";

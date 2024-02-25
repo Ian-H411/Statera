@@ -113,3 +113,6 @@
 "useCamera" = "Use Camera";
 "usePhotoLibrary" = "Choose from Photo Library";
 "chooseFiles" = "Choose Files";
+"welcome" = "Welcome To Statera Accounting";
+"resubmit" = "Resubmit Personal Info";
+"uploadMore" = "Upload More Documents";

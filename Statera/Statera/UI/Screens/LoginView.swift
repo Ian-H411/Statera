@@ -82,8 +82,26 @@ struct LoginView: View {
             }
             .edgesIgnoringSafeArea(.bottom)
         }
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                toolBar()
+            }
+        }
         if isLoading {
             LoadingOverlayView(isLoading: $isLoading)
+        }
+        
+    }
+    @ViewBuilder
+    func toolBar() -> some View {
+        HStack {
+            Spacer()
+            Button(action: {
+                UIApplication.shared.endEditing()
+            }, label: {
+                Image(systemName: "keyboard.chevron.compact.down")
+            })
+            
         }
     }
 }

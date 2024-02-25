@@ -21,16 +21,17 @@ struct HomeScreen: View {
                 .shadow(radius: 10)
             Spacer()
                 .frame(height: 30)
-            Text("Welcome To Statera Accounting")
+            Text("welcome")
                 .modifier(TitleTextStyle())
+                .padding(4)
             List {
-                NavigationLink("Resubmit Personal Info") {
+                NavigationLink("resubmit") {
                     FormScreenView(isLoggedIn: $loginStatus, errorViewModel: errorViewModel)
                 }
                 .foregroundColor(.blue)
                 .fontWeight(.bold)
                 
-                NavigationLink("Upload More Documents") {
+                NavigationLink("uploadMore") {
                     FileUploadScreen(loginStatus: $loginStatus)
                 }
                 .foregroundColor(.blue)
