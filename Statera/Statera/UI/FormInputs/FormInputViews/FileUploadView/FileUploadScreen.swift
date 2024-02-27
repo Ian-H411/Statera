@@ -149,10 +149,10 @@ struct UploadedFileView: View {
                 .frame(width: 20, height: 20)
                 .alert(isPresented: $deletionConfirmation) {
                     Alert(
-                        title: Text("Confirm Deletion"),
-                        message: Text("Are you sure you want to delete this file?"),
-                        primaryButton: .default(Text("Cancel")),
-                        secondaryButton: .destructive(Text("Delete")) {
+                        title: Text("confirmDeletion"),
+                        message: Text("fileDeleteConfirm"),
+                        primaryButton: .default(Text("cancel")),
+                        secondaryButton: .destructive(Text("delete")) {
                             // Perform deletion
                             viewModel.deleteDocumentFromStorage(file)
                             viewModel.deleteDocument(file)

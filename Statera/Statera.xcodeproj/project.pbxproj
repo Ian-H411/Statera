@@ -21,6 +21,7 @@
 		6B0E88132AF6BC520061491E /* PickerInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E88122AF6BC520061491E /* PickerInputView.swift */; };
 		6B0E88152AF6BC630061491E /* CheckBoxInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0E88142AF6BC630061491E /* CheckBoxInputView.swift */; };
 		6B41E99F2B4CF49100962F2B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B41E99E2B4CF49100962F2B /* ImagePicker.swift */; };
+		6B56ADC92B8D71210051475B /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B56ADC82B8D71210051475B /* ContactUsViewModel.swift */; };
 		6B5C22AE2B6C9FA300A4AF74 /* SuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C22AD2B6C9FA300A4AF74 /* SuccessScreen.swift */; };
 		6B5C6C872AEEB5F500D88079 /* StateraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C6C862AEEB5F500D88079 /* StateraApp.swift */; };
 		6B5C6C892AEEB5F500D88079 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C6C882AEEB5F500D88079 /* ContentView.swift */; };
@@ -109,6 +110,7 @@
 		6B0E88122AF6BC520061491E /* PickerInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerInputView.swift; sourceTree = "<group>"; };
 		6B0E88142AF6BC630061491E /* CheckBoxInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxInputView.swift; sourceTree = "<group>"; };
 		6B41E99E2B4CF49100962F2B /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		6B56ADC82B8D71210051475B /* ContactUsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewModel.swift; sourceTree = "<group>"; };
 		6B5C22AD2B6C9FA300A4AF74 /* SuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessScreen.swift; sourceTree = "<group>"; };
 		6B5C6C832AEEB5F500D88079 /* Statera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Statera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B5C6C862AEEB5F500D88079 /* StateraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateraApp.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				6BA41CF52B1ECE7B0000A260 /* FormScreenViewModel.swift */,
 				6B9133A52B292FC800EB91E1 /* LoginViewModel.swift */,
 				6B6BAC082B33C6D6008C72AB /* CreateAccountViewModel.swift */,
+				6B56ADC82B8D71210051475B /* ContactUsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 				6B0E87FB2AF6B9930061491E /* TextInputViewModel.swift in Sources */,
 				6B0E87FD2AF6B9BC0061491E /* CurrencyInputViewModel.swift in Sources */,
 				6B74D8762B448C5D00E41235 /* FileUploadScreen.swift in Sources */,
+				6B56ADC92B8D71210051475B /* ContactUsViewModel.swift in Sources */,
 				6BA41CF62B1ECE7B0000A260 /* FormScreenViewModel.swift in Sources */,
 				6BA41CF32B1ECCD60000A260 /* FormScreenView.swift in Sources */,
 				6B9133A62B292FC800EB91E1 /* LoginViewModel.swift in Sources */,

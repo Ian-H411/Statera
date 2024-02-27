@@ -115,3 +115,9 @@
 "welcome" = "Bienvenido a Statera Contabilidad";
 "resubmit" = "Volver a enviar información personal";
 "uploadMore" = "Subir más documentos";
+"deleteAcct" = "Eliminar cuenta";
+"deleteConfirmationAccountMessage" = "¿Estás seguro de que quieres eliminar tu cuenta y todos los datos asociados? Esta acción no se puede deshacer.";
+"confirmDeletion" = "Confirmar eliminación";
+"fileDeleteConfirm" = "¿Estás seguro de que quieres eliminar este archivo?";
+"cancel" = "Cancelar";
+"delete" = "Eliminar";

@@ -78,7 +78,6 @@ struct ContentView: View {
             VStack {
                 HStack {
                     Spacer()
-                        .frame(width: .infinity)
                     FloatingMenu(isMenuDisplayed: $displayMenu, isLoggedIn: $isLoggedIn)
                 }
                 Spacer()

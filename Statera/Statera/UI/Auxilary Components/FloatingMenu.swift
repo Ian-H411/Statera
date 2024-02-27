@@ -34,7 +34,7 @@ struct FloatingMenu: View {
             Button(action: {
                 isMenuDisplayed = false
             }) {
-                NavigationLink(destination: ContactUsScreen()) {
+                NavigationLink(destination: ContactUsScreen(isLoggedIn: $isLoggedIn)) {
                     HStack {
                         Image(systemName: "person")
                             .foregroundColor(.blue)

@@ -116,3 +116,9 @@
 "welcome" = "Welcome To Statera Accounting";
 "resubmit" = "Resubmit Personal Info";
 "uploadMore" = "Upload More Documents";
+"deleteAcct" = "Delete Account";
+"deleteConfirmationAccountMessage" = "Are you sure you want to delete your account, and all associated data?  This cannot be undone.";
+"confirmDeletion" = "Confirm Deletion";
+"fileDeleteConfirm" = "are you sure you want to delete this file?";
+"cancel" = "Cancel";
+"delete" = "Delete";

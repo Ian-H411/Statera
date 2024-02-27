@@ -81,7 +81,7 @@ class LoginViewModel: ObservableObject {
         let submissionsRef = Storage.storage().reference().child("\(currentUsersEmail)").child("\(year)").child("userData.json")
         
         let _ = submissionsRef.write(toFile: temporaryFileURL) { _, error in
-            if let error = error {
+            if let _ = error {
                 completionHandler(false)
                 return
             }
