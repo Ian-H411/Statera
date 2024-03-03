@@ -11,7 +11,6 @@ struct FloatingMenu: View {
     @Binding var isMenuDisplayed: Bool
     @Binding var isLoggedIn: LoginStatus
     var body: some View {
-        
         VStack {
             if isLoggedIn != .loggedOut {
                 Button(action: {
@@ -30,20 +29,15 @@ struct FloatingMenu: View {
                 Rectangle()
                     .frame(height: 1)
             }
-            
-            Button(action: {
-                isMenuDisplayed = false
-            }) {
-                NavigationLink(destination: ContactUsScreen(isLoggedIn: $isLoggedIn)) {
-                    HStack {
-                        Image(systemName: "person")
-                            .foregroundColor(.blue)
-                            .font(.title)
-                        Text("Contact_US")
-                            .font(.body)
-                            .frame(alignment: .trailing)
-                            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                    }
+            NavigationLink(destination: ContactUsScreen(isLoggedIn: $isLoggedIn)) {
+                HStack {
+                    Image(systemName: "person")
+                        .foregroundColor(.blue)
+                        .font(.title)
+                    Text("Contact_US")
+                        .font(.body)
+                        .frame(alignment: .trailing)
+                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                 }
             }
             Rectangle()
@@ -65,6 +59,9 @@ struct FloatingMenu: View {
         .border(.black, width: 2)
         .cornerRadius(10)
         .shadow(color: Color.gray, radius: 5, x: 0, y: 2)
+        .onDisappear(perform: {
+            isMenuDisplayed = false
+        })
     }
 }
 
