@@ -16,28 +16,72 @@ class ContactUsViewModel: ObservableObject {
     }
     
     func deleteAccount(completionHandler: @escaping (Bool) -> Void) {
-        deleteFilesFromStorage()
-        Auth.auth().currentUser?.delete(completion: { _ in
-            completionHandler(true)
+        deleteFilesAndFoldersUnderReference(completion: {
+            Auth.auth().currentUser?.delete(completion: { _ in
+                completionHandler(true)
+            })
         })
     }
     
-    func deleteFilesFromStorage() {
-        
+    func deleteFilesAndFoldersUnderReference(completion: @escaping () -> Void) {
+        // Recursive function to delete all items
         let storageRef = Storage.storage().reference().child("\(currentUsersEmail)")
         
-        storageRef.listAll { result, error in
-            if let error = error {
-                print("Error listing files: \(error.localizedDescription)")
+        func deleteItems(_ items: [StorageReference], completion: @escaping (Error?) -> Void) {
+            guard !items.isEmpty else {
+                completion(nil)
                 return
             }
-            guard let resultList = result?.items else { return }
-            for item in resultList {
-                item.delete { error in
+            
+            let group = DispatchGroup()
+            var deletionError: Error?
+            
+            for item in items {
+                group.enter()
+                item.listAll { result, error in
                     if let error = error {
-                        print("Error deleting file: \(error.localizedDescription)")
-                    } else {
-                        print("File deleted successfully.")
+                        deletionError = error
+                        group.leave()
+                        return
+                    }
+                    
+                    let nestedItems: [StorageReference] = result?.items ?? []
+                    let nestedDirectories: [StorageReference] = result?.prefixes ?? []
+                    
+                    deleteItems(nestedItems + nestedDirectories) { error in
+                        if let error = error {
+                            deletionError = error
+                        }
+                        item.delete { error in
+                            if let error = error {
+                                deletionError = error
+                            }
+                            group.leave()
+                        }
+                    }
+                }
+            }
+            
+            group.notify(queue: .main) {
+                completion(deletionError)
+            }
+        }
+        
+        storageRef.listAll { result, error in
+            if let _ = error {
+                completion()
+                return
+            }
+            
+            let items: [StorageReference] = result?.items ?? []
+            let directories: [StorageReference] = result?.prefixes ?? []
+            
+            deleteItems(items + directories) { deletionError in
+                if let _ = deletionError {
+                    completion()
+                } else {
+                    storageRef.delete { _ in
+                        completion()
                     }
                 }
             }

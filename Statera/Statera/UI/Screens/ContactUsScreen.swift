@@ -12,7 +12,8 @@ struct ContactUsScreen: View {
     @Binding var isLoggedIn: LoginStatus
     @State var viewModel = ContactUsViewModel()
     @State var isLoading: Bool = false
-    
+    @Environment(\.presentationMode) var presentationMode
+
     var body: some View {
         ZStack {
             VStack {
@@ -86,6 +87,7 @@ struct ContactUsScreen: View {
                                         viewModel.deleteAccount { _ in
                                             isLoggedIn = .loggedOut
                                             isLoading = false
+                                            presentationMode.wrappedValue.dismiss()
                                         }
                                     }
                                 )
