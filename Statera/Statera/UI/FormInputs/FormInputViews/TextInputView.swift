@@ -28,6 +28,7 @@ struct TextInputView: View {
                 .onChange(of: viewModel.userInput, initial: true) { _, newValue in
                     viewModel.updateText(newValue)
                 }
+                .ignoresSafeArea(.keyboard, edges: .bottom)
                 .keyboardType(viewModel.keyboardType)
         }
     }

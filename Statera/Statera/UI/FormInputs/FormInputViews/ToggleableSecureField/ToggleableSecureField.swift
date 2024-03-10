@@ -31,14 +31,20 @@ public struct ToggleableSecureField: View {
       if isSecure {
         if #available(iOS 15.0, *) {
           SecureField(LocalizedStringKey(title), text: text, prompt: prompt)
+                .ignoresSafeArea(.keyboard, edges: .bottom)
         } else {
           SecureField(LocalizedStringKey(title), text: text)
+                .ignoresSafeArea(.keyboard, edges: .bottom)
+
         }
       } else {
         if #available(iOS 15.0, *) {
           TextField(LocalizedStringKey(title), text: text, prompt: prompt)
+                .ignoresSafeArea(.keyboard, edges: .bottom)
         } else {
           TextField(LocalizedStringKey(title), text: text)
+                .ignoresSafeArea(.keyboard, edges: .bottom)
+
         }
       }
     }

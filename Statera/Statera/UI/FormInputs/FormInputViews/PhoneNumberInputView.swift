@@ -29,6 +29,7 @@ struct PhoneNumberInputView: View {
                       initial: false, { _, newValue in
                 viewModel.updateText(newValue)
             })
+            .ignoresSafeArea(.keyboard, edges: .bottom)
             .keyboardType(viewModel.keyboardType)
             if !viewModel.isValid() && viewModel.begunEditing {
                 Text("Invalid_PhoneNumber")

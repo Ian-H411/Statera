@@ -31,6 +31,7 @@ struct ZipCodeInputView: View {
             .onChange(of: viewModel.userInput, { _, newValue in
                 viewModel.updateText(newValue)
             })
+            .ignoresSafeArea(.keyboard, edges: .bottom)
             .keyboardType(viewModel.keyboardType)
         }
     }
