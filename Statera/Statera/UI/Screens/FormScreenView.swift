@@ -11,6 +11,7 @@ struct FormScreenView: View {
     @Binding var isLoggedIn: LoginStatus
     @ObservedObject var viewModel: FormScreenViewModel = FormScreenViewModel()
     @State var askDependentsNumber: Bool = false
+    @State var askSpouseInfo: Bool = true
     @State var displayDependentInputs: Bool = false
     @ObservedObject var errorViewModel: ErrorViewModel
     @State private var isLoading: Bool = false
@@ -97,12 +98,21 @@ struct FormScreenView: View {
             PickerInputView(viewModel: viewModel.filingStatusViewModel)
                 .onReceive(viewModel.filingStatusViewModel.$userInput, perform: { _ in
                     askDependentsNumber = viewModel.shouldAskDependents()
+                    askSpouseInfo = viewModel.shouldAskSpouseInfo()
                 })
                 .focused($focusedField, equals: 9)
                 .submitLabel(.next)
                 .onSubmit {
                     focusedField = min((focusedField ?? 0) + 1, 1)
                 }
+            if askSpouseInfo {
+                TextInputView(viewModel: viewModel.spouseNameViewModel)
+                    .textContentType(.name)
+                SSNInputView(viewModel: viewModel.spouseSocialViewModel)
+                    .focused($focusedField, equals: 1)
+                DOBInputView(viewModel: viewModel.spouseDOBViewModel)
+                    .textContentType(.birthdateDay)
+            }
         }
     }
     

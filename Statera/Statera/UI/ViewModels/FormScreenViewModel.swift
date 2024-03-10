@@ -68,8 +68,16 @@ class FormScreenViewModel: ObservableObject {
     
     @Published var dependentsInfoViewModels: [[FormInputViewModel]] = []
     
+    @Published var spouseNameViewModel = TextInputViewModel(labelText: "spouse_Name", preFill: "", minCharacters: 5, maxCharacters: 30, allowedCharacterSet: .alphanumerics)
+    @Published var spouseSocialViewModel = SSNInputViewModel(labelText: "spouse_Social")
+    @Published var spouseDOBViewModel = DOBInputViewModel(labelText: "spouse_DOB", over18: true)
+    
     func shouldAskDependents() -> Bool {
         return FilingStatus(rawValue: filingStatusViewModel.userInput) != .single
+    }
+    
+    func shouldAskSpouseInfo() -> Bool {
+        return FilingStatus(rawValue: filingStatusViewModel.userInput) == .marriedFilingJoint
     }
     
     func numberOfDependentsFields() -> Int {
@@ -128,6 +136,17 @@ class FormScreenViewModel: ObservableObject {
         zipCodeViewModel.objectWillChange.sink { _ in
             self.updateSubmitButtonState()
         }.store(in: &cancellables)
+        if shouldAskSpouseInfo() {
+            spouseDOBViewModel.objectWillChange.sink { _ in
+                self.updateSubmitButtonState()
+            }.store(in: &cancellables)
+            spouseNameViewModel.objectWillChange.sink { _ in
+                self.updateSubmitButtonState()
+            }.store(in: &cancellables)
+            spouseSocialViewModel.objectWillChange.sink { _ in
+                self.updateSubmitButtonState()
+            }.store(in: &cancellables)
+        }
     }
     
     private func enableSubmitButton() -> Bool {
@@ -136,6 +155,13 @@ class FormScreenViewModel: ObservableObject {
         }
         if dependentsInfoViewModels.isEmpty {
             dependentsInfoComplete = true
+        }
+        if shouldAskSpouseInfo() {
+            guard spouseDOBViewModel.isValid(),
+                  spouseNameViewModel.isValid(),
+                  spouseSocialViewModel.isValidSSN() else {
+                return false
+            }
         }
         return dependentsInfoComplete && zipCodeViewModel.isValid() &&
         cityViewModel.isValid() && addressLine1ViewModel.isValid() &&
@@ -176,6 +202,14 @@ class FormScreenViewModel: ObservableObject {
                 "dob": viewModel[2].userInput
             ]
         }
+        var spouseInfo: [String: Any] = [:]
+        if shouldAskSpouseInfo() {
+            spouseInfo = [
+                "name": spouseNameViewModel.userInput,
+                "ssn": spouseSocialViewModel.userInput,
+                "dob": spouseDOBViewModel.userInput
+            ]
+        }
         let baseData: [String: Any] = [
             "name": nameViewModel.userInput,
             "ssn": SSNViewModel.userInput,
@@ -187,6 +221,7 @@ class FormScreenViewModel: ObservableObject {
             "state": StateViewModel.userInput,
             "zip": zipCodeViewModel.userInput,
             "filingStatus": filingStatusViewModel.userInput,
+            "spouseInfo": spouseInfo,
             "NumberOfDependents": dependentsViewModel.userInput,
             "dependentsInfo": dependentInfo
         ]
@@ -226,13 +261,17 @@ class FormScreenViewModel: ObservableObject {
     }
     
     private func createPDFTextContent() -> String {
-        var dependentString = ""
+        var dependentString = "None"
         for (index, dependentsInfoViewModel) in dependentsInfoViewModels.enumerated() {
             let name = dependentsInfoViewModel[0].userInput
             let ssn = dependentsInfoViewModel[1].userInput
             let dob = dependentsInfoViewModel[2].userInput
             dependentString.append("Dependent: \(index + 1) \n Name: \(name) \n Social: \(ssn) \n Date Of Birth: \(dob) \n\n")
         }
-        return "FullName: \(nameViewModel.userInput) \n Social: \(SSNViewModel.userInput) \n Date of Birth: \(DOBViewModel.userInput) \n Phone Number: \(phoneNumberViewModel.userInput) \n Address: \(addressLine1ViewModel.userInput) \n    \(addressLine2ViewModel.userInput) \n   \(cityViewModel.userInput), \(StateViewModel.userInput), \(zipCodeViewModel.userInput) \n\n Filing Status: \(filingStatusViewModel.userInput) \n Number of Dependents: \(dependentsViewModel.userInput) \n \(dependentString)"
+        var spouseString = "None"
+        if shouldAskSpouseInfo() {
+            spouseString = "Spouse Name: \(spouseNameViewModel.userInput) \n Spouse Social: \(spouseSocialViewModel.userInput) \n Spouse Date Of Birth: \(spouseDOBViewModel.userInput)"
+        }
+        return "FullName: \(nameViewModel.userInput) \n Social: \(SSNViewModel.userInput) \n Date of Birth: \(DOBViewModel.userInput) \n Phone Number: \(phoneNumberViewModel.userInput) \n Address: \(addressLine1ViewModel.userInput) \n    \(addressLine2ViewModel.userInput) \n   \(cityViewModel.userInput), \(StateViewModel.userInput), \(zipCodeViewModel.userInput) \n\n Filing Status: \(filingStatusViewModel.userInput) \n Spouse Info: \(spouseString) \n Number of Dependents: \(dependentsViewModel.userInput) \n \(dependentString)"
     }
 }

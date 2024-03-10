@@ -91,6 +91,10 @@
 
 "How_Many_Dependents?" = "¿Cuántos dependientes?";
 
+"spouse_Name" = "Nombre del cónyuge";
+"spouse_DOB" = "Fecha de nacimiento del cónyuge";
+"spouse_Social" = "Número de Seguro Social del cónyuge";
+
 "filing_Status_Info" = "Soltero/a: Un estado civil de declaración de impuestos para personas que no están casadas y no califican para ningún otro estado civil de declaración. \n \n Casado/a Presentando Conjuntamente: Un estado civil de declaración de impuestos para parejas casadas que eligen presentar su declaración de impuestos sobre la renta juntas, combinando sus ingresos y deducciones. \n\n Jefe/a de Familia: Un estado civil de declaración de impuestos para personas solteras que tienen dependientes y cumplen con ciertos criterios. Este estado civil a menudo ofrece tasas impositivas más favorables y una deducción estándar más alta.";
 
 

@@ -93,6 +93,10 @@
 
 "How_Many_Dependents?" = "How Many Dependents?";
 
+"spouse_Name" = "Spouses' Name";
+"spouse_DOB" = "Spouses' Date of Birth";
+"spouse_Social" = "Spouses' Social Security Number";
+
 "filing_Status_Info" = "Single: A filing status for individuals who are not married and do not qualify for any other filing status. \n \n Married Filing Joint: A filing status for married couples who choose to file their income tax return together, combining their income and deductions. \n\n Head of Household: A filing status for individuals who are unmarried, have dependents, and meet certain criteria. This status often provides more favorable tax rates and a higher standard deduction.";
 
 //MARK: - organize later
