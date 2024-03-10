@@ -99,6 +99,9 @@ struct FormScreenView: View {
                 .onReceive(viewModel.filingStatusViewModel.$userInput, perform: { _ in
                     askDependentsNumber = viewModel.shouldAskDependents()
                     askSpouseInfo = viewModel.shouldAskSpouseInfo()
+                    if askSpouseInfo {
+                        viewModel.observeViewModels()
+                    }
                 })
                 .focused($focusedField, equals: 9)
                 .submitLabel(.next)

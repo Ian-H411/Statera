@@ -95,7 +95,7 @@ class FormScreenViewModel: ObservableObject {
         observeViewModels()
     }
     
-    private func observeViewModels() {
+    func observeViewModels() {
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()
         for viewModelArray in dependentsInfoViewModels {
@@ -151,7 +151,10 @@ class FormScreenViewModel: ObservableObject {
     
     private func enableSubmitButton() -> Bool {
         var dependentsInfoComplete = dependentsInfoViewModels.contains { inputViewModels in
-            inputViewModels.contains(where: { !$0.isValid() })
+            for inputViewModel in inputViewModels where !inputViewModel.isValid() {
+                return false
+            }
+            return true
         }
         if dependentsInfoViewModels.isEmpty {
             dependentsInfoComplete = true
@@ -261,7 +264,7 @@ class FormScreenViewModel: ObservableObject {
     }
     
     private func createPDFTextContent() -> String {
-        var dependentString = "None"
+        var dependentString = ""
         for (index, dependentsInfoViewModel) in dependentsInfoViewModels.enumerated() {
             let name = dependentsInfoViewModel[0].userInput
             let ssn = dependentsInfoViewModel[1].userInput
