@@ -113,6 +113,7 @@
 "uploadFailed" = "Carga fallida";
 "almostDone" = "Casi terminado";
 "uploadDocuments" = "Cargar documentos";
+"UploadOptions" = "Opciones de carga";
 "useCamera" = "Usar cámara";
 "usePhotoLibrary" = "Elegir de la biblioteca de fotos";
 "chooseFiles" = "Elegir archivos";

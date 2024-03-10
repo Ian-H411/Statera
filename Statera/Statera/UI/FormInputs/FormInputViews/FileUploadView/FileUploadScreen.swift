@@ -19,13 +19,11 @@ struct FileUploadScreen: View {
     @State private var openFileExplorer: Bool = false
     @Environment(\.presentationMode) var presentationMode
     @Binding var loginStatus: LoginStatus
-    
-    let headerText: String = "almostDone"
-    
+        
     var body: some View {
         Form {
             headerView()
-            Section("Upload Options") {
+            Section("UploadOptions") {
                 fileUploadOptions()
             }
             if !viewModel.files.isEmpty {
@@ -69,7 +67,7 @@ struct FileUploadScreen: View {
         Section {
             Text("allowableFiles")
         } header: {
-            Text(headerText)
+            Text("almostDone")
                 .modifier(TitleTextStyle())
         }
     }

@@ -114,6 +114,7 @@
 "uploadFailed" = "Upload Failed";
 "almostDone" = "Almost Done";
 "uploadDocuments" = "Upload Documents";
+"UploadOptions" = "Upload Options";
 "useCamera" = "Use Camera";
 "usePhotoLibrary" = "Choose from Photo Library";
 "chooseFiles" = "Choose Files";
